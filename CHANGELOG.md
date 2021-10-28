@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 2.12.0
+
+*October 27, 2021*
+
+* Bump nokogiri from 1.12.3 to 1.12.5
+* Bump ffi from 1.15.0 to 1.15.4
+* Bump rouge from 3.26.0 to 3.26.1
+* Remove unnecessary files from docker images
+
 ## Version 2.11.0
 
 *August 12, 2021*
