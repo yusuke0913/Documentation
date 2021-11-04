@@ -2,7 +2,7 @@
 
 ## Version 2.12.0
 
-*October 27, 2021*
+*November 04, 2021*
 
 * Bump nokogiri from 1.12.3 to 1.12.5
 * Bump ffi from 1.15.0 to 1.15.4
