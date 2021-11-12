@@ -631,3 +631,32 @@ html, body {
 .copy-clipboard:hover {
   opacity: 0.8;
 }
+
+.content {
+  .center-column + .highlight {
+    pre {
+      position: static;
+      float: none;
+      clear: none;
+      margin: 0 28px;
+      left: 0;
+    }
+  }
+}
+
+.content {
+  .center-column + .highlight {
+
+    margin-right: 50%;
+    margin-bottom: 14px;
+
+    pre {
+      position: static;
+      float: none;
+      clear: none;
+      margin: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
