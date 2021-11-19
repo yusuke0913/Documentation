@@ -37,10 +37,10 @@ curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdn
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/", {
-  headers: {
-    Authorization: "Token asasdadjanfkanfda",
-    "Integration-Id": "aqdnkjasdo12"
-  }
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Integration-Id": "aqdnkjasdo12"
+    }
 })
 ```
 
@@ -101,8 +101,8 @@ import requests
 response = requests.post(
     'https://api.gigapay.se/v2/webhooks/',
     json={
-      'url': 'https://gigatron.se/webhooks/payouts/', 
-      'events': ['Payout.created']
+        'url': 'https://gigatron.se/webhooks/payouts/', 
+        'events': ['Payout.created']
     },
     headers={
         'Authorization': 'Token asasdadjanfkanfda',
@@ -181,15 +181,15 @@ response = requests.get(
 ```
 
 ```shell
-curl -X GET -H -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/webhooks/481272/
+curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/webhooks/481272/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/481272/", {
-  headers: {
-    "Authorization": "Token asasdadjanfkanfda",
-    "Integration-Id": "aqdnkjasdo12"
-  }
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Integration-Id": "aqdnkjasdo12"
+    }
 })
 ```
 
@@ -237,7 +237,7 @@ import requests
 response = requests.patch(
     'https://api.gigapay.se/v2/webhooks/481272/',
     json={
-      'events': ['Payout.created', 'Payout.notified']
+        'events': ['Payout.created', 'Payout.notified']
     },
     headers={
         'Authorization': 'Token asasdadjanfkanfda',
@@ -252,7 +252,7 @@ curl -X PATCH -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: appl
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/481272/", {
-    method: "PATCH"
+    method: "PATCH",
     body: JSON.stringify({events: ["Payout.created", "Payout.notified"]}),
     headers: {
         "Authorization": "Token asasdadjanfkanfda",
@@ -314,8 +314,8 @@ import requests
 response = requests.put(
     'https://api.gigapay.se/v2/webhooks/481272/',
     json={
-      'url': 'https://gigatron.se/webhooks/invoiced/', 
-      'events': ['Invoice.created']
+        'url': 'https://gigatron.se/webhooks/invoiced/', 
+        'events': ['Invoice.created']
     },
     headers={
         'Authorization': 'Token asasdadjanfkanfda',
@@ -356,7 +356,7 @@ This endpoint replaces a webhooks.
 
 ### HTTP Request
 
-`PATCH https://api.gigapay.se/v2/webhooks/`
+`PUT https://api.gigapay.se/v2/webhooks/`
 
 ### Headers
 

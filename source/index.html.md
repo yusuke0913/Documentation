@@ -10,6 +10,8 @@ toc_footers:
   - <a href='mailto:developer@gigapay.se'>developer@gigapay.se</a>
 
 includes:
+  - integrations
+  - invoices
   - webhooks
 
 
