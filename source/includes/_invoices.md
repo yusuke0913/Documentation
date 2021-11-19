@@ -98,7 +98,7 @@ Parameter | Required | Description
 Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
-`page_size` | 25 | The number of Webhooks per page.
+`page_size` | 25 | The number of Invoices per page.
 
 
 
@@ -223,7 +223,7 @@ fetch("https://api.gigapay.se/v2/invoices/2859272/", {
 }
 ```
 
-This endpoint creates a webhooks.
+This endpoint updates a webhooks.
 
 ### HTTP Request
 

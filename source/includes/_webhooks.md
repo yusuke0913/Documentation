@@ -274,7 +274,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 }
 ```
 
-This endpoint creates a webhooks.
+This endpoint updates a webhooks.
 
 ### HTTP Request
 
@@ -356,7 +356,7 @@ This endpoint replaces a webhooks.
 
 ### HTTP Request
 
-`PUT https://api.gigapay.se/v2/webhooks/`
+`PUT https://api.gigapay.se/v2/webhooks/:id/`
 
 ### Headers
 
