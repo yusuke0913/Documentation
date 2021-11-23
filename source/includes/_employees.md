@@ -525,7 +525,7 @@ fetch("https://api.gigapay.se/v2/employees/1847/resend/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes a webhooks.
+This endpoint resend an invitation.
 
 ### HTTP Request
 

@@ -12,6 +12,8 @@ toc_footers:
 includes:
   - integrations
   - employees
+  - payouts
+  - pricing
   - invoices
   - webhooks
 
