@@ -236,7 +236,7 @@ Parameter | Type | Required | Default | Description
 
 
 
-## Register multiple Payout
+## Register multiple Payouts
 
 ```python
 import requests

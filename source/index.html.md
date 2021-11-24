@@ -1,12 +1,13 @@
 ---
-title: API Reference
+title: Gigapay API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
+language_tabs:
   - shell
   - python
   - javascript
 
 toc_footers:
+  - Questions? Ask us!
   - <a href='mailto:developer@gigapay.se'>developer@gigapay.se</a>
 
 includes:
@@ -29,13 +30,16 @@ meta:
 
 # API Reference
 
-The Gigapay API is organized around [REST](http://en.wikipedia.org/wiki/Representational\_State\_Transfer). Our API has
-predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org) request bodies, returns JSON-encoded
-responses, and uses standard HTTP response codes, authentication, and verbs. Our API is available at
-[https://api.gigapay.se/v2/](https://api.gigapay.se/v2/).
+The Gigapay API is organized around REST Our API has predictable resource-oriented URLs, accepts JSON-encoded requests, returns JSON-encoded
+responses, and uses standard HTTP response codes, authentication, and verbs. Our API is available at:
 
-There is a demo version of the API available at [https://api.demo.gigapay.se/v2/](https://api.demo.gigapay.se/v2/).
-This also serves as a test environment for developers working to integrate with our API. No money flows through the
+- [https://api.gigapay.se/v2/](https://api.gigapay.se/v2/).
+
+There is a demo version of the API available at:
+
+- [https://api.demo.gigapay.se/v2/](https://api.demo.gigapay.se/v2/).
+
+It also serves as a test environment for developers working to integrate with our API. No money flows through the
 demo environment.
 
 ### Browsable API
@@ -45,46 +49,57 @@ requested by a web browser. This allows for easy browsing and interaction with t
 recommend you test our Browsable API before starting to integrate with our API, as it will give you a far more
 intuitive understanding of the API compared to reading this documentation.
 
-### Postman collection
-
-There is also a Postman collection if you prefer. Follow the instructions
-[here](https://developer.gigapay.se/postman-collection/) to get your Postman environment and collection configured.
 
 
-# Events
-
-The Gigapay API is driven by actions taken by the parties involved in each Payout; the Client making the Payout,
-Gigapay facilitating it, and the Employee receiving it. The flowchart below illustrates each of these actions and
-the corresponding events.
-
-![](events.svg)
-
-Note that the Employee and Payout flow typically occur in parallel as the Employee is usually created when, or close in
-time to when, their first Payout is created. In this case is the Employee not notified of the Payout until they are
-verified.
 
 
 # Authentication
+
+```python
+import requests
+
+response = requests.get(
+    'https://api.gigapay.se/v2/',
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Integration-ID': 'aqdnkjasdo12'
+    }
+)
+```
+
+```shell
+curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/
+
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/", {
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Integration-Id": "aqdnkjasdo12"
+    }
+})
+```
 
 The Gigapay API uses API keys to identify and authenticate requests. You can request keys by contacting us at
 [info@gigapay.se](mailto:info@gigapay.se). Note that you will receive separate sets of keys for the live and demo
 environment.
 
-Your API keys carry many privileges, so be make sure you keep them secure. Do not share your secret API keys in
+Your API key carry many privileges, so be make sure you keep them secure. Do not share your secret API key in
 publicly accessible areas such as GitHub, client-side code, etc.
 
 Authorization to the API is performed through a token-based HTTP Authentication scheme. To authorize requests, 
-include the `Authorization` and `Integration-ID` HTTP header. Note that the authentication key should be prefixed 
-by the string literal `Token`, with whitespace separating the two strings.
+include the `Authorization` HTTP header. Note that the authentication key should be prefixed 
+by the string literal `Token`, with whitespace separating the two strings. To specify which [Integration](#integrations)
+you are acting as you need to provide  the `Integration-ID` header.
 
-```shell
-curl https://api.gigapay.se/v2/payouts/ \
-  -H "Authorization: Token 1vjv20ksxwvlpp3peize74ievjmx3e" \
-  -H "Integration-ID: 650fd73ff5"
-```
+### Unauthenticated Requests
 
-API requests without authentication will fail with the HTTP response code `403`. API calls made over plain HTTP 
-instead of HTTPS will also be rejected with the response code `301`.
+API requests without valid authentication will fail with the HTTP response code `401`. If you are getting unexpected
+`401` responses, ensure that your URL is correct. API calls made over plain HTTP will be redirected with the response
+code `301`, and API calls with incorrect placed `/` will be redirected with the response code `307` to the correct URL.
+Most HTTP clients will automatically follow the redirect while stripping out the authorization headers, resulting in an
+`401` response.
 
 ### IP-whitelisting
 
@@ -102,120 +117,270 @@ The default language of the API is English. This document is written assuming yo
 To change language set the `Accept-Language` header to your preferred language. For example:
 
 
-# Errors
 
-Gigapay uses HTTP response codes to indicate whether an API request was successful. Codes in the `2XX` range indicate 
-success; codes in the `4XX` range indicate that the request failed, given the information provided; codes in the 
-`5XX` range indicate an error with Gigapay's servers. Response codes in the `4XX` range generally indicate a client
-error  and will as such include a key `detail` in the body describing the cause of the error. For example, the following
-request:
 
-<div class="center-column"></div>
-```shell
-curl https://api.gigapay.se/v2/payouts/123/ \
-  -X "DELETE" \
-  -H "Authorization: Token 1vjv20ksxwvlpp3peize74ievjmx3e" \
-  -H "Integration-ID: 650fd73ff5"
+
+
+# Events
+
+The Gigapay API is driven by actions taken by the parties involved in each Payout; the Client making the Payout,
+Gigapay facilitating it, and the Employee receiving it. The flowchart below illustrates each of these actions and
+the corresponding events.
+
+![](events.svg)
+
+Note that the Employee and Payout flow typically occur in parallel as the Employee is usually created when, or close in
+time to when, their first Payout is created. In this case is the Employee not notified of the Payout until they are
+verified.
+
+
+## Subscribing to Events
+
+> Example of a webhook send for the `Employee.verified` event:
+
+```http
+POST https://gigatron.se/webhooks/employees/ HTTP/1.1
+Content-Type: application/json
+Gigapay-Signature: t=1583327301,v1=ad583e2b2093c8d6fb3b65e04b99fc5988e98c0c312909acad334072da7e99ec
+...
+
+{
+    "id": "25d2af38-59b9-4f73-9452-51787fed5c84", 
+    "name": "Karl Karlsson", 
+    "cellphone_number": null, 
+    "email": karl.karlsson@gmail.com, 
+    "metadata": {
+        "user_id": 3
+    }, 
+    "created_at": "2019-05-20T15:33:08.974624Z", 
+    "notified_at": "2019-05-20T15:33:12.581720Z", 
+    "claimed_at": "2019-05-21T09:13:32.575721Z"
+    "verified_at": "2019-05-21T09:13:48.625263Z"
+}
 ```
 
-Will receive an error response indicating that the `DELETE` method is not allowed on that resource:
+The Gigapay API allows you to register [Webhooks](#webhooks) in order to receive real-time updates on  events related
+to your Gigapay account. They are optional, but the preferred way of monitoring the status of objects. We send webhoks
+on the following events:
 
-<div class="center-column"></div>
+* `Employee.created`
+* `Employee.notified`
+* `Employee.claimed`
+* `Employee.verified`
+* `Payout.created`
+* `Payout.notified`
+* `Payout.accepted`
+* `Invoice.created`
+* `Invoice.paid`
+
+The notifications simply contain the object that triggered the event, as represented in the API. For example, the
+webhook for a `Employee.verified` is shown to the right.
+
+### Gigapay Signature
+
+The notification is signed using the `secret_key` for the [Webhooks](#webhooks), the signature is included in the
+notification as a `Gigapay-Signature` header. This allows you to verify that the events were sent by Gigapay, and not
+by a third party.
+
 ```shell
-HTTP/2 405 
-allow: GET, HEAD, OPTIONS
+secret_key = '...asId'
+t, v1 = parse_signature(request.headers.Gigapay-Signature)
+payload = t + '.' + request.body
+
+hmac = hmac.new('sha256', secret_key.encode('utf-8'))
+hmac.update(payload.encode('utf-8'))
+signature = hmac.hexdigest()
+
+signature == v1
+```
+
+```python
+secret_key = '...asId'
+t, v1 = request.headers['Gigapay-Signature'].split(',')
+payload = t + '.' + request.body
+
+hmac = hmac.new('sha256', secret_key.encode('utf-8'))
+hmac.update(payload.encode('utf-8'))
+signature = hmac.hexdigest()
+
+signature == v1
+```
+
+```javascript
+secret_key = '...asId'
+t, v1 = parse_signature(request.headers.Gigapay-Signature)
+payload = t + '.' + request.body
+
+hmac = hmac.new('sha256', secret_key.encode('utf-8'))
+hmac.update(payload.encode('utf-8'))
+signature = hmac.hexdigest()
+
+signature == v1
+```
+
+The signature consists of two parameters;
+
+`t`, the timestamp of when the notification was sent, and;
+
+`v` the signature of the current scheme. 
+
+The only valid signature scheme is currently `v1`, which is the HMAC algorithm as described by RFC 2104 using SHA256
+as disgestmod.
+
+To verify signatures using the `v1` scheme, extract the timestamp from the `Gigapay-Signature` header, and the
+JSON-encoded notification from the request body. Join these strings with a period, `.`, as a separator. Compute a
+HMAC with the SHA256 hash function using the Webhook’s `secret_key` as the key. Lastly ensure that the signature in
+the header and the calculated signature matches.
+
+
+
+
+
+# Errors
+
+```http
+HTTP/1.1 405 Method Not Allowed
+Allow: GET, HEAD, OPTIONS
 ...
 
 {"detail":"Method \"DELETE\" not allowed."}
 ```
 
-Validation errors returned on otherwise valid requests are structured differently. They will respond with the
-status code `400`and include the field names as the keys in the response. If the validation error was not specific
-to a particular field then the `non_field_errors` key will be used. A validation error thus might look like:
+Gigapay uses HTTP response codes to indicate whether an API request was successful. Codes in the `2XX` range indicate 
+success; codes in the `4XX` range indicate that the request failed, given the information provided; codes in the 
+`5XX` range indicate an error with Gigapay's servers. Response codes in the `4XX` range generally indicate a client
+error  and will as such include information in the body of the response describing the cause of the error. 
 
-<div class="center-column"></div>
-```shell
+```http
 HTTP/1.1 400 Bad Request
 ...
 
 {"description": ["This field may not be blank."]}
 ```
 
+Validation errors returned on otherwise valid requests are structured differently. They will respond with the
+status code `400`and include the field names as the keys in the response. If the validation error was not specific
+to a particular field then the `non_field_errors` key will be used.
+
+
+
 # Expanding objects
 
-Many objects contain the identifier of a related object in their response properties. For example, a 
-[Payout](resources/payouts.md) has an associated [Employee](resources/employees.md) identifier. Those objects can be
-expanded inline with the `expand` request parameter. Objects that can be expanded are noted in this documentation.
-You can use the `expand` param on any endpoint which includes expandable fields, including the create endpoints.
-You can expand multiple objects at once by repeating the `expand` request parameter.
+> Request to retrieve a Payout object with the related Employee object expanded:
 
-For example, the following request retrieves a [Payout](resources/payouts.md) object with the related
-[Employee](resources/employees.md) object expanded.
+```python
+import requests
 
-<div class="center-column"></div>
-```shell
-curl https://api.gigapay.se/v2/payouts/123/?expand=employee \
-  -H "Authorization: Token 1vjv20ksxwvlpp3peize74ievjmx3e" \
-  -H "Integration-ID: 650fd73ff5"
+response = requests.get(
+    'https://api.gigapay.se/v2/payouts/9472/?expand=employee',
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Integration-ID': 'aqdnkjasdo12'
+    }
+)
 ```
 
-The response could look as following:
-
-<div class="center-column"></div>
 ```shell
-HTTP 200 OK
-...
+curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' 'https://api.gigapay.se/v2/payouts/9472/?expand=employee'
+```
 
+```javascript
+fetch("https://api.gigapay.se/v2/payouts/9472/?expand=employee", {
+    method: "GET",
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Integration-Id": "aqdnkjasdo12"
+    }
+})
+```
+
+> Returns a response formatted as such:
+
+```json
 {
-    "id": "123",
-    "amount": "1000.00",
+    "id": "9472",
+    "amount": "760.92",
+    "cost": "1020.00",
+    "country": "SWE",
     "currency": "SEK",
-    "description": "Lön genom Gigapay",
+    "description": "Instagram samarbete 2021-11-13.",
     "employee": {
-        "id": "67",
+        "id": "1847",
         "name": "Albin Lindskog",
-        "cellphone_number": "+46703000000",
-        "email": null,
+        "email": "albin@mail.com",
+        "cellphone_number": "+46700000001",
+        "country": "SWE",
         "metadata": {},
-        "created_at": "2020-02-11T12:21:27.267591Z",
-        "verified_at": "2020-02-26T14:52:58.287693Z"
+        "created_at": "2019-05-22T10:32:36.118753Z",
+        "notified_at": null,
+        "claimed_at": null,
+        "verified_at": null
     },
-    "invoice": "32",
-    "metadata": {},
+    "invoice": "c1554d88-b74f-4d6a-bfa6-049c14905dc7",
+    "invoiced_amount": "1000.00",
+    "metadata": {
+        "campaign_id": 12394
+    },
     "start_at": null,
     "end_at": null,
-    "created_at": "2020-02-11T20:10:45.398264Z",
+    "created_at": "2019-05-23T10:32:38.118753Z",
     "notified_at": null,
     "accepted_at": null
 }
 ```
 
+Many objects contain the identifier of a related object in their response properties. For example, a 
+[Payout](#payouts) has an associated [Employee](#employees) identifier. Those objects can be
+expanded inline with the `expand` request parameter. Objects that can be expanded are noted in this documentation.
+You can use the `expand` param on any endpoint which includes expandable fields, including the create endpoints.
+You can expand multiple objects at once by repeating the `expand` request parameter.
+
+
+
+
+
+
+
+
+
+
 # Pagination
 
-The Gigapay API uses pagination on all of its list-endpoints. These endpoints all share a common structure, optionally
-accepting `page` and a `page_size` request parameter. `page` which page to return and `page_size` the number of objects
-per page. The objects returned are contained within the `result` field of the response.
+> Request to retrieve two Employee object per page, and the second page:
 
-For instance, to only list two [Employees](resources/employees.md) per page, the request would look like this:
+```python
+import requests
 
-<div class="center-column"></div>
-```shell
-curl https://api.gigapay.se/v2/employees/?page_size=2&page=1 \
-  -H "Authorization: Token 1vjv20ksxwvlpp3peize74ievjmx3e" \
-  -H "Integration-ID: 650fd73ff5"
+response = requests.get(
+    'https://api.gigapay.se/v2/employees/?page_size=2&page=2',
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Integration-ID': 'aqdnkjasdo12'
+    }
+)
 ```
 
-And result in the following response:
-
-<div class="center-column"></div>
 ```shell
-HTTP 200 OK
-...
+curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' 'https://api.gigapay.se/v2/employees/?page_size=2&page=2'
+```
 
+```javascript
+fetch("https://api.gigapay.se/v2/employees/?page_size=2&page=2", {
+    method: "GET",
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Integration-Id": "aqdnkjasdo12"
+    }
+})
+```
+
+> Returns a response formatted as such:
+
+```json
 {
-    "count": 4,
-    "next": "https://api.gigapay.se/v2/employees/?page=2",
-    "previous": null,
+    "count": 17,
+    "next": "https://api.gigapay.se/v2/employees/?page=3",
+    "previous": "https://api.gigapay.se/v2/employees/?page=1",
     "results": [
         {
             "id": "1f1d1263-0e79-4787-b573-6df81b44bfc2",
@@ -231,7 +396,7 @@ HTTP 200 OK
 	          "id": "25d2af38-59b9-4f73-9452-51787fed5c84",
             "name": "Karl Karlsson",
             "cellphone_number": null,
-            "email": karl.karlsson@gmail.com,
+            "email": "karl.karlsson@gmail.com",
             "metadata": {
                 "user_id": 3,
             },
@@ -242,155 +407,182 @@ HTTP 200 OK
 }
 ```
 
+The Gigapay API uses pagination on all of its list-endpoints. These endpoints all share a common structure, optionally
+accepting `page` and a `page_size` request parameter. `page` specifies which page to return and `page_size` the number
+of objects  per page. The objects returned are contained within the `result` field of the response.
+
+
 
 # Idempotency
 
-The Gigapay API supports idempotency to safely retry requests without accidentally performing the same operation twice. 
-Gigapay's idempotency works by storing the responses of previous requests. Subsequent requests with the same key return
-the same result, including errors.
+> Registering an Employee with an idempotency key
 
-To perform an idempotent request, provide an additional `Idempotency-Key: <key>` header to the request. We recommend
-using uuid4() for the key, but any string with sufficient entropy will work. For example:
+```python
+import requests
 
-<div class="center-column"></div>
-```shell
-curl https://api.gigapay.se/v1/payouts \
-  -H "Authorization: Token 1vjv20ksxwvlpp3peize74ievjmx3e" \
-  -H "Integration-ID: 650fd73ff5"
-  -H "Idempotency-Key: d03de720-5768-424d-ae93-17406e1be9b7"
+response = requests.post(
+    'https://api.gigapay.se/v2/employees/',
+    json={
+        'name': 'Albin Lindskog',
+        'cellphone_number': '+4670000000',
+        'country': 'SWE',
+    },
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja',
+        'Integration-ID': 'aqdnkjasdo12'
+    }
+)
 ```
 
-Idempotency is available on all endpoints accepting `POST` requests. Keys expire after 24 hours, so a new response is
-generated if a key is reused outside that time frame.
+```shell
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja' -H 'Integration-ID: aqdnkjasdo12' -d '{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}' https://api.gigapay.se/v2/employees/
+```
 
+```javascript
+fetch("https://api.gigapay.se/v2/employees/", {
+    method: "POST",
+    body: JSON.stringify({
+        name: "Albin Lindskog",
+        cellphone_number: "+4670000000",
+        country: "SWE",
+    }),
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Content-Type": "application/json",
+        "Idempotency-Key": "afjkakkknbkasaskkaksdakjdnsakja",
+        "Integration-Id": "aqdnkjasdo12"
+    }
+})
+```
+The Gigapay API supports idempotency to safely retry requests without accidentally performing the same operation twice. 
+Gigapay offers two mechanism of idempotency; idempotency keys and object ids.
+
+Idempotency keys works by storing the responses of previous requests. Subsequent requests with the same key return
+the same response, without performing the action specified in the request. Keys expire after 24 hours, so a new
+response is generated if a key is reused outside that time frame.
+
+To perform an idempotent request using a idempotency-key, provide the additional `Idempotency-Key` header to the
+request. We recommend using uuid4() for the key, but any string with sufficient entropy will work. 
+
+> Registering an Employee with a specific id
+
+```python
+import requests
+
+response = requests.post(
+    'https://api.gigapay.se/v2/employees/',
+    json={
+        'id': 19472,
+        'name': 'Albin Lindskog',
+        'cellphone_number': '+4670000000',
+        'country': 'SWE',
+    },
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Integration-ID': 'aqdnkjasdo12'
+    }
+)
+```
+
+```shell
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 19472, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}' https://api.gigapay.se/v2/employees/
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/employees/", {
+    method: "POST",
+    body: JSON.stringify({
+        id: 19472,
+        name: "Albin Lindskog",
+        cellphone_number: "+4670000000",
+        country: "SWE",
+    }),
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Content-Type": "application/json",
+        "Integration-Id": "aqdnkjasdo12"
+    }
+})
+```
+
+Object ids ensure idempotency when creating object as no objects can have the same id. Subsequent requests with the
+same id will return an error. The uniqueness of an id is guaranteed for the lifetime of the object. 
+To perform an idempotent request using an object id simply specify the id when creating the object.
 
 # Metadata
 
-All objects in the Gigapay API have a `metadata` attribute. You can use this attribute to attach to any valid JSON data 
-to these objects. It is useful for storing additional information about an object. For example, you could store a unique
-identifier for a Gigger in your system. This data is not used by Gigapay, and will not be displayed to any users.
+> Registering an Employee with metadata:
 
-The [Payout](resources/payouts.md) objects also has a `description` field. It should contain a human-readable
+```python
+import requests
+
+response = requests.post(
+    'https://api.gigapay.se/v2/employees/',
+    json={
+        'name': 'Albin Lindskog',
+        'cellphone_number': '+4670000000',
+        'country': 'SWE',
+        'metadata': {
+            'user_id': 1847,
+        },
+    },
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Integration-ID': 'aqdnkjasdo12'
+    }
+)
+```
+
+```shell
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE", "metadata": {"user_id": 1847}}' https://api.gigapay.se/v2/employees/
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/employees/", {
+    method: "POST",
+    body: JSON.stringify({
+        name: "Albin Lindskog",
+        cellphone_number: "+4670000000",
+        country: "SWE",
+        metadata: {
+          user_id: 1847  
+        }
+    }),
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Content-Type": "application/json",
+        "Integration-Id": "aqdnkjasdo12"
+    }
+})
+```
+
+> Response:
+
+```json
+{
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "Albin Lindskog",
+    "email": null,
+    "cellphone_number": "+46703000000",
+    "country": "SWE",
+    "metadata": {
+        "user_id": 1847
+    },
+    "created_at": "2019-05-22T10:32:36.118753Z",
+    "notified_at": null,
+    "claimed_at": null,
+    "verified_at": null
+}
+```
+
+All objects in the Gigapay API have a `metadata` attribute. You can use this attribute to attach to any 
+JSON-serializable data to these objects. It is useful for storing additional information about an object. For example,
+you could store a unique identifier for a Gigger in your system. This data is not used by Gigapay, and will not be
+displayed to any users.
+
+The [Payout](#payouts) objects also has a `description` field. It should contain a human-readable
 description of why this Payout is being made. Unlike `metadata`, `description` is a single string, and your Gigger
 will see it.
 
 Do not store any sensitive information in the `description` field nor in the `metadata` field.
-
-
-# Webhooks
-
-Gigapay uses [Webhooks](resources/webhooks-1.md) to let you know any time an [event](events.md) happens on your account.
-[Webhooks](resources/webhooks-1.md) are completely optional, however they allow you to receive real-time updates on
-events related to your Gigapay account. We notify on the following events:
-
-* `Employee.created`
-* `Employee.notified`
-* `Employee.claimed`
-* `Employee.verified`
-* `Payout.created`
-* `Payout.notified`
-* `Payout.accepted`
-* `Invoice.created`
-* `Invoice.paid`
-
-The notifications simply contain the object that triggered the event, as represented in the API. For example, the
-notification for a `Employee.verified` event may look as following:
-
-```shell
-POST https://gigatron.se/webhooks/employees/ HTTP/1.1
-Content-Type: application/json
-Gigapay-Signature: t=1583327301,v1=ad583e2b2093c8d6fb3b65e04b99fc5988e98c0c312909acad334072da7e99ec
-...
-
-{
-  "id": "25d2af38-59b9-4f73-9452-51787fed5c84", 
-  "name": "Karl Karlsson", 
-  "cellphone_number": null, 
-  "email": karl.karlsson@gmail.com, 
-  "metadata": {
-    "user_id": 3
-  }, 
-  "created_at": "2019-05-20T15:33:08.974624Z", 
-  "notified_at": "2019-05-20T15:33:12.581720Z", 
-  "claimed_at": "2019-05-21T09:13:32.575721Z"
-  "verified_at": "2019-05-21T09:13:48.625263Z"
-}
-```
-
-### Gigapay-Signature
-
-The notification is signed used the `secret_key` set for the [Webhook](resources/webhooks-1.md), the signature is
-included in the notification as the `Gigapay-Signature` header. This allows you to verify that the events were sent by
-Gigapay, and not by a third party.
-
-The signature consists of two parameters;
-`t`, the timestamp of when the notification was sent,
-`v` the signature of the current scheme. Currently, the only valid signature scheme is `v1` which is the HMAC
-algorithm as described by RFC 2104 using SHA256 as disgestmod.
-
-To verify signatures using the `v1` scheme, extract the timestamp from the`Gigapay-Signature` header, and the
-JSON-encoded notification from the request body. Join these strings with a period, `.`, as a separator. Compute an HMAC
-with the SHA256 hash function using the Webhook’s `secret_key` as the key. Lastly ensure that the signature in the
-header and the calculated signature matches. A psuedocode outline would be as follows:
-
-```shell
-secret_key = '...asId'
-t, v1 = parse_signature(request.headers.Gigapay-Signature)
-payload = t + '.' + request.body
-
-hmac = hmac.new('sha256', secret_key.encode('utf-8'))
-hmac.update(payload.encode('utf-8'))
-signature = hmac.hexdigest()
-
-signature == v1
-```
-
-Note, if you are deserializing the JSON-encoded body you will need to reserialize it back to a string before computing
-the hash. When doing so take care to ensure that the resulting string has the same format as the original one.
-Some gotchas are:
-
-* White space after `,` and `:`.
-* Unicode-encoded characters.
-* The timestamps are UTC, ISO 8601.
-
-
-# Postman collection
-
-## Requirements
-
-* [Postman](https://www.postman.com) version >=6.x, verify with Help -> Check for updates
-* A token and an integration\_id that must to be put into the environment
-
-### Import Playground environment <a href="import-playground-environment" id="import-playground-environment"></a>
-
-For a fresh installation, import the playground environment file first. Follow the steps below.
-
-* Click on the `Import` button at the very top header line
-* Click on `Import From Link`
-* Paste the following URL: [https://gigapay.co/wp-content/uploads/gigapay.postman\_environment.json](https://gigapay.co/wp-content/uploads/gigapay.postman\_environment.json)
-
-### Import collection <a href="import-collection" id="import-collection"></a>
-
-For a fresh import of the collection, but also for updating, follow the steps below.
-
-* Click on the `Import` button at the very top header line
-* Click on `Import From Link`
-* Paste the following URL: [https://gigapay.co/wp-content/uploads/gigapay.postman\_collection.json](https://gigapay.co/wp-content/uploads/gigapay.postman\_collection.json)
-
-### Configure Playground environment <a href="configure-playground-environment" id="configure-playground-environment"></a>
-
-After the import was successful, configure a user for the environment.
-
-* Click on the gear icon at the very top right below the header line
-* A new window opens up with the title "manage environments"
-* Click on the `Gigapay` text
-* Change the initial and current value of the `token` and `integration_id` to a valid token that can be obtained from `developer@gigapay.co`
-* Click on the `Update` button
-
-### Using the collection <a href="using-the-collection" id="using-the-collection"></a>
-
-Before starting a session, always ensure that the correct environment is selected at the top right. When used the collection sets several "runtime variables" in the active environment.
-
-When testing a transfer please bear in mind that you need to fill out the needed details in the JSON-body of the transfer-object.
-
-

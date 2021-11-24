@@ -352,6 +352,16 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 }
 ```
 
+```json
+{
+    "id": "481272",
+    "url": "https://gigatron.se/webhooks/invoices/",
+    "events": ["Invoice.created"],
+    "secret_key": "vksnrsc6tamq73tc26rzrnzf33a4pgdv",
+    "metadata": {}
+}
+```
+
 This endpoint replaces a webhooks.
 
 ### HTTP Request
