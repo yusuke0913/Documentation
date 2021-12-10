@@ -7,6 +7,23 @@ actually make it.
 
 ### The Pricing breakdown
 
+> An example Pricing breakdown for a Payout:
+
+```json
+{
+  "amount": "1000.00",
+  "cost": "1379.91",
+  "currency": "SEK",
+  "fee": "65.71",
+  "health_insurance": null,
+  "invoiced_amount": "1314.20",
+  "payroll": "314.20",
+  "pension": null,
+  "tax": "300.00",
+  "vat": "344.97"
+}
+```
+
 | Attribute         | Description                                                                       |
 | ----------------- | --------------------------------------------------------------------------------- |
 | amount            | Decimal formatted string of the gross amount.                                                                        |
@@ -101,6 +118,13 @@ Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
 `page_size` | 25 | The number of Employees per page.
+`invoice` | 25 | Relational Filter.
+`employee` | 25 | Relational Filter.
+`start_at` | | Timestamp filter.
+`end_at` | | Timestamp filter.
+`created_at` | | Timestamp filter.
+`notified_at` | | Timestamp filter.
+`accepted_at` | | Timestamp filter.
 
 
 
@@ -120,10 +144,7 @@ response = requests.post(
         'description': 'Instagram samarbete 2021-11-13.',
         'full_salary_specification': True,
         'employee': 1847,
-        'invoiced_amount': '1000.00',
-        'metadata': {
-            'campaign_id': 12394,
-        },            
+        'invoiced_amount': '1000.00',          
     },
     headers={
         'Authorization': 'Token asasdadjanfkanfda',
@@ -133,7 +154,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00", "metadata": {"campaign_id": 12394}}' https://api.gigapay.se/v2/pricing/
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/pricing/
 ```
 
 ```javascript
@@ -144,12 +165,9 @@ fetch("https://api.gigapay.se/v2/pricing/", {
         country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
-        full_salary_specification: True,
+        full_salary_specification: true,
         employee: 1847,
-        invoiced_amount: '1000.00',
-        metadata: {
-            campaign_id: 12394,
-        },            
+        invoiced_amount: '1000.00',       
     }),
     headers: {
         "Authorization": "Token asasdadjanfkanfda",
@@ -194,17 +212,17 @@ Parameter | Required | Description
 
 Parameter | Type | Required | Default | Description
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`amount` | String | False | | Decimal formatted string of the gross amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`cost` | String | False | | Decimal formatted string of the cost. Either `amount`, `invoiced_amount` or `cost` is required.
-`currency` | String | True | | ISO-4217 currency code.
-`description` | String | True | | ISO-4217 currency code.
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`amount` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`cost` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`currency` | String | True | | 
+`description` | String | True | | 
 `employee` | String | True | | 
 `full_salary_specification` | Bool | False | False |
-`invoiced_amount` | String | True | | Decimal formatted string of the invoiced_amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`metadata` | Object | False | | JSON-encoded metadata
-`start_at` | String | False | | ISO 8601 string.
-`end_at` | String | False | null | ISO 8601 string.
+`invoiced_amount` | String | True | | Either `amount`, `invoiced_amount` or `cost` is required.
+`metadata` | Object | False | |
+`start_at` | String | False | |
+`end_at` | String | False | null |
 
 
 
@@ -224,10 +242,7 @@ response = requests.post(
             'description': 'Instagram samarbete 2021-11-13.',
             'full_salary_specification': True,
             'employee': 1847,
-            'invoiced_amount': '1000.00',
-            'metadata': {
-                'campaign_id': 12394,
-            },            
+            'invoiced_amount': '1000.00',       
         }, {
             'id': 9473,
             'country': 'SWE',
@@ -235,10 +250,7 @@ response = requests.post(
             'description': 'Instagram samarbete 2021-11-13.',
             'full_salary_specification': True,
             'employee': 1736,
-            'invoiced_amount': '2500.00',
-            'metadata': {
-                'campaign_id': 12395,
-            },            
+            'invoiced_amount': '2500.00',       
         },
     ],
     headers={
@@ -249,7 +261,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00", "metadata": {"campaign_id": 12394}}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00", "metadata": {"campaign_id": 12395}}]' https://api.gigapay.se/v2/payouts/
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
 ```
 
 ```javascript
@@ -261,23 +273,17 @@ fetch("https://api.gigapay.se/v2/payouts/", {
             'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
-            'full_salary_specification': True,
+            'full_salary_specification': true,
             'employee': 1847,
             'invoiced_amount': '1000.00',
-            'metadata': {
-                'campaign_id': 12394,
-            },            
         }, {
             'id': 9473,
             'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
-            'full_salary_specification': True,
+            'full_salary_specification': true,
             'employee': 1736,
             'invoiced_amount': '2500.00',
-            'metadata': {
-                'campaign_id': 12395,
-            },            
         },
     ]),
     headers: {
@@ -334,9 +340,9 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-| Type | Required | Default | Description
+| Type | Required | Default | Notes
 | ---- | -------- | ------- |------------
-| Array | True | | [payout object.](../expanding.md) 
+| Payout[] | True | | Elements of array structured as [Payout](#calculate-pricing-info).
 
 
 
@@ -363,10 +369,7 @@ response = requests.post(
             'email': 'albin@mail.com',
             'country': 'SWE'
         },
-        'invoiced_amount': '1000.00',
-        'metadata': {
-            'campaign_id': 12394,
-        },            
+        'invoiced_amount': '1000.00',        
     },
     headers={
         'Authorization': 'Token asasdadjanfkanfda',
@@ -376,7 +379,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00", "metadata": {"campaign_id": 12394}}' 'https://api.gigapay.se/v2/pricing/?expand=employee'
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/pricing/?expand=employee'
 ```
 
 ```javascript
@@ -387,7 +390,7 @@ fetch("https://api.gigapay.se/v2/pricing/?expand=employee", {
         country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
-        full_salary_specification: True,
+        full_salary_specification: true,
         employee: {
             id: 1847,
             name: 'Albin Lindskog',
@@ -395,10 +398,7 @@ fetch("https://api.gigapay.se/v2/pricing/?expand=employee", {
             email: 'albin@mail.com',
             country: 'SWE'
         },
-        invoiced_amount: '1000.00',
-        metadata: {
-            campaign_id: 12394,
-        },            
+        invoiced_amount: '1000.00',       
     }),
     headers: {
         "Authorization": "Token asasdadjanfkanfda",
@@ -444,17 +444,17 @@ Parameter | Required | Description
 
 Parameter | Type | Required | Default | Description
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`amount` | String | False | | Decimal formatted string of the gross amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`cost` | String | False | | Decimal formatted string of the cost. Either `amount`, `invoiced_amount` or `cost` is required.
-`currency` | String | True | | ISO-4217 currency code.
-`description` | String | True | | ISO-4217 currency code.
-`employee` | Object | True | Employee object as described here. | 
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`amount` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`cost` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`currency` | String | True | | 
+`description` | String | True | | 
+`employee` | Object | True | | Structured as an [Employee](#register-an-employee). | 
 `full_salary_specification` | Bool | False | False |
-`invoiced_amount` | String | True | | Decimal formatted string of the invoiced_amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`metadata` | Object | False | | JSON-encoded metadata
-`start_at` | String | False | | ISO 8601 string.
-`end_at` | String | False | null | ISO 8601 string.
+`invoiced_amount` | String | True | | Either `amount`, `invoiced_amount` or `cost` is required.
+`metadata` | Object | False | | 
+`start_at` | String | False | | 
+`end_at` | String | False | null | 
 
 
 

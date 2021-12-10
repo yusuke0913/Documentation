@@ -1,9 +1,21 @@
 # Webhooks
 
 Webhooks allows you to receive real-time status updates any time an event happens on your account. For a complete
-description of these notifications, see [Webhooks](../webhooks.md).
+description of these notifications, see [Events](#events).
 
 ### The Webhook object
+
+> An example Webhook object
+
+```json
+{
+    "id": "38a93e19-886a-4246-9cfe-471214ff6739",
+    "url": "https://gigatron.se/webhooks/payouts/",
+    "events": ["Payout.notified", "Payout.accepted"],
+    "secret_key": "c1329a085d65f7757838df5920fdcc9a",
+    "metadata": {}
+}
+```
 
 | Attribute    | Description                                        |
 | ------------ | -------------------------------------------------- |
@@ -154,13 +166,13 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`url` | URL | True |  | URL to which the notifications are posted.
-`events` | String[] | True | | List of events to subscribe to.
-`secret_key` | String | False | 32 char | Secret key used to sign the Webhook notifications.
-`metadata` | Object | False | {} | JSON-encoded metadata.
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`url` | URL | True |  | 
+`events` | String[] | True | | 
+`secret_key` | String | False | 32 char random string | 
+`metadata` | Object | False | {} |
 
 
 
@@ -295,13 +307,13 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | Previous value | Unique identifier for the object.
-`url` | URL | False | Previous value | URL to which the notifications are posted.
-`events` | String[] | False | Previous value | List of events to subscribe to.
-`secret_key` | String | False |Previous value | Secret key used to sign the Webhook notifications.
-`metadata` | Object | False | Previous value | JSON-encoded metadata.
+`id` | String | False | Previous value | Unique per [Integration](#integrations).
+`url` | URL | False | Previous value |
+`events` | String[] | False | Previous value | 
+`secret_key` | String | False |Previous value | 
+`metadata` | Object | False | Previous value |
 
 
 
@@ -385,11 +397,11 @@ Parameter | Required | Description
 
 Parameter | Type | Required | Default | Description
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`url` | URL | True |  | URL to which the notifications are posted.
-`events` | String[] | True | | List of events to subscribe to.
-`secret_key` | String | False | 32 char | Secret key used to sign the Webhook notifications.
-`metadata` | Object | False | {} | JSON-encoded metadata.
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`url` | URL | True |  | 
+`events` | String[] | True | | 
+`secret_key` | String | False | 32 char random string | 
+`metadata` | Object | False | {} | 
 
 
 

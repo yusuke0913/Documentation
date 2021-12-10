@@ -99,7 +99,7 @@ API requests without valid authentication will fail with the HTTP response code 
 `401` responses, ensure that your URL is correct. API calls made over plain HTTP will be redirected with the response
 code `301`, and API calls with incorrect placed `/` will be redirected with the response code `307` to the correct URL,
 and most HTTP clients will automatically follow the redirects while stripping out the authorization headers, resulting
-in the `401` response.
+in the `401` response. Disable automated redirects or be mindful of this.
 
 ### IP-whitelisting
 
@@ -147,6 +147,23 @@ To change language set the `Accept-Language` header to your preferred language.
 
 # Events
 
+> An example Employee object with event timestamps:
+
+```json
+{
+    "id": "25d2af38-59b9-4f73-9452-51787fed5c84", 
+    "name": "Karl Karlsson", 
+    "cellphone_number": null, 
+    "email": "karl.karlsson@gmail.com", 
+    "metadata": {}, 
+    "created_at": "2019-05-20T15:33:08.974624Z", 
+    "notified_at": "2019-05-20T15:33:12.581720Z", 
+    "claimed_at": "2019-05-21T09:13:32.575721Z",
+    "verified_at": "2019-05-21T09:13:48.625263Z"
+}
+```
+
+
 The Gigapay API is driven by actions taken by the parties involved in each Payout; the Client making the Payout,
 Gigapay facilitating it, and the Employee receiving it. The flowchart below illustrates each of these actions and
 the corresponding events.
@@ -155,6 +172,9 @@ the corresponding events.
 
 Note that the Employee and Payout flow typically occur in parallel as the Employee is usually created when, or close in
 time to when, their first Payout is created. 
+
+All objects are timestamped when an associated event occurs. The field is simply the name of the event suffixed
+with `_at`.
 
 
 ## Subscribing to Events
@@ -169,7 +189,7 @@ Gigapay-Signature: t=1583327301,v1=ad583e2b2093c8d6fb3b65e04b99fc5988e98c0c31290
     "id": "25d2af38-59b9-4f73-9452-51787fed5c84", 
     "name": "Karl Karlsson", 
     "cellphone_number": null, 
-    "email": karl.karlsson@gmail.com, 
+    "email": "karl.karlsson@gmail.com", 
     "metadata": {
         "user_id": 3
     }, 
@@ -421,20 +441,24 @@ fetch("https://api.gigapay.se/v2/employees/?page_size=2&page=2", {
             "cellphone_number": "+46703000000",
             "email": null,
             "metadata": {
-                "user_id": 2,
+                "user_id": 2
             },
-            "created_at": "2019-05-22T10:32:36.118753Z",
-            "verified_at": null,
+            "created_at": "2019-05-20T15:33:08.974624Z", 
+            "notified_at": "2019-05-20T15:33:12.581720Z", 
+            "claimed_at": "2019-05-21T09:13:32.575721Z",
+            "verified_at": "2019-05-21T09:13:48.625263Z"
         }, {
-	          "id": "25d2af38-59b9-4f73-9452-51787fed5c84",
+            "id": "25d2af38-59b9-4f73-9452-51787fed5c84",
             "name": "Karl Karlsson",
             "cellphone_number": null,
             "email": "karl.karlsson@gmail.com",
             "metadata": {
-                "user_id": 3,
+                "user_id": 3
             },
-            "created_at": "2019-05-20T15:33:08.974624Z",
-            "verified_at": "2019-05-21T09:13:48.625263",
+            "created_at": "2019-05-20T15:33:08.974624Z", 
+            "notified_at": "2019-05-20T15:33:12.581720Z", 
+            "claimed_at": null,
+            "verified_at": null
         }
     ]
 }
@@ -443,6 +467,75 @@ fetch("https://api.gigapay.se/v2/employees/?page_size=2&page=2", {
 The Gigapay API uses pagination on all of its list-endpoints. These endpoints all share a common structure, optionally
 accepting `page` and a `page_size` request parameter. `page` specifies which page to return and `page_size` the number
 of objects  per page. The objects returned are contained within the `result` field of the response.
+
+
+
+# Filtering
+
+> Request to retrieve all non-accepted Payouts belonging to a specific Employee:
+
+```python
+import requests
+
+response = requests.get(
+    'https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True',
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Integration-ID': 'aqdnkjasdo12'
+    }
+)
+```
+
+```shell
+curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' 'https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True'
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True", {
+    method: "GET",
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Integration-Id": "aqdnkjasdo12"
+    }
+})
+```
+
+> Returns a response formatted as such:
+
+```json
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "0177270d-f94b-4ab9-88ba-ac1fa2f791aa",
+            "amount": "100.00",
+            "cost": "137.99",
+            "country": "SWE",
+            "currency": "SEK",
+            "description": "Lön genom Gigapay",
+            "employee": "12",
+            "invoice": "bab4b830-47d6-4a24-a460-3289897f6e8e",
+            "metadata": {},
+            "start_at": null,
+            "end_at": null,
+            "created_at": "2019-05-22T10:32:38.118753Z",
+            "notified_at": "2019-05-22T10:38:19.874623Z",
+            "accepted_at": null
+        }
+    ]
+}
+```
+The Gigapay API supports filtering on all of its list-endpoints. These filters are of two types, either relational
+filters or timestamp filters. Which filters are available are described under each endpoint.
+
+Relational filters filter out all objects belonging to a specified object. 
+They are use the format `{field_name}={object_id}`.
+
+Timestamp filters are used to filter out objects having had a certain event associated with them. They can be used to
+filter on whether an event has occurred with the `null` suffix, e.g. `{field_name}_null={Bool}`, or when by using the
+`_before` and `_after` suffix, e.g. `{field_name}_before={ISO 8601 string}`.
 
 
 

@@ -15,6 +15,23 @@ There are three types of integrations:
 
 ### The Integration object
 
+> An example Integration object:
+
+```json
+{
+    "id": "1",
+    "name": "Zerebra AB",
+    "type": 1,
+    "logo": "https://gigapay.ams3.digitaloceanspaces.com/gigapay/zerebra_logo.png",
+    "metadata": {},
+    "email": "faktura@zerebra.com",
+    "recipient": "Zerebra AB",
+    "address_line_1": "Svartmangatan 18",
+    "address_line_2": null,
+    "zip_code": "11129"
+}
+```
+
 | Attribute         | Description                                        |
 | ----------------- | -------------------------------------------------- |
 | `id`              | Unique identifier for the object.                  |
@@ -163,7 +180,7 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
 
 ```json
 {
-    "id": "846291712",
+    "id": "14585989-9a6c-4f05-b251-69e38e85d324",
     "name": "Pinestreet Tech",
     "type": 3,
     "logo": "https://gigapay.ams3.digitaloceanspaces.com/gigapay/pinestreet_logo.png",
@@ -177,7 +194,9 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
 }
 ```
 
-This endpoint creates a webhooks.
+This endpoint creates a webhooks. 
+
+Note; this endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
 
 ### HTTP Request
 
@@ -192,18 +211,18 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`name` | String | True |  | Name of integration.
-`logo` | Image | False | null | Image of logo to use. 
-`metadata` | Object | False | {} | JSON-encoded metadata.
-`email` | String | True | | Email address to send invoices to.
-`recipient` | String | True | | Name of recipient written on invoices.
-`address_line_1` | Object | True | | Address line 1 written on invoices.
-`address_line_2` | String | False | null | Address line 2 written on invoices.
-`zip_code` | String | True | | Zip code written on invoices
-`city` | String | True | | City written on invoices.
+`id` | String | False | uuid4() | Globally unique.
+`name` | String | True |  |
+`logo` | Image | False | null | base64 or multipart/form-data encoded image file.
+`metadata` | Object | False | {} |
+`email` | String | True | |
+`recipient` | String | True | |
+`address_line_1` | Object | True | |
+`address_line_2` | String | False | null |
+`zip_code` | String | True | |
+`city` | String | True | | 
 
 
 
@@ -344,18 +363,18 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | Previous value | Unique identifier for the object.
-`name` | String | False | Previous value | Name of integration.
-`logo` | Image | False | Previous value | Image of logo to use. 
-`metadata` | Object | False | Previous value | JSON-encoded metadata.
-`email` | String | False | Previous value | Email address to send invoices to.
-`recipient` | String | False | Previous value | Name of recipient written on invoices.
-`address_line_1` | Object | False | Previous value | Address line 1 written on invoices.
-`address_line_2` | String | False | Previous value | Address line 2 written on invoices.
-`zip_code` | String | False | Previous value | Zip code written on invoices
-`city` | String | False | Previous value | City written on invoices.
+`id` | String | False | Previous value | Globally unique.
+`name` | String | False | Previous value | 
+`logo` | Image | False | Previous value | base64 or multipart/form-data encoded image file.
+`metadata` | Object | False | Previous value | 
+`email` | String | False | Previous value | 
+`recipient` | String | False | Previous value | 
+`address_line_1` | Object | False | Previous value | 
+`address_line_2` | String | False | Previous value | 
+`zip_code` | String | False | Previous value | 
+`city` | String | False | Previous value | 
 
 
 
@@ -442,18 +461,18 @@ Parameter | Required | Description
 --------- | ------- | -----------
 `id` | True | Unique identifier for the object.
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`name` | String | True |  | Name of integration.
-`logo` | Image | False | null | Image of logo to use. 
-`metadata` | Object | False | {} | JSON-encoded metadata.
-`email` | String | True | | Email address to send invoices to.
-`recipient` | String | True | | Name of recipient written on invoices.
-`address_line_1` | Object | True | | Address line 1 written on invoices.
-`address_line_2` | String | False | null | Address line 2 written on invoices.
-`zip_code` | String | True | | Zip code written on invoices
-`city` | String | True | | City written on invoices.
+`id` | String | False | uuid4() | Globally unique.
+`name` | String | True |  | 
+`logo` | Image | False | null | base64 or multipart/form-data encoded image file.
+`metadata` | Object | False | {} | 
+`email` | String | True | | 
+`recipient` | String | True | | 
+`address_line_1` | Object | True | | 
+`address_line_2` | String | False | null | 
+`zip_code` | String | True | | 
+`city` | String | True | | 
 
 
 

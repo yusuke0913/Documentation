@@ -6,6 +6,23 @@ and working permits.
 
 ### The Employee object
 
+> An example Employee object:
+
+```json
+{
+    "id": "1847",
+    "name": "Albin Lindskog",
+    "email": "albin@gigapay.co",
+    "cellphone_number": "+46703000000",
+    "country": "SWE",
+    "metadata": {},
+    "created_at": "2019-05-22T10:32:36.118753Z",
+    "notified_at": "2019-05-22T10:32:37.846274Z",
+    "claimed_at": "2019-05-23T11:56:41.123721Z",
+    "verified_at": "2019-05-23T11:57:03.742345Z"
+}
+```
+
 | Attribute          | Description                                                                       |
 | ------------------ | --------------------------------------------------------------------------------- |
 | `id`               | Unique identifier for the object.                                                 |
@@ -84,7 +101,7 @@ fetch("https://api.gigapay.se/v2/employees/", {
 }
 ```
 
-This endpoint retrieves all webhooks.
+This endpoint retrieves all Employees.
 
 ### HTTP Request
 
@@ -103,6 +120,10 @@ Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
 `page_size` | 25 | The number of Employees per page.
+`created_at` | | Timestamp filter.
+`notified_at` | | Timestamp filter.
+`claimed_at` | | Timestamp filter.
+`verified_at` | | Timestamp filter.
 
 
 
@@ -137,7 +158,6 @@ curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: appli
 fetch("https://api.gigapay.se/v2/employees/", {
     method: "POST",
     body: JSON.stringify({
-        id: 1847,
         name: "Albin Lindskog",
         cellphone_number: "+4670000000",
         email: "albin@mail.com",
@@ -155,7 +175,7 @@ fetch("https://api.gigapay.se/v2/employees/", {
 
 ```json
 {
-    "id": "1847",
+    "id": "14585989-9a6c-4f05-b251-69e38e85d324",
     "name": "Albin Lindskog",
     "email": "albin@gigapay.co",
     "cellphone_number": "+46703000000",
@@ -184,14 +204,14 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`name` | String | True | | Name of Employee.
-`email` | String | False | null | Email address of Employee. Either `email` or `cellphone_number` is required.
-`country` | String | True | | Employee's country of residence. ISO-3166 country code.
-`cellphone_number` | String | False | null | Cellphone number of Employee. Either `email` or `cellphone_number` is required.
-`metadata` | Object | False | {} | JSON-encoded metadata.
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`name` | String | True | | 
+`email` | String | False | null | Either `email` or `cellphone_number` is required.
+`country` | String | True | |  ISO-3166 country code.
+`cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
+`metadata` | Object | False | {} | 
 
 
 
@@ -334,14 +354,14 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | Previous value. | Unique identifier for the object.
-`name` | String | False | Previous value. | Name of Employee.
-`email` | String | False | Previous value. | Email address of Employee.
-`country` | String | False | Previous value. | Employee's country of residence. ISO-3166 country code.
-`cellphone_number` | False | False | Previous value. | Cellphone number of Employee. 
-`metadata` | Object | False | Previous value. | JSON-encoded metadata.
+`id` | String | False | Previous value. | Unique per [Integration](#integrations).
+`name` | String | False | Previous value. | 
+`email` | String | False | Previous value. |
+`country` | String | False | Previous value. | ISO-3166 country code.
+`cellphone_number` | False | False | Previous value. |
+`metadata` | Object | False | Previous value. | 
 
 
 
@@ -429,12 +449,12 @@ Parameter | Required | Description
 
 Parameter | Type | Required | Default | Description
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`name` | String | True | | Name of Employee.
-`email` | String | False | null | Email address of Employee. Either `email` or `cellphone_number` is required.
-`country` | String | True | | Employee's country of residence. ISO-3166 country code.
-`cellphone_number` | String | False | null | Cellphone number of Employee. Either `email` or `cellphone_number` is required.
-`metadata` | Object | False | {} | JSON-encoded metadata.
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`name` | String | True | | 
+`email` | String | False | null | Either `email` or `cellphone_number` is required.
+`country` | String | True | | ISO-3166 country code.
+`cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
+`metadata` | Object | False | {} | 
 
 
 

@@ -5,6 +5,22 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 
 ### The Webhook object
 
+> An example Integration object:
+
+```json
+{
+    "created_at": "2019-05-22T10:32:36.118753Z",
+    "currency": "SEK",
+    "id": "2859272",
+    "metadata": {},
+    "ocr_number": "986911160380",
+    "open": false,
+    "paid_at": "2019-05-25T9:02:16.8462735Z",
+    "pdf": "https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&language=en",
+    "price": "1340.48"
+}
+```
+
 | Attribute    | Description                                                          |
 | ------------ | -------------------------------------------------------------------- |
 | `created_at` | Time at which the Invoice was created. Displayed as ISO 8601 string. |
@@ -99,6 +115,8 @@ Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
 `page_size` | 25 | The number of Invoices per page.
+`created_at` | | Timestamp filter.
+`paid_at` | | Timestamp filter.
 
 
 
@@ -244,10 +262,10 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | Previous value | Unique identifier for the object.
-`metadata` | Object | False | Previous value | JSON-encoded metadata.
+`id` | String | False | Previous value | Unique per [Integration](#integrations).
+`metadata` | Object | False | Previous value | 
 
 
 

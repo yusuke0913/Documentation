@@ -6,6 +6,27 @@ account.
 
 ### The Payout object
 
+> An example Payout object:
+
+```json
+{
+    "id": "0177270d-f94b-4ab9-88ba-ac1fa2f791aa",
+    "amount": "100.00",
+    "cost": "137.99",
+    "country": "SWE",
+    "currency": "SEK",
+    "description": "Lön genom Gigapay",
+    "employee": "1f1d1263-0e79-4787-b573-6df81b44bfc2",
+    "invoice": "bab4b830-47d6-4a24-a460-3289897f6e8e",
+    "metadata": {},
+    "start_at": null,
+    "end_at": null,
+    "created_at": "2019-05-22T10:32:38.118753Z",
+    "notified_at": "2019-05-22T10:38:19.874623Z",
+    "accepted_at": null
+}
+```
+
 | Attribute          | Description                                                                       |
 | --------------------------- | --------------------------------------------------------------------------------- |
 | `id`                        | Unique identifier for the object.                                                                                                                                 |
@@ -102,7 +123,7 @@ fetch("https://api.gigapay.se/v2/payouts/", {
 }
 ```
 
-This endpoint retrieves all webhooks.
+This endpoint retrieves all Payouts.
 
 ### HTTP Request
 
@@ -121,6 +142,13 @@ Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
 `page_size` | 25 | The number of Employees per page.
+`invoice` | 25 | Relational Filter.
+`employee` | 25 | Relational Filter.
+`start_at` | | Timestamp filter.
+`end_at` | | Timestamp filter.
+`created_at` | | Timestamp filter.
+`notified_at` | | Timestamp filter.
+`accepted_at` | | Timestamp filter.
 
 
 
@@ -140,10 +168,7 @@ response = requests.post(
         'description': 'Instagram samarbete 2021-11-13.',
         'full_salary_specification': True,
         'employee': 1847,
-        'invoiced_amount': '1000.00',
-        'metadata': {
-            'campaign_id': 12394,
-        },            
+        'invoiced_amount': '1000.00',          
     },
     headers={
         'Authorization': 'Token asasdadjanfkanfda',
@@ -153,7 +178,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00", "metadata": {"campaign_id": 12394}}' https://api.gigapay.se/v2/payouts/
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/payouts/
 ```
 
 ```javascript
@@ -164,12 +189,9 @@ fetch("https://api.gigapay.se/v2/payouts/", {
         country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
-        full_salary_specification: True,
+        full_salary_specification: true,
         employee: 1847,
-        invoiced_amount: '1000.00',
-        metadata: {
-            campaign_id: 12394,
-        },            
+        invoiced_amount: '1000.00',       
     }),
     headers: {
         "Authorization": "Token asasdadjanfkanfda",
@@ -190,11 +212,10 @@ fetch("https://api.gigapay.se/v2/payouts/", {
     "currency": "SEK",
     "description": "Lön genom Gigapay",
     "employee": "1847",
+    "full_salary_specification": true,
     "invoice": "c1554d88-b74f-4d6a-bfa6-049c14905dc7",
     "invoiced_amount": "1000.00",
-    "metadata": {
-        "campaign_id": 12394
-    },
+    "metadata": {},
     "start_at": null,
     "end_at": null,
     "created_at": "2019-05-23T10:32:38.118753Z",
@@ -219,19 +240,19 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`amount` | String | False | | Decimal formatted string of the gross amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`cost` | String | False | | Decimal formatted string of the cost. Either `amount`, `invoiced_amount` or `cost` is required.
-`currency` | String | True | | ISO-4217 currency code.
-`description` | String | True | | ISO-4217 currency code.
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`amount` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`cost` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`currency` | String | True | | 
+`description` | String | True | | 
 `employee` | String | True | | 
 `full_salary_specification` | Bool | False | False |
-`invoiced_amount` | String | True | | Decimal formatted string of the invoiced_amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`metadata` | Object | False | | JSON-encoded metadata
-`start_at` | String | False | | ISO 8601 string.
-`end_at` | String | False | null | ISO 8601 string.
+`invoiced_amount` | String | True | | Either `amount`, `invoiced_amount` or `cost` is required.
+`metadata` | Object | False | |
+`start_at` | String | False | |
+`end_at` | String | False | null |
 
 
 
@@ -252,9 +273,7 @@ response = requests.post(
             'full_salary_specification': True,
             'employee': 1847,
             'invoiced_amount': '1000.00',
-            'metadata': {
-                'campaign_id': 12394,
-            },            
+            'metadata': {},            
         }, {
             'id': 9473,
             'country': 'SWE',
@@ -263,9 +282,7 @@ response = requests.post(
             'full_salary_specification': True,
             'employee': 1736,
             'invoiced_amount': '2500.00',
-            'metadata': {
-                'campaign_id': 12395,
-            },            
+            'metadata': {},            
         },
     ],
     headers={
@@ -276,7 +293,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00", "metadata": {"campaign_id": 12394}}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00", "metadata": {"campaign_id": 12395}}]' https://api.gigapay.se/v2/payouts/
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
 ```
 
 ```javascript
@@ -288,23 +305,19 @@ fetch("https://api.gigapay.se/v2/payouts/", {
             'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
-            'full_salary_specification': True,
+            'full_salary_specification': true,
             'employee': 1847,
             'invoiced_amount': '1000.00',
-            'metadata': {
-                'campaign_id': 12394,
-            },            
+            'metadata': {},            
         }, {
             'id': 9473,
             'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
-            'full_salary_specification': True,
+            'full_salary_specification': true,
             'employee': 1736,
             'invoiced_amount': '2500.00',
-            'metadata': {
-                'campaign_id': 12395,
-            },            
+            'metadata': {},            
         },
     ]),
     headers: {
@@ -327,11 +340,10 @@ fetch("https://api.gigapay.se/v2/payouts/", {
         "currency": "SEK",
         "description": "Instagram samarbete 2021-11-13.",
         "employee": "1847",
+        "full_salary_specification": true,
         "invoice": "c1554d88-b74f-4d6a-bfa6-049c14905dc7",
         "invoiced_amount": "1000.00",
-        "metadata": {
-            "campaign_id": 12394
-        },
+        "metadata": {},
         "start_at": null,
         "end_at": null,
         "created_at": "2019-05-23T10:32:38.118753Z",
@@ -345,11 +357,10 @@ fetch("https://api.gigapay.se/v2/payouts/", {
         "currency": "SEK",
         "description": "Instagram samarbete 2021-11-13.",
         "employee": "1736",
+        "full_salary_specification": true,
         "invoice": "c1554d88-b74f-4d6a-bfa6-049c14905dc7",
         "invoiced_amount": "2500.00",
-        "metadata": {
-            "campaign_id": 12395
-        },
+        "metadata": {},
         "start_at": null,
         "end_at": null,
         "created_at": "2019-05-23T10:32:38.118812Z",
@@ -375,9 +386,9 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-| Type | Required | Default | Description
+| Type | Required | Default | Notes
 | ---- | -------- | ------- |------------
-| Array | True | | [payout object.](../expanding.md) 
+| Payout[] | True | | Elements of array structured as [Payout](#register-a-payout).
 
 
 
@@ -404,10 +415,7 @@ response = requests.post(
             'email': 'albin@mail.com',
             'country': 'SWE'
         },
-        'invoiced_amount': '1000.00',
-        'metadata': {
-            'campaign_id': 12394,
-        },            
+        'invoiced_amount': '1000.00',         
     },
     headers={
         'Authorization': 'Token asasdadjanfkanfda',
@@ -417,7 +425,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00", "metadata": {"campaign_id": 12394}}' 'https://api.gigapay.se/v2/payouts/?expand=employee'
+curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/payouts/?expand=employee'
 ```
 
 ```javascript
@@ -428,7 +436,7 @@ fetch("https://api.gigapay.se/v2/payouts/?expand=employee", {
         country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
-        full_salary_specification: True,
+        full_salary_specification: true,
         employee: {
             id: 1847,
             name: 'Albin Lindskog',
@@ -436,10 +444,7 @@ fetch("https://api.gigapay.se/v2/payouts/?expand=employee", {
             email: 'albin@mail.com',
             country: 'SWE'
         },
-        invoiced_amount: '1000.00',
-        metadata: {
-            campaign_id: 12394,
-        },            
+        invoiced_amount: '1000.00',       
     }),
     headers: {
         "Authorization": "Token asasdadjanfkanfda",
@@ -471,6 +476,7 @@ fetch("https://api.gigapay.se/v2/payouts/?expand=employee", {
         "claimed_at": null,
         "verified_at": null
     },
+    "full_salary_specification": true,
     "invoice": "c1554d88-b74f-4d6a-bfa6-049c14905dc7",
     "invoiced_amount": "1000.00",
     "metadata": {
@@ -501,19 +507,19 @@ Parameter | Required | Description
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
+Parameter | Type | Required | Default | Notes
 --------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique identifier for the object.
-`amount` | String | False | | Decimal formatted string of the gross amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`cost` | String | False | | Decimal formatted string of the cost. Either `amount`, `invoiced_amount` or `cost` is required.
-`currency` | String | True | | ISO-4217 currency code.
-`description` | String | True | | ISO-4217 currency code.
-`employee` | Object | True | Employee object as described here. | 
+`id` | String | False | uuid4() | Unique per [Integration](#integrations).
+`amount` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`cost` | String | False | | Either `amount`, `invoiced_amount` or `cost` is required.
+`currency` | String | True | | 
+`description` | String | True | | 
+`employee` | Object | True | | Structured as an [Employee](#register-an-employee). | 
 `full_salary_specification` | Bool | False | False |
-`invoiced_amount` | String | True | | Decimal formatted string of the invoiced_amount. Either `amount`, `invoiced_amount` or `cost` is required.
-`metadata` | Object | False | | JSON-encoded metadata
-`start_at` | String | False | | ISO 8601 string.
-`end_at` | String | False | null | ISO 8601 string.
+`invoiced_amount` | String | True | | Either `amount`, `invoiced_amount` or `cost` is required.
+`metadata` | Object | False | | 
+`start_at` | String | False | | 
+`end_at` | String | False | null | 
 
 
 
@@ -557,6 +563,7 @@ fetch("https://api.gigapay.se/v2/payouts/9472/", {
     "currency": "SEK",
     "description": "Lön genom Gigapay",
     "employee": "1847",
+    "full_salary_specification": true,
     "invoice": "c1554d88-b74f-4d6a-bfa6-049c14905dc7",
     "invoiced_amount": "1000.00",
     "metadata": {
