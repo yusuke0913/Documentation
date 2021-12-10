@@ -30,8 +30,8 @@ meta:
 
 # API Reference
 
-The Gigapay API is organized around REST Our API has predictable resource-oriented URLs, accepts JSON-encoded requests, returns JSON-encoded
-responses, and uses standard HTTP response codes, authentication, and verbs. Our API is available at:
+The Gigapay API is organized around REST Our API has predictable resource-oriented URLs, accepts JSON-encoded requests,
+returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. Our API is available at:
 
 - [https://api.gigapay.se/v2/](https://api.gigapay.se/v2/).
 
@@ -39,8 +39,8 @@ There is a demo version of the API available at:
 
 - [https://api.demo.gigapay.se/v2/](https://api.demo.gigapay.se/v2/).
 
-It also serves as a test environment for developers working to integrate with our API. No money flows through the
-demo environment.
+The demo version also serves as a test environment for developers working to integrate with our API. No money flows
+through the demo environment.
 
 ### Browsable API
 
@@ -81,25 +81,25 @@ fetch("https://api.gigapay.se/v2/", {
 })
 ```
 
-The Gigapay API uses API keys to identify and authenticate requests. You can request keys by contacting us at
-[info@gigapay.se](mailto:info@gigapay.se). Note that you will receive separate sets of keys for the live and demo
-environment.
+The Gigapay API uses API keys to identify and authenticate requests. You can request a key by contacting us at
+[info@gigapay.se](mailto:info@gigapay.se). Note that you will receive separate keys for the live and demo environment.
 
-Your API key carry many privileges, so be make sure you keep them secure. Do not share your secret API key in
+Your API keys carry many privileges, so be make sure you keep them secure. Do not share your API keys in
 publicly accessible areas such as GitHub, client-side code, etc.
 
 Authorization to the API is performed through a token-based HTTP Authentication scheme. To authorize requests, 
-include the `Authorization` HTTP header. Note that the authentication key should be prefixed 
-by the string literal `Token`, with whitespace separating the two strings. To specify which [Integration](#integrations)
-you are acting as you need to provide  the `Integration-ID` header.
+include your key in the `Authorization` HTTP header. Note that the API key should be prefixed by the string literal 
+`Token`, with whitespace separating the two strings. 
+
+To specify which [Integration](#integrations) you are acting as you need to provide  the `Integration-ID` header.
 
 ### Unauthenticated Requests
 
 API requests without valid authentication will fail with the HTTP response code `401`. If you are getting unexpected
 `401` responses, ensure that your URL is correct. API calls made over plain HTTP will be redirected with the response
-code `301`, and API calls with incorrect placed `/` will be redirected with the response code `307` to the correct URL.
-Most HTTP clients will automatically follow the redirect while stripping out the authorization headers, resulting in an
-`401` response.
+code `301`, and API calls with incorrect placed `/` will be redirected with the response code `307` to the correct URL,
+and most HTTP clients will automatically follow the redirects while stripping out the authorization headers, resulting
+in the `401` response.
 
 ### IP-whitelisting
 
@@ -108,13 +108,37 @@ access from. If IP-whitelisting is enabled, API requests made from a non-whiteli
 response code `403`.
 
 ### Language
+
+```python
+import requests
+
+response = requests.get(
+    'https://api.gigapay.se/v2/',
+    headers={
+        'Authorization': 'Token asasdadjanfkanfda',
+        'Integration-ID': 'aqdnkjasdo12',
+        'Accept-Language': 'sv',
+    }
+)
+```
+
 ```shell
-curl https://api.gigapay.se/v2/ \
-  -H "Accept-Language: en"
+curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' -H "Accept-Language: en" https://api.gigapay.se/v2/
+
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/", {
+    headers: {
+        "Authorization": "Token asasdadjanfkanfda",
+        "Integration-Id": "aqdnkjasdo12",
+        "Accept-Language": "sv",
+    }
+})
 ```
 
 The default language of the API is English. This document is written assuming you have the language set to English. 
-To change language set the `Accept-Language` header to your preferred language. For example:
+To change language set the `Accept-Language` header to your preferred language. 
 
 
 
@@ -127,16 +151,13 @@ The Gigapay API is driven by actions taken by the parties involved in each Payou
 Gigapay facilitating it, and the Employee receiving it. The flowchart below illustrates each of these actions and
 the corresponding events.
 
-![](events.svg)
+[ ![](events.svg) ](images/events.svg)
 
 Note that the Employee and Payout flow typically occur in parallel as the Employee is usually created when, or close in
-time to when, their first Payout is created. In this case is the Employee not notified of the Payout until they are
-verified.
+time to when, their first Payout is created. 
 
 
 ## Subscribing to Events
-
-> Example of a webhook send for the `Employee.verified` event:
 
 ```http
 POST https://gigatron.se/webhooks/employees/ HTTP/1.1
@@ -173,50 +194,64 @@ on the following events:
 * `Invoice.created`
 * `Invoice.paid`
 
-The notifications simply contain the object that triggered the event, as represented in the API. For example, the
-webhook for a `Employee.verified` is shown to the right.
+The notifications simply contain the object that triggered the event, as represented in the API. 
 
 ### Gigapay Signature
+
+```shell
+secret_key = '...asId'
+
+# If you're doing this in shell; parse the request manually:
+timestamp='...'
+signature='...'
+body='...'
+
+payload=${timestamp}.${body}
+
+calculated_signature=$(echo -n $payload | openssl dgst -sha256 -hmac $secret_key)
+
+if [ $signature == $calculated_signature ]; then
+    ...
+fi
+```
+
+```python
+import hmac
+
+secret_key = '...asId'
+
+t, v1 = request.headers['Gigapay-Signature'].split(',')
+timestamp = t.split('=')[1]
+signature = v1.split('=')[1]
+
+payload = timestamp + '.' + request.body
+
+hmac.new(secret_key.encode('utf-8'), digestmod='sha256')
+hmac.update(payload.encode('utf-8'))
+calculated_signature = hmac.hexdigest()
+
+hmac.compare_digest(signature, calculated_signature)
+```
+
+```javascript
+import hmacSHA512 from 'crypto-js/hmac-sha512';
+
+let secret_key = '...asId'
+
+let [t, v1] = request.get('Gigapay-Signature').split(',')
+let timestamp = t.split('=')[1]
+let signature = v1.split('=')[1]
+
+let payload = timestamp + '.' + request.body
+
+let calculated_signature = hmacSHA512(payload, secret_key);
+
+calculated_signature === signature
+```
 
 The notification is signed using the `secret_key` for the [Webhooks](#webhooks), the signature is included in the
 notification as a `Gigapay-Signature` header. This allows you to verify that the events were sent by Gigapay, and not
 by a third party.
-
-```shell
-secret_key = '...asId'
-t, v1 = parse_signature(request.headers.Gigapay-Signature)
-payload = t + '.' + request.body
-
-hmac = hmac.new('sha256', secret_key.encode('utf-8'))
-hmac.update(payload.encode('utf-8'))
-signature = hmac.hexdigest()
-
-signature == v1
-```
-
-```python
-secret_key = '...asId'
-t, v1 = request.headers['Gigapay-Signature'].split(',')
-payload = t + '.' + request.body
-
-hmac = hmac.new('sha256', secret_key.encode('utf-8'))
-hmac.update(payload.encode('utf-8'))
-signature = hmac.hexdigest()
-
-signature == v1
-```
-
-```javascript
-secret_key = '...asId'
-t, v1 = parse_signature(request.headers.Gigapay-Signature)
-payload = t + '.' + request.body
-
-hmac = hmac.new('sha256', secret_key.encode('utf-8'))
-hmac.update(payload.encode('utf-8'))
-signature = hmac.hexdigest()
-
-signature == v1
-```
 
 The signature consists of two parameters;
 
@@ -224,15 +259,13 @@ The signature consists of two parameters;
 
 `v` the signature of the current scheme. 
 
-The only valid signature scheme is currently `v1`, which is the HMAC algorithm as described by RFC 2104 using SHA256
-as disgestmod.
+The only valid signature scheme is currently `v1`, which is the HMAC algorithm as described in
+[RFC 2104](https://datatracker.ietf.org/doc/html/rfc2104.html) using SHA256 as disgestmod.
 
-To verify signatures using the `v1` scheme, extract the timestamp from the `Gigapay-Signature` header, and the
-JSON-encoded notification from the request body. Join these strings with a period, `.`, as a separator. Compute a
-HMAC with the SHA256 hash function using the Webhook’s `secret_key` as the key. Lastly ensure that the signature in
-the header and the calculated signature matches.
-
-
+To verify signatures using the v1 scheme, extract the timestamp from theGigapay-Signature header, and the JSON-encoded
+notification from the request body. Join these strings with a period, ., as a separator. Compute an HMAC with the
+SHA256 hash function using the Webhook’s secret_key as the key. Lastly ensure that the signature in the header and the
+calculated signature matches.
 
 
 
@@ -458,12 +491,10 @@ fetch("https://api.gigapay.se/v2/employees/", {
 The Gigapay API supports idempotency to safely retry requests without accidentally performing the same operation twice. 
 Gigapay offers two mechanism of idempotency; idempotency keys and object ids.
 
-Idempotency keys works by storing the responses of previous requests. Subsequent requests with the same key return
-the same response, without performing the action specified in the request. Keys expire after 24 hours, so a new
-response is generated if a key is reused outside that time frame.
-
-To perform an idempotent request using a idempotency-key, provide the additional `Idempotency-Key` header to the
-request. We recommend using uuid4() for the key, but any string with sufficient entropy will work. 
+To perform an idempotent request using an idempotency-key, provide the additional `Idempotency-Key` header to the
+request. Idempotency keys works by storing the responses of previous requests. Subsequent requests with the same key
+return the same response, without performing the action specified in the request. Keys expire after 24 hours, so a new
+response is generated if a key is reused outside that timeframe.
 
 > Registering an Employee with a specific id
 
@@ -506,9 +537,9 @@ fetch("https://api.gigapay.se/v2/employees/", {
 })
 ```
 
-Object ids ensure idempotency when creating object as no objects can have the same id. Subsequent requests with the
-same id will return an error. The uniqueness of an id is guaranteed for the lifetime of the object. 
-To perform an idempotent request using an object id simply specify the id when creating the object.
+To perform an idempotent request using an object id simply specify the id when creating the object. Object ids ensure
+idempotency when creating object as no objects can have the same id. Subsequent requests with the same id will return
+an error. The uniqueness of an id is guaranteed for the lifetime of the object.
 
 # Metadata
 
@@ -578,11 +609,8 @@ fetch("https://api.gigapay.se/v2/employees/", {
 
 All objects in the Gigapay API have a `metadata` attribute. You can use this attribute to attach to any 
 JSON-serializable data to these objects. It is useful for storing additional information about an object. For example,
-you could store a unique identifier for a Gigger in your system. This data is not used by Gigapay, and will not be
+you could store a unique identifier for a Employee in your system. This data is not used by Gigapay, and will not be
 displayed to any users.
 
-The [Payout](#payouts) objects also has a `description` field. It should contain a human-readable
-description of why this Payout is being made. Unlike `metadata`, `description` is a single string, and your Gigger
-will see it.
-
-Do not store any sensitive information in the `description` field nor in the `metadata` field.
+The [Payout](#payouts) objects also has a `description` field. It should contain a human-readable description of why
+this Payout is being made. Unlike `metadata`, `description` is a single string, and your Employee will see it.
