@@ -124,9 +124,11 @@ To specify which [Integration](#integrations) you are acting as you need to prov
       <input type="text" id="integration" name="integration" placeholder="79606358-97af-4196-b64c-5f719433d56b">
     </div>
   </label>
+
+  <p class="TokenExplanation">Replacing the above tokens with your own will add them to the provided code examples, making them executable.
+</p>
 </div>
 
-Replacing the above tokens with your own will add them to the provided code examples, making them executable.
 
 ### Unauthenticated Requests
 

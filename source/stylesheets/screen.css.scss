@@ -705,6 +705,11 @@ html, body {
     margin-bottom: 14px;
     @extend %left-col;
 
+    .TokenExplanation {
+      font-weight: 200;
+      font-size: 13px;
+    }
+
     .authInput {
       position: relative;
       height: 34px;
