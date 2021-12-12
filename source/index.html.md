@@ -35,7 +35,7 @@ returns JSON-encoded responses, and uses standard HTTP response codes, authentic
 
 ### API server
 
-<div class="serverSelect">
+<p class="serverSelect">
   <div>
     <input type="radio" id="prod" name="server" value="https:///api.gigapay.se/v2/"
            checked>
@@ -50,7 +50,7 @@ returns JSON-encoded responses, and uses standard HTTP response codes, authentic
       <a href="https:///api.demo.gigapay.se/v2/">https://api.demo.gigapay.se/v2/</a> <span class="serverSelectExplanation">- Demo server</span>
     </label>
   </div>
-</div>
+</p>
 
 
 The demo version serves as a test environment for developers working to integrate with our API. No money flows
@@ -109,7 +109,7 @@ To specify which [Integration](#integrations) you are acting as you need to prov
 
 ### Tokens
 
-<div class="tokenSelect">
+<p class="tokenSelect">
   <label for="auth">Authentication Token:
     <div class="authInput">
       <span>Token: </span>
@@ -122,7 +122,7 @@ To specify which [Integration](#integrations) you are acting as you need to prov
       <input type="text" id="integration" name="integration" placeholder="79606358-97af-4196-b64c-5f719433d56b">
     </div>
   </label>
-</div>
+</p>
 
 Replacing the above tokens with your own will add them to the provided code examples, making them executable.
 
