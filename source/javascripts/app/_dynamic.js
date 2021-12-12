@@ -1,11 +1,10 @@
 //= require ../lib/_jquery
 
-;(function wrapDynamicContent() {
-  'use strict';
+function wrapDynamicContent() {
   dynamicServerNames();
   dynamicAuthenticationToken();
   dynamicIntegrationId();
-})();
+}
 
 /*
 When the page has loaded we wrap all occurrences of the server name with a <span/> then we attach
