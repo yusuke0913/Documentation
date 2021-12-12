@@ -37,21 +37,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/webhooks/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/webhooks/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/webhooks/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -92,7 +92,7 @@ This endpoint retrieves all webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### Query Parameters
 
@@ -117,14 +117,14 @@ response = requests.post(
         'events': ['Payout.created']
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}' https://gigatron.se/webhooks/payouts/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}' https://gigatron.se/webhooks/payouts/
 ```
 
 ```javascript
@@ -132,8 +132,8 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
     method: "POST",
     body: JSON.stringify({url: "https://gigatron.se/webhooks/payouts/", events: ["Payout.created"]}),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     },
 })
 ```
@@ -161,7 +161,7 @@ This endpoint creates a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 `Idempotency-key` | False | Idempotency key.
 
 ### Body Parameters
@@ -186,21 +186,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/webhooks/481272/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/webhooks/481272/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/webhooks/481272/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/481272/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -228,7 +228,7 @@ This endpoint retrieves a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -252,14 +252,14 @@ response = requests.patch(
         'events': ['Payout.created', 'Payout.notified']
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X PATCH -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"events": ["Payout.created", "Payout.notified"]}' https://api.gigapay.se/v2/webhooks/481272/
+curl -X PATCH -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"events": ["Payout.created", "Payout.notified"]}' https://api.gigapay.se/v2/webhooks/481272/
 ```
 
 ```javascript
@@ -267,9 +267,9 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
     method: "PATCH",
     body: JSON.stringify({events: ["Payout.created", "Payout.notified"]}),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     },
 })
 ```
@@ -297,7 +297,7 @@ This endpoint updates a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -330,14 +330,14 @@ response = requests.put(
         'events': ['Invoice.created']
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"url": "https://gigatron.se/webhooks/invoiced/", "events": ["Invoice.created"]}' https://api.gigapay.se/v2/webhooks/481272/
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"url": "https://gigatron.se/webhooks/invoiced/", "events": ["Invoice.created"]}' https://api.gigapay.se/v2/webhooks/481272/
 ```
 
 ```javascript
@@ -345,9 +345,9 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
     method: "PUT",
     body: JSON.stringify({url: "https://gigatron.se/webhooks/invoiced/", events: ["Invoice.created"]}),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -385,7 +385,7 @@ This endpoint replaces a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -415,22 +415,22 @@ import requests
 response = requests.delete(
     'https://api.gigapay.se/v2/webhooks/481272/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X DELETE -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/webhooks/481272/
+curl -X DELETE -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/webhooks/481272/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/481272/", {
     method: "DELETE",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -449,7 +449,7 @@ This endpoint deletes a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 
 ### URL Parameters

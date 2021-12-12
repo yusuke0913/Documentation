@@ -62,6 +62,10 @@ under the License.
       $(function() { setupCodeCopy(); });
     </script>
     <% end %>
+
+    <script>
+      $(function() { wrapDynamicContent(); });
+    </script>
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">

@@ -47,21 +47,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/employees/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/employees/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/employees/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/employees/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -112,7 +112,7 @@ This endpoint retrieves all Employees.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### Query Parameters
 
@@ -144,14 +144,14 @@ response = requests.post(
         'country': 'SWE'
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}' https://api.gigapay.se/v2/employees/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}' https://api.gigapay.se/v2/employees/
 ```
 
 ```javascript
@@ -164,9 +164,9 @@ fetch("https://api.gigapay.se/v2/employees/", {
         country: "SWE"
     }),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -199,7 +199,7 @@ This endpoint creates a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 `Idempotency-key` | False | Idempotency key.
 
 ### Body Parameters
@@ -223,21 +223,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/employees/1847/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/employees/1847/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/employees/1847/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/employees/1847/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -270,7 +270,7 @@ This endpoint retrieves an employee.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -294,14 +294,14 @@ response = requests.patch(
         'id': 8472,
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X PATCH -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 8472}' https://api.gigapay.se/v2/employees/1847/
+curl -X PATCH -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 8472}' https://api.gigapay.se/v2/employees/1847/
 ```
 
 ```javascript
@@ -309,9 +309,9 @@ fetch("https://api.gigapay.se/v2/employees/1847/", {
     method: "PATCH",
     body: JSON.stringify({id: 8472}),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     },
 })
 ```
@@ -344,7 +344,7 @@ This endpoint updates a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -381,14 +381,14 @@ response = requests.put(
         'country': 'SWE'
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}' https://api.gigapay.se/v2/employees/8472/
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}' https://api.gigapay.se/v2/employees/8472/
 ```
 
 ```javascript
@@ -402,9 +402,9 @@ fetch("https://api.gigapay.se/v2/employees/8472/", {
         country: "SWE"
     }),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -437,7 +437,7 @@ This endpoint replaces an Employee.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -468,22 +468,22 @@ import requests
 response = requests.delete(
     'https://api.gigapay.se/v2/employees/1847/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X DELETE -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/employees/1847/
+curl -X DELETE -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/employees/1847/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/employees/1847/", {
     method: "DELETE",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -502,7 +502,7 @@ This endpoint deletes a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 
 ### URL Parameters
@@ -522,22 +522,22 @@ import requests
 response = requests.put(
     'https://api.gigapay.se/v2/employees/1847/resend/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/employees/1847/resend/
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/employees/1847/resend/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/employees/1847/resend/", {
     method: "PUT",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -556,7 +556,7 @@ This endpoint resend an invitation.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 
 ### URL Parameters

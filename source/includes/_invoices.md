@@ -45,21 +45,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/invoices/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/invoices/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/invoices/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/invoices/", {
   headers: {
-    "Authorization": "Token asasdadjanfkanfda",
-    "Integration-Id": "aqdnkjasdo12"
+    "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+    "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
   }
 })
 ```
@@ -107,7 +107,7 @@ This endpoint retrieves all webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### Query Parameters
 
@@ -130,21 +130,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/invoices/2859272/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/invoices/2859272/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/invoices/2859272/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/invoices/2859272/", {
   headers: {
-    "Authorization": "Token asasdadjanfkanfda",
-    "Integration-Id": "aqdnkjasdo12"
+    "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+    "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
   }
 })
 ```
@@ -176,7 +176,7 @@ This endpoint retrieves an Invoice.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -201,14 +201,14 @@ response = requests.patch(
       'metadata': {'original_id': '2859272'}
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X PATCH -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": "846271", "metadata": {"original_id": "2859272"}}' https://api.gigapay.se/v2/invoices/2859272/
+curl -X PATCH -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": "846271", "metadata": {"original_id": "2859272"}}' https://api.gigapay.se/v2/invoices/2859272/
 ```
 
 ```javascript
@@ -216,9 +216,9 @@ fetch("https://api.gigapay.se/v2/invoices/2859272/", {
     method: "PATCH",
     body: JSON.stringify({'id': '846271', 'metadata': {'original_id': '2859272'}}),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     },
 })
 ```
@@ -252,7 +252,7 @@ This endpoint updates a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -278,22 +278,22 @@ import requests
 response = requests.delete(
     'https://api.gigapay.se/v2/invoices/846271/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X DELETE -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/invoices/846271/
+curl -X DELETE -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/invoices/846271/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/invoices/846271/", {
     method: "DELETE",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -312,7 +312,7 @@ This endpoint deletes an Invoice. Note that you can not delete a paid Invoice.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 
 ### URL Parameters

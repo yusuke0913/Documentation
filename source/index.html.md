@@ -31,15 +31,29 @@ meta:
 # API Reference
 
 The Gigapay API is organized around REST Our API has predictable resource-oriented URLs, accepts JSON-encoded requests,
-returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. Our API is available at:
+returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. 
 
-- [https://api.gigapay.se/v2/](https://api.gigapay.se/v2/).
+### API server
 
-There is a demo version of the API available at:
+<div class="serverSelect">
+  <div>
+    <input type="radio" id="prod" name="server" value="https:///api.gigapay.se/v2/"
+           checked>
+    <label for="prod">
+      <a href="https:///api.gigapay.se/v2/" >https://api.gigapay.se/v2/</a> <span class="serverSelectExplanation">- Production server</span>
+    </label>
+  </div>
+  
+  <div>
+    <input type="radio" id="demo" name="server" value="https:///api.demo.gigapay.se/v2/">
+    <label for="demo">
+      <a href="https:///api.demo.gigapay.se/v2/">https://api.demo.gigapay.se/v2/</a> <span class="serverSelectExplanation">- Demo server</span>
+    </label>
+  </div>
+</div>
 
-- [https://api.demo.gigapay.se/v2/](https://api.demo.gigapay.se/v2/).
 
-The demo version also serves as a test environment for developers working to integrate with our API. No money flows
+The demo version serves as a test environment for developers working to integrate with our API. No money flows
 through the demo environment.
 
 ### Browsable API
@@ -61,22 +75,22 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/
 
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -92,6 +106,25 @@ include your key in the `Authorization` HTTP header. Note that the API key shoul
 `Token`, with whitespace separating the two strings. 
 
 To specify which [Integration](#integrations) you are acting as you need to provide  the `Integration-ID` header.
+
+### Tokens
+
+<div class="tokenSelect">
+  <label for="auth">Authentication Token:
+    <div class="authInput">
+      <span>Token: </span>
+      <input type="text" id="auth" name="auth" placeholder="cd7a4537a231356d404b553f465b6af2fa035821">
+    </div>
+  </label>
+  
+  <label for="integration">Integration ID:
+    <div class="integrationInput">
+      <input type="text" id="integration" name="integration" placeholder="79606358-97af-4196-b64c-5f719433d56b">
+    </div>
+  </label>
+</div>
+
+Replacing the above tokens with your own will add them to the provided code examples, making them executable.
 
 ### Unauthenticated Requests
 
@@ -115,23 +148,23 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b',
         'Accept-Language': 'sv',
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' -H "Accept-Language: en" https://api.gigapay.se/v2/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -H "Accept-Language: en" https://api.gigapay.se/v2/
 
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b",
         "Accept-Language": "sv",
     }
 })
@@ -327,22 +360,22 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/payouts/9472/?expand=employee',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' 'https://api.gigapay.se/v2/payouts/9472/?expand=employee'
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/payouts/9472/?expand=employee'
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/payouts/9472/?expand=employee", {
     method: "GET",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -407,22 +440,22 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/employees/?page_size=2&page=2',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' 'https://api.gigapay.se/v2/employees/?page_size=2&page=2'
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/employees/?page_size=2&page=2'
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/employees/?page_size=2&page=2", {
     method: "GET",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -480,22 +513,22 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' 'https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True'
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True'
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True", {
     method: "GET",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -554,15 +587,15 @@ response = requests.post(
         'country': 'SWE',
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
         'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja' -H 'Integration-ID: aqdnkjasdo12' -d '{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}' https://api.gigapay.se/v2/employees/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}' https://api.gigapay.se/v2/employees/
 ```
 
 ```javascript
@@ -574,10 +607,10 @@ fetch("https://api.gigapay.se/v2/employees/", {
         country: "SWE",
     }),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
         "Idempotency-Key": "afjkakkknbkasaskkaksdakjdnsakja",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -603,14 +636,14 @@ response = requests.post(
         'country': 'SWE',
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 19472, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}' https://api.gigapay.se/v2/employees/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Idempotency-Key': 'afjkakkknbkasaskkaksdakjdnsakja' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 19472, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}' https://api.gigapay.se/v2/employees/
 ```
 
 ```javascript
@@ -623,9 +656,9 @@ fetch("https://api.gigapay.se/v2/employees/", {
         country: "SWE",
     }),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -652,14 +685,14 @@ response = requests.post(
         },
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE", "metadata": {"user_id": 1847}}' https://api.gigapay.se/v2/employees/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE", "metadata": {"user_id": 1847}}' https://api.gigapay.se/v2/employees/
 ```
 
 ```javascript
@@ -674,9 +707,9 @@ fetch("https://api.gigapay.se/v2/employees/", {
         }
     }),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```

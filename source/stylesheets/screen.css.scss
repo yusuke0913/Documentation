@@ -655,6 +655,11 @@ html, body {
   }
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
+// CUSTOM DESIGN
+////////////////////////////////////////////////////////////////////////////////
+// Code sample in center text block
 .content {
   .center-column + .highlight {
 
@@ -671,3 +676,71 @@ html, body {
     }
   }
 }
+
+.content {
+  .serverSelect {
+    line-height: 2.4;
+    margin-right: $examples-width;
+    padding: 0 $main-padding;
+    margin-bottom: 14px;
+    @extend %left-col;
+
+    .serverSelectExplanation {
+      font-weight: 200;
+      font-size: 13px;
+    }
+  }
+
+  #api-server {
+    margin-top: 18px;
+  }
+
+  #tokens {
+    margin-top: 18px;
+  }
+
+  .tokenSelect {
+    margin-right: $examples-width;
+    padding: 0 $main-padding;
+    margin-bottom: 14px;
+    @extend %left-col;
+
+    .authInput {
+      position: relative;
+      height: 34px;
+      padding-top: 5px;
+
+      span {
+        position: absolute;
+        z-index: 2;
+        line-height: 1.6;
+        padding-left: 4px;
+        padding-right: 4px;
+        top: 5.5px;
+      }
+
+      input {
+        position: absolute;
+        left: 0;
+        top: 5px;
+        padding-left: 50px;
+        width: 350px;
+      }
+    }
+
+    .integrationInput {
+      position: relative;
+      height: 34px;
+      padding-top: 5px;
+
+      label {
+        padding-bottom: 7px;
+      }
+
+      input {
+        width: 398px;
+      }
+    }
+  }
+}
+

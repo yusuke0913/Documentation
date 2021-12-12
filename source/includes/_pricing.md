@@ -45,21 +45,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/pricing/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/pricing/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/pricing/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/pricing/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -72,30 +72,30 @@ fetch("https://api.gigapay.se/v2/pricing/", {
     "next": null,
     "previous": "https://api.gigapay.se/v2/pricing/?page=1",
     "results": [
-				{
-					"amount": "1000.00",
-					"cost": "1379.91",
-					"currency": "SEK",
-					"fee": "65.71",
-					"health_insurance": null,
-          "invoiced_amount": "1314.20",
-					"payroll": "314.20",
-					"pension": null,
-					"tax": "300.00",
-					"vat": "344.97"
-				}, {
-					"amount": "3000.00",
-					"cost": "4139.73",
-					"currency": "SEK",
-					"fee": "197.13",
-					"health_insurance": null,
-          "invoiced_amount": "3942.60",
-					"payroll": "942.60",
-					"pension": null,
-					"tax": "900.00",
-					"vat": "1034.93"
-				}
-			]
+        {
+           "amount": "1000.00",
+           "cost": "1379.91",
+           "currency": "SEK",
+           "fee": "65.71",
+           "health_insurance": null,
+           "invoiced_amount": "1314.20",
+           "payroll": "314.20",
+           "pension": null,
+           "tax": "300.00",
+           "vat": "344.97"
+        }, {
+           "amount": "3000.00",
+           "cost": "4139.73",
+           "currency": "SEK",
+           "fee": "197.13",
+           "health_insurance": null, 
+           "invoiced_amount": "3942.60",
+           "payroll": "942.60",
+           "pension": null,
+           "tax": "900.00",
+           "vat": "1034.93"
+        }
+   ]
 }
 ```
 
@@ -110,7 +110,7 @@ List Pricing info for past Payouts.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### Query Parameters
 
@@ -147,14 +147,14 @@ response = requests.post(
         'invoiced_amount': '1000.00',          
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/pricing/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/pricing/
 ```
 
 ```javascript
@@ -170,9 +170,9 @@ fetch("https://api.gigapay.se/v2/pricing/", {
         invoiced_amount: '1000.00',       
     }),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -205,7 +205,7 @@ This endpoint allows you to calculate the price of payout you would like to make
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 `Idempotency-key` | False | Idempotency key.
 
 ### Body Parameters
@@ -254,14 +254,14 @@ response = requests.post(
         },
     ],
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
 ```
 
 ```javascript
@@ -287,9 +287,9 @@ fetch("https://api.gigapay.se/v2/payouts/", {
         },
     ]),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -335,7 +335,7 @@ The same endpoint is used to calculate the pricing info for multiple Payouts at 
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 `Idempotency-key` | False | Idempotency key.
 
 ### Body Parameters
@@ -372,14 +372,14 @@ response = requests.post(
         'invoiced_amount': '1000.00',        
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -H 'Integration-ID: aqdnkjasdo12' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/pricing/?expand=employee'
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/pricing/?expand=employee'
 ```
 
 ```javascript
@@ -401,9 +401,9 @@ fetch("https://api.gigapay.se/v2/pricing/?expand=employee", {
         invoiced_amount: '1000.00',       
     }),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
-        "Integration-Id": "aqdnkjasdo12"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -437,7 +437,7 @@ registered will the object be reused.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 `Idempotency-key` | False | Idempotency key.
 
 ### Body Parameters
@@ -468,21 +468,21 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/pricing/9472/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
-        'Integration-ID': 'aqdnkjasdo12'
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda' -H 'Integration-ID: aqdnkjasdo12' https://api.gigapay.se/v2/pricing/9472/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/pricing/9472/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/pricing/9472/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
-        "Integration-Id": "aqdnkjasdo12"
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
     }
 })
 ```
@@ -515,7 +515,7 @@ This endpoint retrieves a payout.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 

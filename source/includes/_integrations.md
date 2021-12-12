@@ -55,19 +55,19 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/integrations/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda'  https://api.gigapay.se/v2/integrations/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'  https://api.gigapay.se/v2/integrations/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/integrations/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
     }
 })
 ```
@@ -149,13 +149,13 @@ response = requests.post(
         "zip_code": "14171",
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
 )
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/```
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/```
 ```
 
 ```javascript
@@ -171,7 +171,7 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
         zip_code: "14171",
     }),
     headers: {
-        Authorization: "Token asasdadjanfkanfda",
+        Authorization: "Token cd7a4537a231356d404b553f465b6af2fa035821",
     },
 })
 ```
@@ -236,19 +236,19 @@ import requests
 response = requests.get(
     'https://api.gigapay.se/v2/webhooks/846291712/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
 )
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token asasdadjanfkanfda'  https://api.gigapay.se/v2/integrations/846291712/
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'  https://api.gigapay.se/v2/integrations/846291712/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/integrations/846291712/", {
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
     }
 })
 ```
@@ -305,13 +305,13 @@ response = requests.patch(
         'email': 'invoice@pinestreet.tech'
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
 )
 ```
 
 ```shell
-curl -X PATCH -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -d '{"email": "invoice@pinestreet.tech"} https://api.gigapay.se/v2/integrations/846291712/
+curl -X PATCH -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"email": "invoice@pinestreet.tech"} https://api.gigapay.se/v2/integrations/846291712/
 ```
 
 ```javascript
@@ -319,7 +319,7 @@ fetch("https://api.gigapay.se/v2/integrations/846291712/", {
     method: "PATCH",
     body: JSON.stringify({'email': 'invoice@pinestreet.tech'}),
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
     },
 })
@@ -397,13 +397,13 @@ response = requests.put(
         "zip_code": "14171",
     },
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
 )
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token asasdadjanfkanfda' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/846291712/```
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/846291712/```
 ```
 
 ```javascript
@@ -419,7 +419,7 @@ fetch("https://api.gigapay.se/v2/webhooks/846291712/", {
         zip_code: "14171",
     }),
     headers: {
-        Authorization: "Token asasdadjanfkanfda",
+        Authorization: "Token cd7a4537a231356d404b553f465b6af2fa035821",
     },
 })
 ```
@@ -453,7 +453,7 @@ This endpoint replaces a webhooks.
 Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration-ID.
+`Integration-ID` | True | Integration id.
 
 ### URL Parameters
 
@@ -486,20 +486,20 @@ import requests
 response = requests.delete(
     'https://api.gigapay.se/v2/integrations/846291712/',
     headers={
-        'Authorization': 'Token asasdadjanfkanfda',
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
 )
 ```
 
 ```shell
-curl -X DELETE -H 'Authorization: Token asasdadjanfkanfda' https://api.gigapay.se/v2/integrations/846291712/
+curl -X DELETE -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' https://api.gigapay.se/v2/integrations/846291712/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/integrations/846291712/", {
     method: "DELETE",
     headers: {
-        "Authorization": "Token asasdadjanfkanfda",
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
     }
 })
 ```
