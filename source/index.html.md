@@ -216,6 +216,8 @@ with `_at`.
 
 ## Subscribing to Events
 
+> An example webhook for the `Employee.verified` event:
+
 ```http
 POST https://gigatron.se/webhooks/employees/ HTTP/1.1
 Content-Type: application/json
@@ -254,6 +256,8 @@ on the following events:
 The notifications simply contain the object that triggered the event, as represented in the API. 
 
 ### Gigapay Signature
+
+> Example code to verify a Gigapay Signature:
 
 ```shell
 secret_key = '...asId'
