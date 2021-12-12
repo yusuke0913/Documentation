@@ -286,12 +286,16 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-24f1d31e.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-73db64c9.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-2224a352.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-b12a2749.js"></script>
+      <script src="javascripts/all-6ef75074.js"></script>
 
     <script>
       $(function() { setupCodeCopy(); });
+    </script>
+
+    <script>
+      $(function() { wrapDynamicContent(); });
     </script>
   </head>
 
@@ -319,6 +323,9 @@
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#tokens" class="toc-h2 toc-link" data-title="Tokens">Tokens</a>
+                  </li>
                   <li>
                     <a href="#unauthenticated-requests" class="toc-h2 toc-link" data-title="Unauthenticated Requests">Unauthenticated Requests</a>
                   </li>
@@ -526,19 +533,26 @@
       <div class="content">
         <h1 id='api-reference'>API Reference</h1>
 <p>The Gigapay API is organized around REST Our API has predictable resource-oriented URLs, accepts JSON-encoded requests,
-returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. Our API is available at:</p>
+returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. </p>
+<h3 id='api-server'>API server</h3>
+<div class="serverSelect">
+  <div>
+    <input type="radio" id="prod" name="server" value="https:///api.gigapay.se/v2/"
+           checked>
+    <label for="prod">
+      <a href="https:///api.gigapay.se/v2/" >https://api.gigapay.se/v2/</a> <span class="serverSelectExplanation">- Production server</span>
+    </label>
+  </div>
+  
+  <div>
+    <input type="radio" id="demo" name="server" value="https:///api.demo.gigapay.se/v2/">
+    <label for="demo">
+      <a href="https:///api.demo.gigapay.se/v2/">https://api.demo.gigapay.se/v2/</a> <span class="serverSelectExplanation">- Demo server</span>
+    </label>
+  </div>
+</div>
 
-<ul>
-<li><a href="https://api.gigapay.se/v2/">https://api.gigapay.se/v2/</a>.</li>
-</ul>
-
-<p>There is a demo version of the API available at:</p>
-
-<ul>
-<li><a href="https://api.demo.gigapay.se/v2/">https://api.demo.gigapay.se/v2/</a>.</li>
-</ul>
-
-<p>The demo version also serves as a test environment for developers working to integrate with our API. No money flows
+<p>The demo version serves as a test environment for developers working to integrate with our API. No money flows
 through the demo environment.</p>
 <h3 id='browsable-api'>Browsable API</h3>
 <p>Both the live and demo environment render a human-friendly HTML output for each resource, when the HTML format is
@@ -551,15 +565,15 @@ intuitive understanding of the API compared to reading this documentation.</p>
     <span class="s">'https://api.gigapay.se/v2/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -569,11 +583,28 @@ intuitive understanding of the API compared to reading this documentation.</p>
 <p>Your API keys carry many privileges, so be make sure you keep them secure. Do not share your API keys in
 publicly accessible areas such as GitHub, client-side code, etc.</p>
 
-<p>Authorization to the API is performed through a token-based HTTP Authentication scheme. To authorize requests,
-include your key in the <code>Authorization</code> HTTP header. Note that the API key should be prefixed by the string literal
+<p>Authorization to the API is performed through a token-based HTTP Authentication scheme. To authorize requests, 
+include your key in the <code>Authorization</code> HTTP header. Note that the API key should be prefixed by the string literal 
 <code>Token</code>, with whitespace separating the two strings. </p>
 
 <p>To specify which <a href="#integrations">Integration</a> you are acting as you need to provide  the <code>Integration-ID</code> header.</p>
+<h3 id='tokens'>Tokens</h3>
+<div class="tokenSelect">
+  <label for="auth">Authentication Token:
+    <div class="authInput">
+      <span>Token: </span>
+      <input type="text" id="auth" name="auth" placeholder="cd7a4537a231356d404b553f465b6af2fa035821">
+    </div>
+  </label>
+  
+  <label for="integration">Integration ID:
+    <div class="integrationInput">
+      <input type="text" id="integration" name="integration" placeholder="79606358-97af-4196-b64c-5f719433d56b">
+    </div>
+  </label>
+</div>
+
+<p>Replacing the above tokens with your own will add them to the provided code examples, making them executable.</p>
 <h3 id='unauthenticated-requests'>Unauthenticated Requests</h3>
 <p>API requests without valid authentication will fail with the HTTP response code <code>401</code>. If you are getting unexpected
 <code>401</code> responses, ensure that your URL is correct. API calls made over plain HTTP will be redirected with the response
@@ -582,7 +613,7 @@ and most HTTP clients will automatically follow the redirects while stripping ou
 in the <code>401</code> response. Disable automated redirects or be mindful of this.</p>
 <h3 id='ip-whitelisting'>IP-whitelisting</h3>
 <p>The Gigapay API Supports IP-whitelisting. When requesting API-keys, let us know which IP:s you would like to restrict
-access from. If IP-whitelisting is enabled, API requests made from a non-whitelisted IP will be rejected with HTTP
+access from. If IP-whitelisting is enabled, API requests made from a non-whitelisted IP will be rejected with HTTP 
 response code <code>403</code>.</p>
 <h3 id='language'>Language</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
@@ -590,34 +621,34 @@ response code <code>403</code>.</p>
     <span class="s">'https://api.gigapay.se/v2/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span><span class="p">,</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span><span class="p">,</span>
         <span class="s">'Accept-Language'</span><span class="p">:</span> <span class="s">'sv'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-H</span> <span class="s2">"Accept-Language: en"</span> https://api.gigapay.se/v2/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-H</span> <span class="s2">"Accept-Language: en"</span> https://api.gigapay.se/v2/
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Accept-Language</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sv</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>The default language of the API is English. This document is written assuming you have the language set to English.
+<p>The default language of the API is English. This document is written assuming you have the language set to English. 
 To change language set the <code>Accept-Language</code> header to your preferred language. </p>
 <h1 id='events'>Events</h1>
 <blockquote>
 <p>An example Employee object with event timestamps:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25d2af38-59b9-4f73-9452-51787fed5c84"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karl Karlsson"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cellphone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karl.karlsson@gmail.com"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25d2af38-59b9-4f73-9452-51787fed5c84"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karl Karlsson"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"cellphone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karl.karlsson@gmail.com"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"> 
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w"> 
     </span><span class="nl">"claimed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T09:13:32.575721Z"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T09:13:48.625263Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -639,15 +670,15 @@ with <code>_at</code>.</p>
 <span class="s">...</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25d2af38-59b9-4f73-9452-51787fed5c84"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karl Karlsson"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cellphone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karl.karlsson@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25d2af38-59b9-4f73-9452-51787fed5c84"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karl Karlsson"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"cellphone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"karl.karlsson@gmail.com"</span><span class="p">,</span><span class="w"> 
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w"> 
     </span><span class="nl">"claimed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T09:13:32.575721Z"</span><span class="w">
     </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T09:13:48.625263Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -735,8 +766,8 @@ calculated signature matches.</p>
 
 {"detail":"Method \"DELETE\" not allowed."}
 </code></pre></div>
-<p>Gigapay uses HTTP response codes to indicate whether an API request was successful. Codes in the <code>2XX</code> range indicate
-success; codes in the <code>4XX</code> range indicate that the request failed, given the information provided; codes in the
+<p>Gigapay uses HTTP response codes to indicate whether an API request was successful. Codes in the <code>2XX</code> range indicate 
+success; codes in the <code>4XX</code> range indicate that the request failed, given the information provided; codes in the 
 <code>5XX</code> range indicate an error with Gigapay&#39;s servers. Response codes in the <code>4XX</code> range generally indicate a client
 error  and will as such include information in the body of the response describing the cause of the error. </p>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> <span class="ne">Bad Request</span>
@@ -757,15 +788,15 @@ to a particular field then the <code>non_field_errors</code> key will be used.</
     <span class="s">'https://api.gigapay.se/v2/payouts/9472/?expand=employee'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/9472/?expand=employee'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/9472/?expand=employee'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/9472/?expand=employee</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -803,7 +834,7 @@ to a particular field then the <code>non_field_errors</code> key will be used.</
     </span><span class="nl">"accepted_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Many objects contain the identifier of a related object in their response properties. For example, a
+<p>Many objects contain the identifier of a related object in their response properties. For example, a 
 <a href="#payouts">Payout</a> has an associated <a href="#employees">Employee</a> identifier. Those objects can be
 expanded inline with the <code>expand</code> request parameter. Objects that can be expanded are noted in this documentation.
 You can use the <code>expand</code> param on any endpoint which includes expandable fields, including the create endpoints.
@@ -818,15 +849,15 @@ You can expand multiple objects at once by repeating the <code>expand</code> req
     <span class="s">'https://api.gigapay.se/v2/employees/?page_size=2&amp;page=2'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/employees/?page_size=2&amp;page=2'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/employees/?page_size=2&amp;page=2'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/?page_size=2&amp;page=2</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -846,8 +877,8 @@ You can expand multiple objects at once by repeating the <code>expand</code> req
             </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w"> 
             </span><span class="nl">"claimed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T09:13:32.575721Z"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-21T09:13:48.625263Z"</span><span class="w">
         </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -858,8 +889,8 @@ You can expand multiple objects at once by repeating the <code>expand</code> req
             </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:08.974624Z"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"notified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-20T15:33:12.581720Z"</span><span class="p">,</span><span class="w"> 
             </span><span class="nl">"claimed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -879,15 +910,15 @@ of objects  per page. The objects returned are contained within the <code>result
     <span class="s">'https://api.gigapay.se/v2/payouts/?employee=12&amp;accepted_at_null=True'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?employee=12&amp;accepted_at_null=True'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?employee=12&amp;accepted_at_null=True'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/?employee=12&amp;accepted_at_null=True</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -921,7 +952,7 @@ of objects  per page. The objects returned are contained within the <code>result
 <p>The Gigapay API supports filtering on all of its list-endpoints. These filters are of two types, either relational
 filters or timestamp filters. Which filters are available are described under each endpoint.</p>
 
-<p>Relational filters filter out all objects belonging to a specified object.
+<p>Relational filters filter out all objects belonging to a specified object. 
 They are use the format <code>{field_name}={object_id}</code>.</p>
 
 <p>Timestamp filters are used to filter out objects having had a certain event associated with them. They can be used to
@@ -943,10 +974,10 @@ filter on whether an event has occurred with the <code>null</code> suffix, e.g. 
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
         <span class="s">'Idempotency-Key'</span><span class="p">:</span> <span class="s">'afjkakkknbkasaskkaksdakjdnsakja'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Idempotency-Key'</span>: <span class="s1">'afjkakkknbkasaskkaksdakjdnsakja'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Idempotency-Key'</span>: <span class="s1">'afjkakkknbkasaskkaksdakjdnsakja'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -955,14 +986,14 @@ filter on whether an event has occurred with the <code>null</code> suffix, e.g. 
         <span class="na">country</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SWE</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Idempotency-Key</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">afjkakkknbkasaskkaksdakjdnsakja</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>The Gigapay API supports idempotency to safely retry requests without accidentally performing the same operation twice.
+<p>The Gigapay API supports idempotency to safely retry requests without accidentally performing the same operation twice. 
 Gigapay offers two mechanism of idempotency; idempotency keys and object ids.</p>
 
 <p>To perform an idempotent request using an idempotency-key, provide the additional <code>Idempotency-Key</code> header to the
@@ -985,10 +1016,10 @@ response is generated if a key is reused outside that timeframe.</p>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Idempotency-Key'</span>: <span class="s1">'afjkakkknbkasaskkaksdakjdnsakja'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 19472, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Idempotency-Key'</span>: <span class="s1">'afjkakkknbkasaskkaksdakjdnsakja'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 19472, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -998,9 +1029,9 @@ response is generated if a key is reused outside that timeframe.</p>
         <span class="na">country</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SWE</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1025,10 +1056,10 @@ an error. The uniqueness of an id is guaranteed for the lifetime of the object.<
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE", "metadata": {"user_id": 1847}}'</span> https://api.gigapay.se/v2/employees/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"name": "Albin Lindskog", "cellphone_number": "+4670000001", "country": "SWE", "metadata": {"user_id": 1847}}'</span> https://api.gigapay.se/v2/employees/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -1036,13 +1067,13 @@ an error. The uniqueness of an id is guaranteed for the lifetime of the object.<
         <span class="na">cellphone_number</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+4670000000</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">country</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SWE</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">metadata</span><span class="p">:</span> <span class="p">{</span>
-          <span class="na">user_id</span><span class="p">:</span> <span class="mi">1847</span>
+          <span class="na">user_id</span><span class="p">:</span> <span class="mi">1847</span>  
         <span class="p">}</span>
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1064,7 +1095,7 @@ an error. The uniqueness of an id is guaranteed for the lifetime of the object.<
     </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>All objects in the Gigapay API have a <code>metadata</code> attribute. You can use this attribute to attach to any
+<p>All objects in the Gigapay API have a <code>metadata</code> attribute. You can use this attribute to attach to any 
 JSON-serializable data to these objects. It is useful for storing additional information about an object. For example,
 you could store a unique identifier for a Employee in your system. This data is not used by Gigapay, and will not be
 displayed to any users.</p>
@@ -1159,10 +1190,10 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span>  https://api.gigapay.se/v2/integrations/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span>  https://api.gigapay.se/v2/integrations/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/integrations/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1259,7 +1290,7 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/<span class="sb">```</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/<span class="sb">```</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -1272,7 +1303,7 @@ the <code>Integration-ID</code> header.</p>
         <span class="na">zip_code</span><span class="p">:</span> <span class="dl">"</span><span class="s2">14171</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1406,10 +1437,10 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span>  https://api.gigapay.se/v2/integrations/846291712/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span>  https://api.gigapay.se/v2/integrations/846291712/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/integrations/846291712/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1472,12 +1503,12 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"email": "invoice@pinestreet.tech"} https://api.gigapay.se/v2/integrations/846291712/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"email": "invoice@pinestreet.tech"} https://api.gigapay.se/v2/integrations/846291712/
 </span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/integrations/846291712/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PATCH</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">invoice@pinestreet.tech</span><span class="dl">'</span><span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">})</span>
@@ -1629,7 +1660,7 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/846291712/<span class="sb">```</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/846291712/<span class="sb">```</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/846291712/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -1642,7 +1673,7 @@ the <code>Integration-ID</code> header.</p>
         <span class="na">zip_code</span><span class="p">:</span> <span class="dl">"</span><span class="s2">14171</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">Authorization</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1682,7 +1713,7 @@ the <code>Integration-ID</code> header.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -1788,11 +1819,11 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> https://api.gigapay.se/v2/integrations/846291712/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> https://api.gigapay.se/v2/integrations/846291712/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/integrations/846291712/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DELETE</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1905,14 +1936,14 @@ and working permits.</p>
     <span class="s">'https://api.gigapay.se/v2/employees/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -1969,7 +2000,7 @@ and working permits.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -2024,10 +2055,10 @@ and working permits.</p>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -2037,9 +2068,9 @@ and working permits.</p>
         <span class="na">country</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SWE</span><span class="dl">"</span>
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2078,7 +2109,7 @@ and working permits.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -2145,14 +2176,14 @@ and working permits.</p>
     <span class="s">'https://api.gigapay.se/v2/employees/1847/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/1847/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/1847/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/1847/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2191,7 +2222,7 @@ and working permits.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -2217,17 +2248,17 @@ and working permits.</p>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 8472}'</span> https://api.gigapay.se/v2/employees/1847/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 8472}'</span> https://api.gigapay.se/v2/employees/1847/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/1847/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PATCH</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="mi">8472</span><span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">},</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2266,7 +2297,7 @@ and working permits.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-2'>URL Parameters</h3>
@@ -2349,10 +2380,10 @@ and working permits.</p>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/8472/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}'</span> https://api.gigapay.se/v2/employees/8472/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/8472/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -2363,9 +2394,9 @@ and working permits.</p>
         <span class="na">country</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SWE</span><span class="dl">"</span>
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2404,7 +2435,7 @@ and working permits.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -2480,15 +2511,15 @@ and working permits.</p>
     <span class="s">'https://api.gigapay.se/v2/employees/1847/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/1847/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/1847/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/1847/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DELETE</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2515,7 +2546,7 @@ and working permits.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-4'>URL Parameters</h3>
@@ -2538,15 +2569,15 @@ and working permits.</p>
     <span class="s">'https://api.gigapay.se/v2/employees/1847/resend/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/1847/resend/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/1847/resend/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/1847/resend/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2573,7 +2604,7 @@ and working permits.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-5'>URL Parameters</h3>
@@ -2591,7 +2622,7 @@ and working permits.</p>
 </tr>
 </tbody></table>
 <h1 id='payouts'>Payouts</h1>
-<p>To make a payout to an Employee you need to create a Payout object. The Employee is notified of the Payout once the
+<p>To make a payout to an Employee you need to create a Payout object. The Employee is notified of the Payout once the 
 corresponding Invoice is paid. The Employee will need to sign and accept the Payout before it is disbursed to their
 account.</p>
 <h3 id='the-payout-object'>The Payout object</h3>
@@ -2692,14 +2723,14 @@ account.</p>
     <span class="s">'https://api.gigapay.se/v2/payouts/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2768,7 +2799,7 @@ account.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -2836,14 +2867,14 @@ account.</p>
         <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
         <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
         <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
-        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>
+        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>          
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span>  <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}'</span> https://api.gigapay.se/v2/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span>  <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}'</span> https://api.gigapay.se/v2/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -2853,12 +2884,12 @@ account.</p>
         <span class="na">description</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Instagram samarbete 2021-11-13.</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">full_salary_specification</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
         <span class="na">employee</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
-        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>       
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2903,7 +2934,7 @@ account.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -3012,7 +3043,7 @@ account.</p>
             <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
             <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>
-            <span class="s">'metadata'</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s">'metadata'</span><span class="p">:</span> <span class="p">{},</span>            
         <span class="p">},</span> <span class="p">{</span>
             <span class="s">'id'</span><span class="p">:</span> <span class="mi">9473</span><span class="p">,</span>
             <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span><span class="p">,</span>
@@ -3021,15 +3052,15 @@ account.</p>
             <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1736</span><span class="p">,</span>
             <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'2500.00'</span><span class="p">,</span>
-            <span class="s">'metadata'</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s">'metadata'</span><span class="p">:</span> <span class="p">{},</span>            
         <span class="p">},</span>
     <span class="p">],</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]'</span> https://api.gigapay.se/v2/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]'</span> https://api.gigapay.se/v2/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span>
@@ -3041,7 +3072,7 @@ account.</p>
             <span class="dl">'</span><span class="s1">full_salary_specification</span><span class="dl">'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">employee</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">invoiced_amount</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>
-            <span class="dl">'</span><span class="s1">metadata</span><span class="dl">'</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="dl">'</span><span class="s1">metadata</span><span class="dl">'</span><span class="p">:</span> <span class="p">{},</span>            
         <span class="p">},</span> <span class="p">{</span>
             <span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">:</span> <span class="mi">9473</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">country</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SWE</span><span class="dl">'</span><span class="p">,</span>
@@ -3050,13 +3081,13 @@ account.</p>
             <span class="dl">'</span><span class="s1">full_salary_specification</span><span class="dl">'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">employee</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1736</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">invoiced_amount</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2500.00</span><span class="dl">'</span><span class="p">,</span>
-            <span class="dl">'</span><span class="s1">metadata</span><span class="dl">'</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="dl">'</span><span class="s1">metadata</span><span class="dl">'</span><span class="p">:</span> <span class="p">{},</span>            
         <span class="p">},</span>
     <span class="p">]),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3120,7 +3151,7 @@ account.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -3161,14 +3192,14 @@ account.</p>
             <span class="s">'email'</span><span class="p">:</span> <span class="s">'albin@mail.com'</span><span class="p">,</span>
             <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span>
         <span class="p">},</span>
-        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>
+        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>         
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?expand=employee'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?expand=employee'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/?expand=employee</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -3184,12 +3215,12 @@ account.</p>
             <span class="na">email</span><span class="p">:</span> <span class="dl">'</span><span class="s1">albin@mail.com</span><span class="dl">'</span><span class="p">,</span>
             <span class="na">country</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SWE</span><span class="dl">'</span>
         <span class="p">},</span>
-        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>       
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3248,7 +3279,7 @@ registered will the object be reused.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -3350,14 +3381,14 @@ registered will the object be reused.</p>
     <span class="s">'https://api.gigapay.se/v2/payouts/9472/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/9472/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/9472/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/9472/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3404,7 +3435,7 @@ registered will the object be reused.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -3427,15 +3458,15 @@ registered will the object be reused.</p>
     <span class="s">'https://api.gigapay.se/v2/payouts/9472/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/9472/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/9472/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/9472/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DELETE</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3462,7 +3493,7 @@ registered will the object be reused.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-2'>URL Parameters</h3>
@@ -3485,15 +3516,15 @@ registered will the object be reused.</p>
     <span class="s">'https://api.gigapay.se/v2/payouts/9472/resend/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/9472/resend/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/9472/resend/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/9472/resend/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3520,7 +3551,7 @@ registered will the object be reused.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -3608,14 +3639,14 @@ actually make it.</p>
     <span class="s">'https://api.gigapay.se/v2/pricing/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/pricing/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/pricing/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/pricing/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3627,30 +3658,30 @@ actually make it.</p>
     </span><span class="nl">"next"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/v2/pricing/?page=1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.00"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1379.91"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.71"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"health_insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"invoiced_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1314.20"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"payroll"</span><span class="p">:</span><span class="w"> </span><span class="s2">"314.20"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"pension"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.00"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344.97"</span><span class="w">
-                </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3000.00"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4139.73"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"197.13"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"health_insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"invoiced_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3942.60"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"payroll"</span><span class="p">:</span><span class="w"> </span><span class="s2">"942.60"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"pension"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"900.00"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1034.93"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+           </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.00"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1379.91"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65.71"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"health_insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"invoiced_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1314.20"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"payroll"</span><span class="p">:</span><span class="w"> </span><span class="s2">"314.20"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"pension"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.00"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344.97"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+           </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3000.00"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4139.73"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"197.13"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"health_insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+           </span><span class="nl">"invoiced_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3942.60"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"payroll"</span><span class="p">:</span><span class="w"> </span><span class="s2">"942.60"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"pension"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"900.00"</span><span class="p">,</span><span class="w">
+           </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1034.93"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>List Pricing info for past Payouts.</p>
@@ -3672,7 +3703,7 @@ actually make it.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -3740,14 +3771,14 @@ actually make it.</p>
         <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
         <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
         <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
-        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>
+        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>          
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span>  <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}'</span> https://api.gigapay.se/v2/pricing/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span>  <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}'</span> https://api.gigapay.se/v2/pricing/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/pricing/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -3757,12 +3788,12 @@ actually make it.</p>
         <span class="na">description</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Instagram samarbete 2021-11-13.</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">full_salary_specification</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
         <span class="na">employee</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
-        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>       
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3801,7 +3832,7 @@ actually make it.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -3909,7 +3940,7 @@ actually make it.</p>
             <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
             <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
-            <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>
+            <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>       
         <span class="p">},</span> <span class="p">{</span>
             <span class="s">'id'</span><span class="p">:</span> <span class="mi">9473</span><span class="p">,</span>
             <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span><span class="p">,</span>
@@ -3917,15 +3948,15 @@ actually make it.</p>
             <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
             <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1736</span><span class="p">,</span>
-            <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'2500.00'</span><span class="p">,</span>
+            <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'2500.00'</span><span class="p">,</span>       
         <span class="p">},</span>
     <span class="p">],</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]'</span> https://api.gigapay.se/v2/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]'</span> https://api.gigapay.se/v2/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span>
@@ -3948,9 +3979,9 @@ actually make it.</p>
         <span class="p">},</span>
     <span class="p">]),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4002,7 +4033,7 @@ actually make it.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -4043,14 +4074,14 @@ actually make it.</p>
             <span class="s">'email'</span><span class="p">:</span> <span class="s">'albin@mail.com'</span><span class="p">,</span>
             <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span>
         <span class="p">},</span>
-        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>
+        <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>        
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}'</span> <span class="s1">'https://api.gigapay.se/v2/pricing/?expand=employee'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}'</span> <span class="s1">'https://api.gigapay.se/v2/pricing/?expand=employee'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/pricing/?expand=employee</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -4066,12 +4097,12 @@ actually make it.</p>
             <span class="na">email</span><span class="p">:</span> <span class="dl">'</span><span class="s1">albin@mail.com</span><span class="dl">'</span><span class="p">,</span>
             <span class="na">country</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SWE</span><span class="dl">'</span>
         <span class="p">},</span>
-        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>       
     <span class="p">}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4111,7 +4142,7 @@ registered will the object be reused.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -4213,14 +4244,14 @@ registered will the object be reused.</p>
     <span class="s">'https://api.gigapay.se/v2/pricing/9472/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/pricing/9472/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/pricing/9472/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/pricing/9472/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4259,7 +4290,7 @@ registered will the object be reused.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -4277,7 +4308,7 @@ registered will the object be reused.</p>
 </tr>
 </tbody></table>
 <h1 id='invoices'>Invoices</h1>
-<p>An Invoice groups Payouts together. It is a managed object, you can not create them directly. When a Payout is created
+<p>An Invoice groups Payouts together. It is a managed object, you can not create them directly. When a Payout is created 
 it is added to the Invoice that is currently open. If there is not an open Invoice, a new, open, Invoice is created.</p>
 <h3 id='the-webhook-object'>The Webhook object</h3>
 <blockquote>
@@ -4344,14 +4375,14 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     <span class="s">'https://api.gigapay.se/v2/invoices/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/invoices/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/invoices/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/invoices/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+    <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4405,7 +4436,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -4443,14 +4474,14 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     <span class="s">'https://api.gigapay.se/v2/invoices/2859272/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/invoices/2859272/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/invoices/2859272/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/invoices/2859272/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+    <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
   <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4488,7 +4519,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -4515,17 +4546,17 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": "846271", "metadata": {"original_id": "2859272"}}'</span> https://api.gigapay.se/v2/invoices/2859272/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": "846271", "metadata": {"original_id": "2859272"}}'</span> https://api.gigapay.se/v2/invoices/2859272/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/invoices/2859272/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PATCH</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">846271</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">metadata</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">original_id</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2859272</span><span class="dl">'</span><span class="p">}}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">},</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4565,7 +4596,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-2'>URL Parameters</h3>
@@ -4613,15 +4644,15 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     <span class="s">'https://api.gigapay.se/v2/invoices/846271/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/invoices/846271/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/invoices/846271/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/invoices/846271/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DELETE</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4648,7 +4679,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -4713,14 +4744,14 @@ description of these notifications, see <a href="#events">Events</a>.</p>
     <span class="s">'https://api.gigapay.se/v2/webhooks/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/webhooks/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/webhooks/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4767,7 +4798,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -4794,21 +4825,21 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span>
     <span class="s">'https://api.gigapay.se/v2/webhooks/'</span><span class="p">,</span>
     <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://gigatron.se/webhooks/payouts/'</span><span class="p">,</span>
+        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://gigatron.se/webhooks/payouts/'</span><span class="p">,</span> 
         <span class="s">'events'</span><span class="p">:</span> <span class="p">[</span><span class="s">'Payout.created'</span><span class="p">]</span>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}'</span> https://gigatron.se/webhooks/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}'</span> https://gigatron.se/webhooks/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://gigatron.se/webhooks/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="na">events</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Payout.created</span><span class="dl">"</span><span class="p">]}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">},</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4842,7 +4873,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 <tr>
 <td><code>Idempotency-key</code></td>
@@ -4902,14 +4933,14 @@ description of these notifications, see <a href="#events">Events</a>.</p>
     <span class="s">'https://api.gigapay.se/v2/webhooks/481272/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/webhooks/481272/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/webhooks/481272/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/481272/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -4943,7 +4974,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters'>URL Parameters</h3>
@@ -4969,17 +5000,17 @@ description of these notifications, see <a href="#events">Events</a>.</p>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"events": ["Payout.created", "Payout.notified"]}'</span> https://api.gigapay.se/v2/webhooks/481272/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"events": ["Payout.created", "Payout.notified"]}'</span> https://api.gigapay.se/v2/webhooks/481272/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/481272/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PATCH</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">events</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Payout.created</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Payout.notified</span><span class="dl">"</span><span class="p">]}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">},</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -5013,7 +5044,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-2'>URL Parameters</h3>
@@ -5081,22 +5112,22 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span>
     <span class="s">'https://api.gigapay.se/v2/webhooks/481272/'</span><span class="p">,</span>
     <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://gigatron.se/webhooks/invoiced/'</span><span class="p">,</span>
+        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://gigatron.se/webhooks/invoiced/'</span><span class="p">,</span> 
         <span class="s">'events'</span><span class="p">:</span> <span class="p">[</span><span class="s">'Invoice.created'</span><span class="p">]</span>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "https://gigatron.se/webhooks/invoiced/", "events": ["Invoice.created"]}'</span> https://api.gigapay.se/v2/webhooks/481272/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "https://gigatron.se/webhooks/invoiced/", "events": ["Invoice.created"]}'</span> https://api.gigapay.se/v2/webhooks/481272/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/481272/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://gigatron.se/webhooks/invoiced/</span><span class="dl">"</span><span class="p">,</span> <span class="na">events</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Invoice.created</span><span class="dl">"</span><span class="p">]}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -5137,7 +5168,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -5206,15 +5237,15 @@ description of these notifications, see <a href="#events">Events</a>.</p>
     <span class="s">'https://api.gigapay.se/v2/webhooks/481272/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'aqdnkjasdo12'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token asasdadjanfkanfda'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/webhooks/481272/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/webhooks/481272/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/481272/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">DELETE</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token asasdadjanfkanfda</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aqdnkjasdo12</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -5241,7 +5272,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <tr>
 <td><code>Integration-ID</code></td>
 <td>True</td>
-<td>Integration-ID.</td>
+<td>Integration id.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-4'>URL Parameters</h3>
