@@ -519,25 +519,27 @@ Parameter | Required | Description
 ```python
 import requests
 
-response = requests.put(
+response = requests.patch(
     'https://api.gigapay.se/v2/employees/1847/resend/',
     headers={
         'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
-        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b',
+        'Idempotency-key': 'ac4beffd-79b0-4561-b16c-846a9600b168'
     }
 )
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/employees/1847/resend/
+curl -X PATCH -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -H 'Idempotency-key: ac4beffd-79b0-4561-b16c-846a9600b168' https://api.gigapay.se/v2/employees/1847/resend/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/employees/1847/resend/", {
-    method: "PUT",
+    method: "PATCH",
     headers: {
         "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
-        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b",
+        "Idempotency-key": "ac4beffd-79b0-4561-b16c-846a9600b168"
     }
 })
 ```
@@ -545,11 +547,11 @@ fetch("https://api.gigapay.se/v2/employees/1847/resend/", {
 > The above command returns an empty response.
 
 
-This endpoint resend an invitation.
+This endpoint resends an invitation.
 
 ### HTTP Request
 
-`PUT https://api.gigapay.se/v2/employees/:id/resend/`
+`PATCH https://api.gigapay.se/v2/employees/:id/resend/`
 
 ### Headers
 
@@ -557,6 +559,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
 `Integration-ID` | True | Integration id.
+`Idempotency-key` | False | Idempotency key.
 
 
 ### URL Parameters

@@ -324,8 +324,8 @@ The only valid signature scheme is currently `v1`, which is the HMAC algorithm a
 [RFC 2104](https://datatracker.ietf.org/doc/html/rfc2104.html) using SHA256 as disgestmod.
 
 To verify signatures using the v1 scheme, extract the timestamp from theGigapay-Signature header, and the JSON-encoded
-notification from the request body. Join these strings with a period, ., as a separator. Compute an HMAC with the
-SHA256 hash function using the Webhook’s secret_key as the key. Lastly ensure that the signature in the header and the
+notification from the request body. Join these strings with a period, `.`, as a separator. Compute an HMAC with the
+SHA256 hash function using the Webhook’s secret key as the key. Lastly ensure that the signature in the header and the
 calculated signature matches.
 
 
