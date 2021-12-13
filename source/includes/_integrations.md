@@ -143,7 +143,7 @@ response = requests.post(
         "city": "Segeltorp",
         "email": "albin@pinestreet.tech",
         "id": "846291712",
-        "logo": "iVBORw0KGgoAAA...",
+        "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         "name": "Pinestreet Tech",
         "recipient": "Pinestreet Technology AB",
         "zip_code": "14171",
@@ -155,7 +155,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/```
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/```
 ```
 
 ```javascript
@@ -166,6 +166,7 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
         city: "Segeltorp",
         email: "albin@pinestreet.tech",
         id: "846291712",
+        logo: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         name: "Pinestreet Tech",
         recipient: "Pinestreet Technology AB",
         zip_code: "14171",
@@ -196,7 +197,9 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
 
 This endpoint creates a webhooks. 
 
-Note; this endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+
+Only examples with JSON-encoded payload and base64-encoded images are provided, though.
 
 ### HTTP Request
 
@@ -349,6 +352,10 @@ This endpoint updates an integration.
 
 `PATCH https://api.gigapay.se/v2/integrations/:id/`
 
+This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+
+Only examples with JSON-encoded payload and base64-encoded images are provided, though.
+
 ### Headers
 
 Parameter | Required | Description
@@ -391,7 +398,7 @@ response = requests.put(
         "city": "Segeltorp",
         "email": "albin@pinestreet.tech",
         "id": "846291712",
-        "logo": "iVBORw0KGgoAAA...",
+        "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         "name": "Pinestreet Tech",
         "recipient": "Pinestreet Technology AB",
         "zip_code": "14171",
@@ -403,7 +410,7 @@ response = requests.put(
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/846291712/```
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/846291712/```
 ```
 
 ```javascript
@@ -414,6 +421,7 @@ fetch("https://api.gigapay.se/v2/webhooks/846291712/", {
         city: "Segeltorp",
         email: "albin@pinestreet.tech",
         id: "846291712",
+        logo: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         name: "Pinestreet Tech",
         recipient: "Pinestreet Technology AB",
         zip_code: "14171",
@@ -447,6 +455,10 @@ This endpoint replaces a webhooks.
 ### HTTP Request
 
 `PUT https://api.gigapay.se/v2/integrations/:id/`
+
+This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+
+Only examples with JSON-encoded payload and base64-encoded images are provided, though.
 
 ### Headers
 
