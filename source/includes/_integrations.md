@@ -47,7 +47,7 @@ There are three types of integrations:
 | `city`            | City written on invoices.                          |
 
 
-## List All Integrations Webhooks
+## List All Integrations
 
 ```python
 import requests
@@ -159,7 +159,7 @@ curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' 
 ```
 
 ```javascript
-fetch("https://api.gigapay.se/v2/webhooks/", {
+fetch("https://api.gigapay.se/v2/integrations/", {
     method: "POST",
     body: JSON.stringify({
         address_line_1: "Malmvägen 8",
@@ -195,7 +195,7 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
 }
 ```
 
-This endpoint creates a webhooks. 
+This endpoint creates an Integration. 
 
 This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
 
@@ -203,7 +203,7 @@ Only examples with JSON-encoded payload and base64-encoded images are provided, 
 
 ### HTTP Request
 
-`POST https://api.gigapay.se/v2/webhooks/`
+`POST https://api.gigapay.se/v2/integrations/`
 
 ### Headers
 
@@ -237,7 +237,7 @@ Parameter | Type | Required | Default | Notes
 import requests
 
 response = requests.get(
-    'https://api.gigapay.se/v2/webhooks/846291712/',
+    'https://api.gigapay.se/v2/integrations/846291712/',
     headers={
         'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
@@ -414,7 +414,7 @@ curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -
 ```
 
 ```javascript
-fetch("https://api.gigapay.se/v2/webhooks/846291712/", {
+fetch("https://api.gigapay.se/v2/integrations/846291712/", {
     method: "PUT",
     body: JSON.stringify({
         address_line_1: "Malmvägen 8",
@@ -450,7 +450,7 @@ fetch("https://api.gigapay.se/v2/webhooks/846291712/", {
 }
 ```
 
-This endpoint replaces a webhooks.
+This endpoint replaces an Integration.
 
 ### HTTP Request
 
@@ -519,7 +519,7 @@ fetch("https://api.gigapay.se/v2/integrations/846291712/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes a webhooks.
+This endpoint deletes an Integration.
 
 ### HTTP Request
 

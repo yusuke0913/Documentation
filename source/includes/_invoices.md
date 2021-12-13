@@ -3,9 +3,9 @@
 An Invoice groups Payouts together. It is a managed object, you can not create them directly. When a Payout is created 
 it is added to the Invoice that is currently open. If there is not an open Invoice, a new, open, Invoice is created.
 
-### The Webhook object
+### The Invoice object
 
-> An example Integration object:
+> An example Invoice object:
 
 ```json
 {
@@ -100,7 +100,7 @@ fetch("https://api.gigapay.se/v2/invoices/", {
 }
 ```
 
-This endpoint retrieves all webhooks.
+This endpoint retrieves all Invoices.
 
 ### HTTP Request
 
@@ -247,7 +247,7 @@ fetch("https://api.gigapay.se/v2/invoices/2859272/", {
 }
 ```
 
-This endpoint updates a webhooks.
+This endpoint updates an Invoice.
 
 ### HTTP Request
 
@@ -307,7 +307,7 @@ fetch("https://api.gigapay.se/v2/invoices/846271/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes an Invoice. Note that you can not delete a paid Invoice.
+This endpoint deletes an Invoice. Note that you can not delete a paid Invoice or an Invoice on credit.
 
 ### HTTP Request
 

@@ -188,7 +188,7 @@ fetch("https://api.gigapay.se/v2/employees/", {
 }
 ```
 
-This endpoint creates a webhooks.
+This endpoint registers an Employee.
 
 ### HTTP Request
 
@@ -333,7 +333,7 @@ fetch("https://api.gigapay.se/v2/employees/1847/", {
 }
 ```
 
-This endpoint updates a webhooks.
+This endpoint updates an Employee.
 
 ### HTTP Request
 
@@ -491,7 +491,7 @@ fetch("https://api.gigapay.se/v2/employees/1847/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes a webhooks.
+This endpoint deletes an Employee. You can not delete an Employee who have Payouts registered to them.
 
 ### HTTP Request
 

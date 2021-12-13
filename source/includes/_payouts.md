@@ -631,7 +631,8 @@ fetch("https://api.gigapay.se/v2/payouts/9472/", {
 > The above command returns an empty response.
 
 
-Endpoint for deleting a specific Payout. Note that you can not delete a payout belonging to a paid Invoice.
+Endpoint for deleting a specific Payout. Note that you can not delete a payout belong to a paid Invoice or an Invoice
+on credit.
 
 ### HTTP Request
 
