@@ -1,6 +1,6 @@
 # Employees
 
-An Employee is an individual performing tasks within your organization, employed by Gigapay. To add an Employee to your
+An Employee is an individual performing tasks within your organization, employed or sub-contracted by Gigapay. To add an Employee to your
 organization you can create an Employee object. The Employee will be notified and Gigapay will verify their identity
 and working permits.
 
@@ -209,7 +209,7 @@ Parameter | Type | Required | Default | Notes
 `id` | String | False | uuid4() | Unique per [Integration](#integrations).
 `name` | String | True | | 
 `email` | String | False | null | Either `email` or `cellphone_number` is required.
-`country` | String | True | |  ISO-3166 country code.
+`country` | String | True | |  ISO-3166 country code where the employee is living and working.
 `cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
 `metadata` | Object | False | {} | 
 
@@ -359,7 +359,7 @@ Parameter | Type | Required | Default | Notes
 `id` | String | False | Previous value. | Unique per [Integration](#integrations).
 `name` | String | False | Previous value. | 
 `email` | String | False | Previous value. |
-`country` | String | False | Previous value. | ISO-3166 country code.
+`country` | String | False | Previous value. | ISO-3166 country code where the employee is living and working.
 `cellphone_number` | False | False | Previous value. |
 `metadata` | Object | False | Previous value. | 
 
@@ -452,7 +452,7 @@ Parameter | Type | Required | Default | Description
 `id` | String | False | uuid4() | Unique per [Integration](#integrations).
 `name` | String | True | | 
 `email` | String | False | null | Either `email` or `cellphone_number` is required.
-`country` | String | True | | ISO-3166 country code.
+`country` | String | True | | ISO-3166 country code where the employee is living and working.
 `cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
 `metadata` | Object | False | {} | 
 
@@ -491,7 +491,7 @@ fetch("https://api.gigapay.se/v2/employees/1847/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes an Employee. You can not delete an Employee who have Payouts registered to them.
+This endpoint deletes an Employee. You can not delete an Employee after a Payout has been registered to it.
 
 ### HTTP Request
 
@@ -547,7 +547,7 @@ fetch("https://api.gigapay.se/v2/employees/1847/resend/", {
 > The above command returns an empty response.
 
 
-This endpoint resends an invitation.
+This endpoint resends an invitation. After resending, you need to wait at least 24 hours before resending again.
 
 ### HTTP Request
 

@@ -150,7 +150,7 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
 }
 ```
 
-This endpoint creates a webhooks.
+This endpoint creates a webhook.
 
 ### HTTP Request
 
@@ -217,7 +217,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 }
 ```
 
-This endpoint retrieves a webhooks.
+This endpoint retrieves a webhook.
 
 ### HTTP Request
 
@@ -286,7 +286,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 }
 ```
 
-This endpoint updates a webhooks.
+This endpoint updates a webhook.
 
 ### HTTP Request
 
@@ -374,7 +374,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 }
 ```
 
-This endpoint replaces a webhooks.
+This endpoint replaces a webhook.
 
 ### HTTP Request
 
@@ -438,7 +438,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes a webhooks.
+This endpoint deletes a webhook.
 
 ### HTTP Request
 

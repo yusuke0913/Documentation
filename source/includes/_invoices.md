@@ -1,7 +1,9 @@
 # Invoices
 
 An Invoice groups Payouts together. It is a managed object, you can not create them directly. When a Payout is created 
-it is added to the Invoice that is currently open. If there is not an open Invoice, a new, open, Invoice is created.
+it is added to the Invoice that is currently open. If there is no open Invoice, a new will be created.
+
+You can keep invoices open for a certain time period by enabling batching of payouts. Contact [support@gigapay.se](mailto:support@gigapay.se) if you are interested in this.
 
 ### The Invoice object
 
