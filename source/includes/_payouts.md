@@ -4,6 +4,10 @@ To make a payout to an Employee you need to create a Payout object. The Employee
 corresponding Invoice is paid. The Employee will need to sign and accept the Payout before it is disbursed to their
 account.
 
+Either `amount`, `invoiced_amount` or `cost` is used as a basis for the Payout. For their definition and how they are
+related see [Pricing](#pricing). Ensure that you are using the same definition when communicating with the recipient to
+align everyone's expectation.
+
 ### The Payout object
 
 > An example Payout object:
@@ -31,8 +35,8 @@ account.
 | --------------------------- | --------------------------------------------------------------------------------- |
 | `id`                        | Unique identifier for the object.                                                                                                                                 |
 | `amount`                    | Decimal formatted string of the gross salary amount.                                                                                                                     |
-| `invoiced_amount`           | Decimal formatted string of the invoiced amount (gross salary+payroll tax+user fee).                                |
-| `cost`                      | Decimal formatted string of the total salary cost (invoiced amount+your fee).                                                                                                                      |
+| `invoiced_amount`           | Decimal formatted string of the invoiced amount.                                |
+| `cost`                      | Decimal formatted string of the total salary cost.                                                                                                                     |
 | `country`                   | Country were task was performed.  ISO-3166 country code.                                                                                                          |
 | `currency`                  | ISO-4217 currency code.                                                                                                                                           |
 | `description`               | String describing the work done, displayed to the recipient. Max 255 characters.                                                                                                      |
@@ -142,8 +146,8 @@ Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
 `page_size` | 25 | The number of Employees per page.
-`invoice` | 25 | Relational Filter.
-`employee` | 25 | Relational Filter.
+`invoice` | | Relational Filter.
+`employee` | | Relational Filter.
 `start_at` | | Timestamp filter.
 `end_at` | | Timestamp filter.
 `created_at` | | Timestamp filter.

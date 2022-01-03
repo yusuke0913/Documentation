@@ -10,7 +10,7 @@ description of these notifications, see [Events](#events).
 ```json
 {
     "id": "38a93e19-886a-4246-9cfe-471214ff6739",
-    "url": "https://gigatron.se/webhooks/payouts/",
+    "url": "https://jobmatchr.se/webhooks/payouts/",
     "events": ["Payout.notified", "Payout.accepted"],
     "secret_key": "c1329a085d65f7757838df5920fdcc9a",
     "metadata": {}
@@ -66,13 +66,13 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
     "results": [
         {
             "id": "38a93e19-886a-4246-9cfe-471214ff6739",
-            "url": "https://gigatron.se/webhooks/payouts/",
+            "url": "https://jobmatchr.se/webhooks/payouts/",
             "events": ["Payout.notified", "Payout.accepted"],
             "secret_key": "c1329a085d65f7757838df5920fdcc9a",
             "metadata": {}
         }, {
             "id": "0630bfcf-ad0a-458a-9794-816b54b542b6",
-            "url": "https://gigatron.se/webhooks/employees/",
+            "url": "https://jobmatchr.se/webhooks/employees/",
             "events": ["Employee.verified"],
             "secret_key": "1fc0ee40ecf33f83cbd3f930443074ca",
             "metadata": {}
@@ -113,7 +113,7 @@ import requests
 response = requests.post(
     'https://api.gigapay.se/v2/webhooks/',
     json={
-        'url': 'https://gigatron.se/webhooks/payouts/', 
+        'url': 'https://jobmatchr.se/webhooks/payouts/', 
         'events': ['Payout.created']
     },
     headers={
@@ -124,13 +124,13 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}' https://gigatron.se/webhooks/payouts/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}' https://jobmatchr.se/webhooks/payouts/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/", {
     method: "POST",
-    body: JSON.stringify({url: "https://gigatron.se/webhooks/payouts/", events: ["Payout.created"]}),
+    body: JSON.stringify({url: "https://jobmatchr.se/webhooks/payouts/", events: ["Payout.created"]}),
     headers: {
         "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
@@ -143,7 +143,7 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
 ```json
 {
     "id": "38a93e19-886a-4246-9cfe-471214ff6739",
-    "url": "https://gigatron.se/webhooks/payouts/",
+    "url": "https://jobmatchr.se/webhooks/payouts/",
     "events": ["Payout.created"],
     "secret_key": "c1329a085d65f7757838df5920fdcc9a",
     "metadata": {}
@@ -210,7 +210,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 ```json
 {
     "id": "38a93e19-886a-4246-9cfe-471214ff6739",
-    "url": "https://gigatron.se/webhooks/payouts/",
+    "url": "https://jobmatchr.se/webhooks/payouts/",
     "events": ["Payout.created"],
     "secret_key": "c1329a085d65f7757838df5920fdcc9a",
     "metadata": {}
@@ -279,7 +279,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 ```json
 {
     "id": "481272",
-    "url": "https://gigatron.se/webhooks/payouts/",
+    "url": "https://jobmatchr.se/webhooks/payouts/",
     "events": ["Payout.created", "Payout.notified"],
     "secret_key": "c1329a085d65f7757838df5920fdcc9a",
     "metadata": {}
@@ -326,7 +326,7 @@ import requests
 response = requests.put(
     'https://api.gigapay.se/v2/webhooks/481272/',
     json={
-        'url': 'https://gigatron.se/webhooks/invoiced/', 
+        'url': 'https://jobmatchr.se/webhooks/invoiced/', 
         'events': ['Invoice.created']
     },
     headers={
@@ -337,13 +337,13 @@ response = requests.put(
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"url": "https://gigatron.se/webhooks/invoiced/", "events": ["Invoice.created"]}' https://api.gigapay.se/v2/webhooks/481272/
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"url": "https://jobmatchr.se/webhooks/invoiced/", "events": ["Invoice.created"]}' https://api.gigapay.se/v2/webhooks/481272/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/webhooks/481272/", {
     method: "PUT",
-    body: JSON.stringify({url: "https://gigatron.se/webhooks/invoiced/", events: ["Invoice.created"]}),
+    body: JSON.stringify({url: "https://jobmatchr.se/webhooks/invoiced/", events: ["Invoice.created"]}),
     headers: {
         "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
         "Content-Type": "application/json",
@@ -357,7 +357,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 ```json
 {
     "id": "481272",
-    "url": "https://gigatron.se/webhooks/invoices/",
+    "url": "https://jobmatchr.se/webhooks/invoices/",
     "events": ["Invoice.created"],
     "secret_key": "vksnrsc6tamq73tc26rzrnzf33a4pgdv",
     "metadata": {}
@@ -367,7 +367,7 @@ fetch("https://api.gigapay.se/v2/webhooks/481272/", {
 ```json
 {
     "id": "481272",
-    "url": "https://gigatron.se/webhooks/invoices/",
+    "url": "https://jobmatchr.se/webhooks/invoices/",
     "events": ["Invoice.created"],
     "secret_key": "vksnrsc6tamq73tc26rzrnzf33a4pgdv",
     "metadata": {}

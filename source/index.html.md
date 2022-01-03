@@ -6,6 +6,7 @@ language_tabs:
   - python
   - javascript
 
+
 toc_footers:
   - Questions? Ask us!
   - <a href='mailto:support@gigapay.se'>support@gigapay.se</a>
@@ -219,7 +220,7 @@ with `_at`.
 > An example webhook for the `Employee.verified` event:
 
 ```http
-POST https://gigatron.se/webhooks/employees/ HTTP/1.1
+POST https://jobmatchr.se/webhooks/employees/ HTTP/1.1
 Content-Type: application/json
 Gigapay-Signature: t=1583327301,v1=ad583e2b2093c8d6fb3b65e04b99fc5988e98c0c312909acad334072da7e99ec
 ...

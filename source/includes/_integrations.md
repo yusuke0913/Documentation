@@ -346,7 +346,7 @@ fetch("https://api.gigapay.se/v2/integrations/846291712/", {
 }
 ```
 
-This endpoint updates an integration.
+This endpoint updates an integration. You may not update Integrations of type 2.
 
 ### HTTP Request
 
@@ -450,7 +450,7 @@ fetch("https://api.gigapay.se/v2/integrations/846291712/", {
 }
 ```
 
-This endpoint replaces an Integration.
+This endpoint replaces an Integration. You may not replace Integrations of type 2.
 
 ### HTTP Request
 
@@ -519,7 +519,8 @@ fetch("https://api.gigapay.se/v2/integrations/846291712/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes an Integration.
+This endpoint deletes an Integration. Note that you can not delete Integrations of type 1 or 2, nor Integrations
+that have objects associated with them.
 
 ### HTTP Request
 
