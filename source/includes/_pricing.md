@@ -26,8 +26,9 @@ actually make it.
 
 | Attribute         | Description                                                                       |
 | ----------------- | --------------------------------------------------------------------------------- |
-| amount            | Decimal formatted string of the gross amount.                                                                        |
-| cost              | Decimal formatted string of the salary cost.                                                                         |
+| amount            | Decimal formatted string of the gross salary amount.                                                                        |
+| invoiced_amount   | Decimal formatted string of the invoiced amount.                                                                         |
+| cost              | Decimal formatted string of the total salary cost.                                                                         |
 | currency          | ISO-4217 currency code.                                                                                              |
 | fee               | Decimal formatted string of Gigapay's fee for this Payout.                                                           |
 | health_insurance  | Decimal formatted string of the cost of mandated health insurance. Will be none if health insurance is not mandated. |

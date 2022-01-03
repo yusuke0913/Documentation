@@ -30,15 +30,15 @@ account.
 | Attribute          | Description                                                                       |
 | --------------------------- | --------------------------------------------------------------------------------- |
 | `id`                        | Unique identifier for the object.                                                                                                                                 |
-| `amount`                    | Decimal formatted string of the gross amount.                                                                                                                     |
-| `cost`                      | Decimal formatted string of the salary cost.                                                                                                                      |
+| `amount`                    | Decimal formatted string of the gross salary amount.                                                                                                                     |
+| `invoiced_amount`           | Decimal formatted string of the invoiced amount (gross salary+payroll tax+user fee).                                |
+| `cost`                      | Decimal formatted string of the total salary cost (invoiced amount+your fee).                                                                                                                      |
 | `country`                   | Country were task was performed.  ISO-3166 country code.                                                                                                          |
 | `currency`                  | ISO-4217 currency code.                                                                                                                                           |
-| `description`               | String describing the work done, displayed to the recipient.                                                                                                      |
+| `description`               | String describing the work done, displayed to the recipient. Max 255 characters.                                                                                                      |
 | `full_salary_specification` | If True will a full salary specification be shown to the Employee, including payroll taxes and Gigapay's fee, in addition to the standard taxes and vacation pay. |
 | `employee`                  | Unique identifier for the Employee object, that is the recipient of the Payout. This is an [expandable object.](../expanding.md)                                  |
 | `invoice`                   | Unique identifier for the Invoice object the Payout object belongs to. This is an [expandable object.](../expanding.md)                                           |
-| `invoiced_amount`           | Decimal formatted string of the invoiced amount.                                |
 | `metadata`                  | JSON-encoded metadata.                                                                                                                                            |
 | `start_at`                  | The time at which the gig will start. Displayed as ISO 8601 string.                                                                                               |
 | `end_at`                    | The time at which the gig will end. Displayed as ISO 8601 string.                                                                                                 |
@@ -491,7 +491,7 @@ fetch("https://api.gigapay.se/v2/payouts/?expand=employee", {
 ```
 
 This endpoint registers a Payout and an Employee at the same time. If an Employee with matching information is already
-registered will the object be reused.
+registered that object will be reused.
 
 ### HTTP Request
 
@@ -631,7 +631,7 @@ fetch("https://api.gigapay.se/v2/payouts/9472/", {
 > The above command returns an empty response.
 
 
-Endpoint for deleting a specific Payout. Note that you can not delete a payout belong to a paid Invoice or an Invoice
+Endpoint for deleting a specific Payout. Note that you can not delete a payout belonging to a paid Invoice or an Invoice
 on credit.
 
 ### HTTP Request
@@ -688,7 +688,7 @@ fetch("https://api.gigapay.se/v2/payouts/9472/resend/", {
 > The above command returns an empty response.
 
 
-This endpoint resends a notification.
+This endpoint resends a notification. After resending, you need to wait at least 24 hours before resending again.
 
 ### HTTP Request
 
