@@ -47,7 +47,7 @@ There are three types of integrations:
 | `city`            | City written on invoices.                          |
 
 
-## List All Integrations Webhooks
+## List All Integrations
 
 ```python
 import requests
@@ -143,7 +143,7 @@ response = requests.post(
         "city": "Segeltorp",
         "email": "albin@pinestreet.tech",
         "id": "846291712",
-        "logo": "iVBORw0KGgoAAA...",
+        "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         "name": "Pinestreet Tech",
         "recipient": "Pinestreet Technology AB",
         "zip_code": "14171",
@@ -155,17 +155,18 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/```
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/```
 ```
 
 ```javascript
-fetch("https://api.gigapay.se/v2/webhooks/", {
+fetch("https://api.gigapay.se/v2/integrations/", {
     method: "POST",
     body: JSON.stringify({
         address_line_1: "Malmvägen 8",
         city: "Segeltorp",
         email: "albin@pinestreet.tech",
         id: "846291712",
+        logo: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         name: "Pinestreet Tech",
         recipient: "Pinestreet Technology AB",
         zip_code: "14171",
@@ -194,13 +195,15 @@ fetch("https://api.gigapay.se/v2/webhooks/", {
 }
 ```
 
-This endpoint creates a webhooks. 
+This endpoint creates an Integration. 
 
-Note; this endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+
+Only examples with JSON-encoded payload and base64-encoded images are provided, though.
 
 ### HTTP Request
 
-`POST https://api.gigapay.se/v2/webhooks/`
+`POST https://api.gigapay.se/v2/integrations/`
 
 ### Headers
 
@@ -234,7 +237,7 @@ Parameter | Type | Required | Default | Notes
 import requests
 
 response = requests.get(
-    'https://api.gigapay.se/v2/webhooks/846291712/',
+    'https://api.gigapay.se/v2/integrations/846291712/',
     headers={
         'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
     }
@@ -343,11 +346,15 @@ fetch("https://api.gigapay.se/v2/integrations/846291712/", {
 }
 ```
 
-This endpoint updates an integration.
+This endpoint updates an integration. You may not update Integrations of type 2.
 
 ### HTTP Request
 
 `PATCH https://api.gigapay.se/v2/integrations/:id/`
+
+This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+
+Only examples with JSON-encoded payload and base64-encoded images are provided, though.
 
 ### Headers
 
@@ -391,7 +398,7 @@ response = requests.put(
         "city": "Segeltorp",
         "email": "albin@pinestreet.tech",
         "id": "846291712",
-        "logo": "iVBORw0KGgoAAA...",
+        "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         "name": "Pinestreet Tech",
         "recipient": "Pinestreet Technology AB",
         "zip_code": "14171",
@@ -403,17 +410,18 @@ response = requests.put(
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/846291712/```
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -d '{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}' https://api.gigapay.se/v2/integrations/846291712/```
 ```
 
 ```javascript
-fetch("https://api.gigapay.se/v2/webhooks/846291712/", {
+fetch("https://api.gigapay.se/v2/integrations/846291712/", {
     method: "PUT",
     body: JSON.stringify({
         address_line_1: "Malmvägen 8",
         city: "Segeltorp",
         email: "albin@pinestreet.tech",
         id: "846291712",
+        logo: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=",
         name: "Pinestreet Tech",
         recipient: "Pinestreet Technology AB",
         zip_code: "14171",
@@ -442,11 +450,15 @@ fetch("https://api.gigapay.se/v2/webhooks/846291712/", {
 }
 ```
 
-This endpoint replaces a webhooks.
+This endpoint replaces an Integration. You may not replace Integrations of type 2.
 
 ### HTTP Request
 
 `PUT https://api.gigapay.se/v2/integrations/:id/`
+
+This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.
+
+Only examples with JSON-encoded payload and base64-encoded images are provided, though.
 
 ### Headers
 
@@ -507,7 +519,8 @@ fetch("https://api.gigapay.se/v2/integrations/846291712/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes a webhooks.
+This endpoint deletes an Integration. Note that you can not delete Integrations of type 1 or 2, nor Integrations
+that have objects associated with them.
 
 ### HTTP Request
 

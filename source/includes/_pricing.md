@@ -24,17 +24,30 @@ actually make it.
 }
 ```
 
+
 | Attribute         | Description                                                                       |
 | ----------------- | --------------------------------------------------------------------------------- |
-| amount            | Decimal formatted string of the gross amount.                                                                        |
-| cost              | Decimal formatted string of the salary cost.                                                                         |
+| amount            | Decimal formatted string of the gross salary amount.                                                                        |
+| invoiced_amount   | Decimal formatted string of the invoiced amount.                                                                         |
+| cost              | Decimal formatted string of the total salary cost.                                                                         |
 | currency          | ISO-4217 currency code.                                                                                              |
 | fee               | Decimal formatted string of Gigapay's fee for this Payout.                                                           |
 | health_insurance  | Decimal formatted string of the cost of mandated health insurance. Will be none if health insurance is not mandated. |
-| payroll           | Decimal formatted string of the payroll taxes.                                                                       |
+| payroll           | Decimal formatted string of the payroll taxes.  Will be none if payroll taxes are not mandated.                                                                     |
 | pension           | Decimal formatted string of the cost of mandated pension. Will be none if pension is not mandated.                   |
 | tax               | Decimal formatted string of the preliminary income taxes the will be reported and paid on behalf of the recipient.   |
 | vat               | Decimal formatted string of the VAT for the Payout. 
+
+
+Either `amount`, `invoiced_amount` or `cost` is used as a basis for calculating the Pricing breakdown. One is provided
+and the other are calculated based on that. Their definitions are:
+
+- `amount`: net amount paid out plus obligations paid by the recipient.
+- `invoiced_amount`: `amount` plus obligations paid by the employer.
+- `cost`: `invoiced_amount` plus Gigapay's fee. This is the final amount you end up paying.
+
+Which of the attributes that are included and in what step varies between countries. Examples of what the pricing looks
+like in each country are provided.
 
 
 ## List Pricing info
@@ -118,8 +131,8 @@ Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
 `page_size` | 25 | The number of Employees per page.
-`invoice` | 25 | Relational Filter.
-`employee` | 25 | Relational Filter.
+`invoice` | | Relational Filter.
+`employee` | | Relational Filter.
 `start_at` | | Timestamp filter.
 `end_at` | | Timestamp filter.
 `created_at` | | Timestamp filter.

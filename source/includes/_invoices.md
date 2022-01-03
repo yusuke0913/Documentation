@@ -1,14 +1,17 @@
 # Invoices
 
 An Invoice groups Payouts together. It is a managed object, you can not create them directly. When a Payout is created 
-it is added to the Invoice that is currently open. If there is not an open Invoice, a new, open, Invoice is created.
+it is added to the Invoice that is currently open. If there is no open Invoice, a new will be created.
 
-### The Webhook object
+You can keep invoices open for a certain time period by enabling batching of payouts. Contact [support@gigapay.se](mailto:support@gigapay.se) if you are interested in this.
 
-> An example Integration object:
+### The Invoice object
+
+> An example Invoice object:
 
 ```json
 {
+    "app": "https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg",
     "created_at": "2019-05-22T10:32:36.118753Z",
     "currency": "SEK",
     "id": "2859272",
@@ -16,13 +19,14 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     "ocr_number": "986911160380",
     "open": false,
     "paid_at": "2019-05-25T9:02:16.8462735Z",
-    "pdf": "https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&language=en",
+    "pdf": "https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&language=en",
     "price": "1340.48"
 }
 ```
 
 | Attribute    | Description                                                          |
 | ------------ | -------------------------------------------------------------------- |
+| `app`        | Link to pay invoice in app.                                          |
 | `created_at` | Time at which the Invoice was created. Displayed as ISO 8601 string. |
 | `currency`   | ISO-4217 currency code.                                              |
 | `id`         | A unique identifier for the object.                                  |
@@ -73,6 +77,7 @@ fetch("https://api.gigapay.se/v2/invoices/", {
     "previous": "https://api.gigapay.se/v2/invoices/?page=1",
     "results": [
         {
+            "app": "https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg",
             "created_at": "2019-05-22T10:32:36.118753Z",
             "currency": "SEK",
             "id": "2859272",
@@ -80,9 +85,10 @@ fetch("https://api.gigapay.se/v2/invoices/", {
             "ocr_number": "986911160380",
             "open": false,
             "paid_at": "2019-05-25T9:02:16.8462735Z",
-            "pdf": "https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&language=en",
+            "pdf": "https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&language=en",
             "price": "1340.48"
         }, {
+            "app": "https://app.gigapay.se/i/2859273/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg",
             "created_at": "2019-06-22T10:28:21.847474Z",
             "currency": "SEK",
             "id": "2859273",
@@ -90,13 +96,13 @@ fetch("https://api.gigapay.se/v2/invoices/", {
             "ocr_number": "986911160349",
             "open": false,
             "paid_at": "2019-06-25T9:12:57.742648Z",
-            "pdf": "https://api.gigapay.se/invoice/2859273/?token=Ii9pbnZvaWNlLzY2OThlMTBhLTNiYTMtNGZlNS1iMzhlLWUzNTZjYTU5MTRiNi8i:1mnzxB:AIX-4zNc0FEStcwpWPHC_KkWDDc&language=en",
+            "pdf": "https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&language=en",
             "price": "1340.48"
         }
 }
 ```
 
-This endpoint retrieves all webhooks.
+This endpoint retrieves all Invoices.
 
 ### HTTP Request
 
@@ -153,6 +159,7 @@ fetch("https://api.gigapay.se/v2/invoices/2859272/", {
 
 ```json
 {
+    "app": "https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg",
     "created_at": "2019-05-22T10:32:36.118753Z",
     "currency": "SEK",
     "id": "2859272",
@@ -160,7 +167,7 @@ fetch("https://api.gigapay.se/v2/invoices/2859272/", {
     "ocr_number": "986911160380",
     "open": false,
     "paid_at": "2019-05-25T9:02:16.8462735Z",
-    "pdf": "https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&language=en",
+    "pdf": "https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&language=en",
     "price": "1340.48"
 }
 ```
@@ -227,6 +234,7 @@ fetch("https://api.gigapay.se/v2/invoices/2859272/", {
 
 ```json
 {
+    "app": "https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg",
     "created_at": "2019-05-22T10:32:36.118753Z",
     "currency": "SEK",
     "id": "846271",
@@ -236,12 +244,12 @@ fetch("https://api.gigapay.se/v2/invoices/2859272/", {
     "ocr_number": "986911160380",
     "open": false,
     "paid_at": "2019-05-25T9:02:16.8462735Z",
-    "pdf": "https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&language=en",
+    "pdf": "https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&language=en",
     "price": "1340.48"
 }
 ```
 
-This endpoint updates a webhooks.
+This endpoint updates an Invoice.
 
 ### HTTP Request
 
@@ -301,7 +309,7 @@ fetch("https://api.gigapay.se/v2/invoices/846271/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes an Invoice. Note that you can not delete a paid Invoice.
+This endpoint deletes an Invoice. Note that you can not delete a paid Invoice or an Invoice on credit.
 
 ### HTTP Request
 

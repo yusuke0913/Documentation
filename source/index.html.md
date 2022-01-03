@@ -6,9 +6,10 @@ language_tabs:
   - python
   - javascript
 
+
 toc_footers:
   - Questions? Ask us!
-  - <a href='mailto:developer@gigapay.se'>developer@gigapay.se</a>
+  - <a href='mailto:support@gigapay.se'>support@gigapay.se</a>
 
 includes:
   - integrations
@@ -32,7 +33,7 @@ meta:
 
 # API Reference
 
-The Gigapay API is organized around REST Our API has predictable resource-oriented URLs, accepts JSON-encoded requests,
+The Gigapay API is organized around REST. Our API has predictable resource-oriented URLs, accepts JSON-encoded requests,
 returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. 
 
 ### API server
@@ -98,9 +99,9 @@ fetch("https://api.gigapay.se/v2/", {
 ```
 
 The Gigapay API uses API keys to identify and authenticate requests. You can request a key by contacting us at
-[info@gigapay.se](mailto:info@gigapay.se). Note that you will receive separate keys for the live and demo environment.
+[support@gigapay.se](mailto:support@gigapay.se). Note that you will receive separate keys for the live and demo environment.
 
-Your API keys carry many privileges, so be make sure you keep them secure. Do not share your API keys in
+Your API keys carry many privileges, so make sure you keep them secure. Do not share your API keys in
 publicly accessible areas such as GitHub, client-side code, etc.
 
 Authorization to the API is performed through a token-based HTTP Authentication scheme. To authorize requests, 
@@ -140,8 +141,8 @@ in the `401` response. Disable automated redirects or be mindful of this.
 
 ### IP-whitelisting
 
-The Gigapay API Supports IP-whitelisting. When requesting API-keys, let us know which IP:s you would like to restrict
-access from. If IP-whitelisting is enabled, API requests made from a non-whitelisted IP will be rejected with HTTP 
+The Gigapay API Supports IP-whitelisting. When requesting API-keys, let us know if you want to only allow access from certain IP addresses. 
+If IP-whitelisting is enabled, API requests made from a non-whitelisted IP will be rejected with HTTP 
 response code `403`.
 
 ### Language
@@ -219,7 +220,7 @@ with `_at`.
 > An example webhook for the `Employee.verified` event:
 
 ```http
-POST https://gigatron.se/webhooks/employees/ HTTP/1.1
+POST https://jobmatchr.se/webhooks/employees/ HTTP/1.1
 Content-Type: application/json
 Gigapay-Signature: t=1583327301,v1=ad583e2b2093c8d6fb3b65e04b99fc5988e98c0c312909acad334072da7e99ec
 ...
@@ -240,7 +241,7 @@ Gigapay-Signature: t=1583327301,v1=ad583e2b2093c8d6fb3b65e04b99fc5988e98c0c31290
 ```
 
 The Gigapay API allows you to register [Webhooks](#webhooks) in order to receive real-time updates on  events related
-to your Gigapay account. They are optional, but the preferred way of monitoring the status of objects. We send webhoks
+to your Gigapay account. They are optional, but the preferred way of monitoring the status of objects. We can send callbacks
 on the following events:
 
 * `Employee.created`
@@ -321,11 +322,11 @@ The signature consists of two parameters;
 `v` the signature of the current scheme. 
 
 The only valid signature scheme is currently `v1`, which is the HMAC algorithm as described in
-[RFC 2104](https://datatracker.ietf.org/doc/html/rfc2104.html) using SHA256 as disgestmod.
+[RFC 2104](https://datatracker.ietf.org/doc/html/rfc2104.html) using SHA256 as digestmod.
 
-To verify signatures using the v1 scheme, extract the timestamp from theGigapay-Signature header, and the JSON-encoded
-notification from the request body. Join these strings with a period, ., as a separator. Compute an HMAC with the
-SHA256 hash function using the Webhook’s secret_key as the key. Lastly ensure that the signature in the header and the
+To verify signatures using the v1 scheme, extract the timestamp from the Gigapay-Signature header, and the JSON-encoded
+notification from the request body. Join these strings with a period, `.`, as a separator. Compute an HMAC with the
+SHA256 hash function using the Webhook’s secret key as the key. Lastly ensure that the signature in the header and the
 calculated signature matches.
 
 
@@ -440,7 +441,7 @@ You can expand multiple objects at once by repeating the `expand` request parame
 
 # Pagination
 
-> Request to retrieve two Employee object per page, and the second page:
+> Request to retrieve two Employee objects per page, and the second page:
 
 ```python
 import requests
@@ -575,7 +576,7 @@ Relational filters filter out all objects belonging to a specified object.
 They are use the format `{field_name}={object_id}`.
 
 Timestamp filters are used to filter out objects having had a certain event associated with them. They can be used to
-filter on whether an event has occurred with the `null` suffix, e.g. `{field_name}_null={Bool}`, or when by using the
+filter on whether an event has occurred with the `null` suffix, e.g. `{field_name}_null={Bool}`, or when, by using the
 `_before` and `_after` suffix, e.g. `{field_name}_before={ISO 8601 string}`.
 
 
@@ -741,10 +742,10 @@ fetch("https://api.gigapay.se/v2/employees/", {
 }
 ```
 
-All objects in the Gigapay API have a `metadata` attribute. You can use this attribute to attach to any 
+All objects in the Gigapay API have a `metadata` attribute. You can use this attribute to attach any 
 JSON-serializable data to these objects. It is useful for storing additional information about an object. For example,
-you could store a unique identifier for a Employee in your system. This data is not used by Gigapay, and will not be
+you could store a unique identifier for an Employee in your system. This data is not used by Gigapay, and will not be
 displayed to any users.
 
-The [Payout](#payouts) objects also has a `description` field. It should contain a human-readable description of why
-this Payout is being made. Unlike `metadata`, `description` is a single string, and your Employee will see it.
+The [Payout](#payouts) object also has a `description` field. It should contain a human-readable description of why
+this Payout is being made. Unlike `metadata`, `description` is a single string, and the Employee will see it.

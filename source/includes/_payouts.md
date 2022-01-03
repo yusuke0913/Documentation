@@ -4,6 +4,10 @@ To make a payout to an Employee you need to create a Payout object. The Employee
 corresponding Invoice is paid. The Employee will need to sign and accept the Payout before it is disbursed to their
 account.
 
+Either `amount`, `invoiced_amount` or `cost` is used as a basis for the Payout. For their definition and how they are
+related see [Pricing](#pricing). Ensure that you are using the same definition when communicating with the recipient to
+align everyone's expectation.
+
 ### The Payout object
 
 > An example Payout object:
@@ -30,15 +34,15 @@ account.
 | Attribute          | Description                                                                       |
 | --------------------------- | --------------------------------------------------------------------------------- |
 | `id`                        | Unique identifier for the object.                                                                                                                                 |
-| `amount`                    | Decimal formatted string of the gross amount.                                                                                                                     |
-| `cost`                      | Decimal formatted string of the salary cost.                                                                                                                      |
+| `amount`                    | Decimal formatted string of the gross salary amount.                                                                                                                     |
+| `invoiced_amount`           | Decimal formatted string of the invoiced amount.                                |
+| `cost`                      | Decimal formatted string of the total salary cost.                                                                                                                     |
 | `country`                   | Country were task was performed.  ISO-3166 country code.                                                                                                          |
 | `currency`                  | ISO-4217 currency code.                                                                                                                                           |
-| `description`               | String describing the work done, displayed to the recipient.                                                                                                      |
+| `description`               | String describing the work done, displayed to the recipient. Max 255 characters.                                                                                                      |
 | `full_salary_specification` | If True will a full salary specification be shown to the Employee, including payroll taxes and Gigapay's fee, in addition to the standard taxes and vacation pay. |
 | `employee`                  | Unique identifier for the Employee object, that is the recipient of the Payout. This is an [expandable object.](../expanding.md)                                  |
 | `invoice`                   | Unique identifier for the Invoice object the Payout object belongs to. This is an [expandable object.](../expanding.md)                                           |
-| `invoiced_amount`           | Decimal formatted string of the invoiced amount.                                |
 | `metadata`                  | JSON-encoded metadata.                                                                                                                                            |
 | `start_at`                  | The time at which the gig will start. Displayed as ISO 8601 string.                                                                                               |
 | `end_at`                    | The time at which the gig will end. Displayed as ISO 8601 string.                                                                                                 |
@@ -142,8 +146,8 @@ Parameter | Default | Description
 --------- | ------- | -----------
 `page` | 1 | Which page to return.
 `page_size` | 25 | The number of Employees per page.
-`invoice` | 25 | Relational Filter.
-`employee` | 25 | Relational Filter.
+`invoice` | | Relational Filter.
+`employee` | | Relational Filter.
 `start_at` | | Timestamp filter.
 `end_at` | | Timestamp filter.
 `created_at` | | Timestamp filter.
@@ -491,7 +495,7 @@ fetch("https://api.gigapay.se/v2/payouts/?expand=employee", {
 ```
 
 This endpoint registers a Payout and an Employee at the same time. If an Employee with matching information is already
-registered will the object be reused.
+registered that object will be reused.
 
 ### HTTP Request
 
@@ -631,7 +635,8 @@ fetch("https://api.gigapay.se/v2/payouts/9472/", {
 > The above command returns an empty response.
 
 
-Endpoint for deleting a specific Payout. Note that you can not delete a payout belonging to a paid Invoice.
+Endpoint for deleting a specific Payout. Note that you can not delete a payout belonging to a paid Invoice or an Invoice
+on credit.
 
 ### HTTP Request
 
@@ -663,13 +668,14 @@ response = requests.put(
     'https://api.gigapay.se/v2/payouts/9472/resend/',
     headers={
         'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
-        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b',
+        'Idempotency-key': 'ac4beffd-79b0-4561-b16c-846a9600b168'
     }
 )
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/payouts/9472/resend/
+curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -H 'Idempotency-key: ac4beffd-79b0-4561-b16c-846a9600b168' https://api.gigapay.se/v2/payouts/9472/resend/
 ```
 
 ```javascript
@@ -677,7 +683,8 @@ fetch("https://api.gigapay.se/v2/payouts/9472/resend/", {
     method: "PUT",
     headers: {
         "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
-        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b",
+        "Idempotency-key": "ac4beffd-79b0-4561-b16c-846a9600b168"
     }
 })
 ```
@@ -685,11 +692,11 @@ fetch("https://api.gigapay.se/v2/payouts/9472/resend/", {
 > The above command returns an empty response.
 
 
-This endpoint resends a notification.
+This endpoint resends a notification. After resending, you need to wait at least 24 hours before resending again.
 
 ### HTTP Request
 
-`PUT https://api.gigapay.se/v2/payouts/:id/resend/`
+`PATCH https://api.gigapay.se/v2/payouts/:id/resend/`
 
 ### Headers
 
@@ -697,6 +704,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
 `Integration-ID` | True | Integration id.
+`Idempotency-key` | False | Idempotency key.
 
 
 ### URL Parameters

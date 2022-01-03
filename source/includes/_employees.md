@@ -1,6 +1,6 @@
 # Employees
 
-An Employee is an individual performing tasks within your organization, employed by Gigapay. To add an Employee to your
+An Employee is an individual performing tasks within your organization, employed or sub-contracted by Gigapay. To add an Employee to your
 organization you can create an Employee object. The Employee will be notified and Gigapay will verify their identity
 and working permits.
 
@@ -188,7 +188,7 @@ fetch("https://api.gigapay.se/v2/employees/", {
 }
 ```
 
-This endpoint creates a webhooks.
+This endpoint registers an Employee.
 
 ### HTTP Request
 
@@ -209,7 +209,7 @@ Parameter | Type | Required | Default | Notes
 `id` | String | False | uuid4() | Unique per [Integration](#integrations).
 `name` | String | True | | 
 `email` | String | False | null | Either `email` or `cellphone_number` is required.
-`country` | String | True | |  ISO-3166 country code.
+`country` | String | True | |  ISO-3166 country code where the employee is living and working.
 `cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
 `metadata` | Object | False | {} | 
 
@@ -333,7 +333,7 @@ fetch("https://api.gigapay.se/v2/employees/1847/", {
 }
 ```
 
-This endpoint updates a webhooks.
+This endpoint updates an Employee.
 
 ### HTTP Request
 
@@ -359,7 +359,7 @@ Parameter | Type | Required | Default | Notes
 `id` | String | False | Previous value. | Unique per [Integration](#integrations).
 `name` | String | False | Previous value. | 
 `email` | String | False | Previous value. |
-`country` | String | False | Previous value. | ISO-3166 country code.
+`country` | String | False | Previous value. | ISO-3166 country code where the employee is living and working.
 `cellphone_number` | False | False | Previous value. |
 `metadata` | Object | False | Previous value. | 
 
@@ -452,7 +452,7 @@ Parameter | Type | Required | Default | Description
 `id` | String | False | uuid4() | Unique per [Integration](#integrations).
 `name` | String | True | | 
 `email` | String | False | null | Either `email` or `cellphone_number` is required.
-`country` | String | True | | ISO-3166 country code.
+`country` | String | True | | ISO-3166 country code where the employee is living and working.
 `cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
 `metadata` | Object | False | {} | 
 
@@ -491,7 +491,7 @@ fetch("https://api.gigapay.se/v2/employees/1847/", {
 > The above command returns an empty response.
 
 
-This endpoint deletes a webhooks.
+This endpoint deletes an Employee. You can not delete an Employee after a Payout has been registered to it.
 
 ### HTTP Request
 
@@ -519,25 +519,27 @@ Parameter | Required | Description
 ```python
 import requests
 
-response = requests.put(
+response = requests.patch(
     'https://api.gigapay.se/v2/employees/1847/resend/',
     headers={
         'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
-        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b',
+        'Idempotency-key': 'ac4beffd-79b0-4561-b16c-846a9600b168'
     }
 )
 ```
 
 ```shell
-curl -X PUT -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' https://api.gigapay.se/v2/employees/1847/resend/
+curl -X PATCH -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -H 'Idempotency-key: ac4beffd-79b0-4561-b16c-846a9600b168' https://api.gigapay.se/v2/employees/1847/resend/
 ```
 
 ```javascript
 fetch("https://api.gigapay.se/v2/employees/1847/resend/", {
-    method: "PUT",
+    method: "PATCH",
     headers: {
         "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
-        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b",
+        "Idempotency-key": "ac4beffd-79b0-4561-b16c-846a9600b168"
     }
 })
 ```
@@ -545,11 +547,11 @@ fetch("https://api.gigapay.se/v2/employees/1847/resend/", {
 > The above command returns an empty response.
 
 
-This endpoint resend an invitation.
+This endpoint resends an invitation. After resending, you need to wait at least 24 hours before resending again.
 
 ### HTTP Request
 
-`PUT https://api.gigapay.se/v2/employees/:id/resend/`
+`PATCH https://api.gigapay.se/v2/employees/:id/resend/`
 
 ### Headers
 
@@ -557,6 +559,7 @@ Parameter | Required | Description
 --------- | ------- | -----------
 `Authorization` | True | Your Authorization Token.
 `Integration-ID` | True | Integration id.
+`Idempotency-key` | False | Idempotency key.
 
 
 ### URL Parameters
