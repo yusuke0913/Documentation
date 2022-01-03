@@ -286,7 +286,7 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-73db64c9.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-bdffce9e.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-2224a352.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-e2be8db3.js"></script>
 
@@ -318,7 +318,7 @@
         </div>
         <ul class="search-results"></ul>
 
-      # We separate the iteration into two, so we can insert our own divider in the middle
+      <! –– We separate the iteration into two, so we can insert our own divider in the middle. ––>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -375,7 +375,7 @@
                     <a href="#the-integration-object" class="toc-h2 toc-link" data-title="The Integration object">The Integration object</a>
                   </li>
                   <li>
-                    <a href="#list-all-integrations-webhooks" class="toc-h2 toc-link" data-title="List All Integrations Webhooks">List All Integrations Webhooks</a>
+                    <a href="#list-all-integrations" class="toc-h2 toc-link" data-title="List All Integrations">List All Integrations</a>
                   </li>
                   <li>
                     <a href="#create-an-integration" class="toc-h2 toc-link" data-title="Create an Integration">Create an Integration</a>
@@ -479,7 +479,7 @@
             <a href="#invoices" class="toc-h1 toc-link" data-title="Invoices">Invoices</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#the-webhook-object" class="toc-h2 toc-link" data-title="The Webhook object">The Webhook object</a>
+                    <a href="#the-invoice-object" class="toc-h2 toc-link" data-title="The Invoice object">The Invoice object</a>
                   </li>
                   <li>
                     <a href="#list-all-invoices" class="toc-h2 toc-link" data-title="List All Invoices">List All Invoices</a>
@@ -525,14 +525,14 @@
       </ul>
         <ul class="toc-footer">
             <li>Questions? Ask us!</li>
-            <li><a href='mailto:developer@gigapay.se'>developer@gigapay.se</a></li>
+            <li><a href='mailto:support@gigapay.se'>support@gigapay.se</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='api-reference'>API Reference</h1>
-<p>The Gigapay API is organized around REST Our API has predictable resource-oriented URLs, accepts JSON-encoded requests,
+<p>The Gigapay API is organized around REST. Our API has predictable resource-oriented URLs, accepts JSON-encoded requests,
 returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. </p>
 <h3 id='api-server'>API server</h3>
 <div class="serverSelect">
@@ -578,9 +578,9 @@ intuitive understanding of the API compared to reading this documentation.</p>
 <span class="p">})</span>
 </code></pre></div>
 <p>The Gigapay API uses API keys to identify and authenticate requests. You can request a key by contacting us at
-<a href="mailto:info@gigapay.se">info@gigapay.se</a>. Note that you will receive separate keys for the live and demo environment.</p>
+<a href="mailto:support@gigapay.se">support@gigapay.se</a>. Note that you will receive separate keys for the live and demo environment.</p>
 
-<p>Your API keys carry many privileges, so be make sure you keep them secure. Do not share your API keys in
+<p>Your API keys carry many privileges, so make sure you keep them secure. Do not share your API keys in
 publicly accessible areas such as GitHub, client-side code, etc.</p>
 
 <p>Authorization to the API is performed through a token-based HTTP Authentication scheme. To authorize requests, 
@@ -602,9 +602,10 @@ include your key in the <code>Authorization</code> HTTP header. Note that the AP
       <input type="text" id="integration" name="integration" placeholder="79606358-97af-4196-b64c-5f719433d56b">
     </div>
   </label>
-</div>
 
-<p>Replacing the above tokens with your own will add them to the provided code examples, making them executable.</p>
+  <p class="TokenExplanation">Replacing the above tokens with your own will add them to the provided code examples, making them executable.
+</p>
+</div>
 <h3 id='unauthenticated-requests'>Unauthenticated Requests</h3>
 <p>API requests without valid authentication will fail with the HTTP response code <code>401</code>. If you are getting unexpected
 <code>401</code> responses, ensure that your URL is correct. API calls made over plain HTTP will be redirected with the response
@@ -612,8 +613,8 @@ code <code>301</code>, and API calls with incorrect placed <code>/</code> will b
 and most HTTP clients will automatically follow the redirects while stripping out the authorization headers, resulting
 in the <code>401</code> response. Disable automated redirects or be mindful of this.</p>
 <h3 id='ip-whitelisting'>IP-whitelisting</h3>
-<p>The Gigapay API Supports IP-whitelisting. When requesting API-keys, let us know which IP:s you would like to restrict
-access from. If IP-whitelisting is enabled, API requests made from a non-whitelisted IP will be rejected with HTTP 
+<p>The Gigapay API Supports IP-whitelisting. When requesting API-keys, let us know if you want to only allow access from certain IP addresses. 
+If IP-whitelisting is enabled, API requests made from a non-whitelisted IP will be rejected with HTTP 
 response code <code>403</code>.</p>
 <h3 id='language'>Language</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
@@ -664,7 +665,11 @@ time to when, their first Payout is created. </p>
 
 <p>All objects are timestamped when an associated event occurs. The field is simply the name of the event suffixed
 with <code>_at</code>.</p>
-<h2 id='subscribing-to-events'>Subscribing to Events</h2><div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://gigatron.se/webhooks/employees/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id='subscribing-to-events'>Subscribing to Events</h2>
+<blockquote>
+<p>An example webhook for the <code>Employee.verified</code> event:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://jobmatchr.se/webhooks/employees/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Gigapay-Signature</span><span class="p">:</span> <span class="s">t=1583327301,v1=ad583e2b2093c8d6fb3b65e04b99fc5988e98c0c312909acad334072da7e99ec</span>
 <span class="s">...</span>
@@ -684,7 +689,7 @@ with <code>_at</code>.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>The Gigapay API allows you to register <a href="#webhooks">Webhooks</a> in order to receive real-time updates on  events related
-to your Gigapay account. They are optional, but the preferred way of monitoring the status of objects. We send webhoks
+to your Gigapay account. They are optional, but the preferred way of monitoring the status of objects. We can send callbacks
 on the following events:</p>
 
 <ul>
@@ -700,7 +705,11 @@ on the following events:</p>
 </ul>
 
 <p>The notifications simply contain the object that triggered the event, as represented in the API. </p>
-<h3 id='gigapay-signature'>Gigapay Signature</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>secret_key <span class="o">=</span> <span class="s1">'...asId'</span>
+<h3 id='gigapay-signature'>Gigapay Signature</h3>
+<blockquote>
+<p>Example code to verify a Gigapay Signature:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>secret_key <span class="o">=</span> <span class="s1">'...asId'</span>
 
 <span class="c"># If you're doing this in shell; parse the request manually:</span>
 <span class="nv">timestamp</span><span class="o">=</span><span class="s1">'...'</span>
@@ -754,11 +763,11 @@ by a third party.</p>
 <p><code>v</code> the signature of the current scheme. </p>
 
 <p>The only valid signature scheme is currently <code>v1</code>, which is the HMAC algorithm as described in
-<a href="https://datatracker.ietf.org/doc/html/rfc2104.html">RFC 2104</a> using SHA256 as disgestmod.</p>
+<a href="https://datatracker.ietf.org/doc/html/rfc2104.html">RFC 2104</a> using SHA256 as digestmod.</p>
 
-<p>To verify signatures using the v1 scheme, extract the timestamp from theGigapay-Signature header, and the JSON-encoded
-notification from the request body. Join these strings with a period, ., as a separator. Compute an HMAC with the
-SHA256 hash function using the Webhook’s secret_key as the key. Lastly ensure that the signature in the header and the
+<p>To verify signatures using the v1 scheme, extract the timestamp from the Gigapay-Signature header, and the JSON-encoded
+notification from the request body. Join these strings with a period, <code>.</code>, as a separator. Compute an HMAC with the
+SHA256 hash function using the Webhook’s secret key as the key. Lastly ensure that the signature in the header and the
 calculated signature matches.</p>
 <h1 id='errors'>Errors</h1><div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">405</span> <span class="ne">Method Not Allowed</span>
 <span class="na">Allow</span><span class="p">:</span> <span class="s">GET, HEAD, OPTIONS</span>
@@ -841,7 +850,7 @@ You can use the <code>expand</code> param on any endpoint which includes expanda
 You can expand multiple objects at once by repeating the <code>expand</code> request parameter.</p>
 <h1 id='pagination'>Pagination</h1>
 <blockquote>
-<p>Request to retrieve two Employee object per page, and the second page:</p>
+<p>Request to retrieve two Employee objects per page, and the second page:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
@@ -956,7 +965,7 @@ filters or timestamp filters. Which filters are available are described under ea
 They are use the format <code>{field_name}={object_id}</code>.</p>
 
 <p>Timestamp filters are used to filter out objects having had a certain event associated with them. They can be used to
-filter on whether an event has occurred with the <code>null</code> suffix, e.g. <code>{field_name}_null={Bool}</code>, or when by using the
+filter on whether an event has occurred with the <code>null</code> suffix, e.g. <code>{field_name}_null={Bool}</code>, or when, by using the
 <code>_before</code> and <code>_after</code> suffix, e.g. <code>{field_name}_before={ISO 8601 string}</code>.</p>
 <h1 id='idempotency'>Idempotency</h1>
 <blockquote>
@@ -1095,13 +1104,13 @@ an error. The uniqueness of an id is guaranteed for the lifetime of the object.<
     </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>All objects in the Gigapay API have a <code>metadata</code> attribute. You can use this attribute to attach to any 
+<p>All objects in the Gigapay API have a <code>metadata</code> attribute. You can use this attribute to attach any 
 JSON-serializable data to these objects. It is useful for storing additional information about an object. For example,
-you could store a unique identifier for a Employee in your system. This data is not used by Gigapay, and will not be
+you could store a unique identifier for an Employee in your system. This data is not used by Gigapay, and will not be
 displayed to any users.</p>
 
-<p>The <a href="#payouts">Payout</a> objects also has a <code>description</code> field. It should contain a human-readable description of why
-this Payout is being made. Unlike <code>metadata</code>, <code>description</code> is a single string, and your Employee will see it.</p>
+<p>The <a href="#payouts">Payout</a> object also has a <code>description</code> field. It should contain a human-readable description of why
+this Payout is being made. Unlike <code>metadata</code>, <code>description</code> is a single string, and the Employee will see it.</p>
 <h1 id='integrations'>Integrations</h1>
 <p>Integrations are the parent object of all other objects in the Gigapay API. All other objects are separated per
 Integration, when operating on these objects you thus need to specify which integration you are acting as by providing
@@ -1182,7 +1191,7 @@ the <code>Integration-ID</code> header.</p>
 <td>City written on invoices.</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-integrations-webhooks'>List All Integrations Webhooks</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<h2 id='list-all-integrations'>List All Integrations</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s">'https://api.gigapay.se/v2/integrations/'</span><span class="p">,</span>
@@ -1281,7 +1290,7 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">"city"</span><span class="p">:</span> <span class="s">"Segeltorp"</span><span class="p">,</span>
         <span class="s">"email"</span><span class="p">:</span> <span class="s">"albin@pinestreet.tech"</span><span class="p">,</span>
         <span class="s">"id"</span><span class="p">:</span> <span class="s">"846291712"</span><span class="p">,</span>
-        <span class="s">"logo"</span><span class="p">:</span> <span class="s">"iVBORw0KGgoAAA..."</span><span class="p">,</span>
+        <span class="s">"logo"</span><span class="p">:</span> <span class="s">"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="</span><span class="p">,</span>
         <span class="s">"name"</span><span class="p">:</span> <span class="s">"Pinestreet Tech"</span><span class="p">,</span>
         <span class="s">"recipient"</span><span class="p">:</span> <span class="s">"Pinestreet Technology AB"</span><span class="p">,</span>
         <span class="s">"zip_code"</span><span class="p">:</span> <span class="s">"14171"</span><span class="p">,</span>
@@ -1290,14 +1299,15 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/<span class="sb">```</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/<span class="sb">```</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/integrations/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
         <span class="na">address_line_1</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Malmvägen 8</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">city</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Segeltorp</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">albin@pinestreet.tech</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">846291712</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">logo</span><span class="p">:</span> <span class="dl">"</span><span class="s2">iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Pinestreet Tech</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">recipient</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Pinestreet Technology AB</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">zip_code</span><span class="p">:</span> <span class="dl">"</span><span class="s2">14171</span><span class="dl">"</span><span class="p">,</span>
@@ -1324,11 +1334,13 @@ the <code>Integration-ID</code> header.</p>
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Segeltorp"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint creates a webhooks. </p>
+<p>This endpoint creates an Integration. </p>
 
-<p>Note; this endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.</p>
+<p>This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.</p>
+
+<p>Only examples with JSON-encoded payload and base64-encoded images are provided, though.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST https://api.gigapay.se/v2/webhooks/</code></p>
+<p><code>POST https://api.gigapay.se/v2/integrations/</code></p>
 <h3 id='headers-2'>Headers</h3>
 <table><thead>
 <tr>
@@ -1432,7 +1444,7 @@ the <code>Integration-ID</code> header.</p>
 <h2 id='retrieve-an-integration'>Retrieve an Integration</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s">'https://api.gigapay.se/v2/webhooks/846291712/'</span><span class="p">,</span>
+    <span class="s">'https://api.gigapay.se/v2/integrations/846291712/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
@@ -1530,9 +1542,13 @@ the <code>Integration-ID</code> header.</p>
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Segeltorp"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint updates an integration.</p>
+<p>This endpoint updates an integration. You may not update Integrations of type 2.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>PATCH https://api.gigapay.se/v2/integrations/:id/</code></p>
+
+<p>This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.</p>
+
+<p>Only examples with JSON-encoded payload and base64-encoded images are provided, though.</p>
 <h3 id='headers-4'>Headers</h3>
 <table><thead>
 <tr>
@@ -1651,7 +1667,7 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">"city"</span><span class="p">:</span> <span class="s">"Segeltorp"</span><span class="p">,</span>
         <span class="s">"email"</span><span class="p">:</span> <span class="s">"albin@pinestreet.tech"</span><span class="p">,</span>
         <span class="s">"id"</span><span class="p">:</span> <span class="s">"846291712"</span><span class="p">,</span>
-        <span class="s">"logo"</span><span class="p">:</span> <span class="s">"iVBORw0KGgoAAA..."</span><span class="p">,</span>
+        <span class="s">"logo"</span><span class="p">:</span> <span class="s">"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="</span><span class="p">,</span>
         <span class="s">"name"</span><span class="p">:</span> <span class="s">"Pinestreet Tech"</span><span class="p">,</span>
         <span class="s">"recipient"</span><span class="p">:</span> <span class="s">"Pinestreet Technology AB"</span><span class="p">,</span>
         <span class="s">"zip_code"</span><span class="p">:</span> <span class="s">"14171"</span><span class="p">,</span>
@@ -1660,14 +1676,15 @@ the <code>Integration-ID</code> header.</p>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/846291712/<span class="sb">```</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/846291712/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span> <span class="s1">'{"address_line_1": "Malmv\u00e4gen 8", "city": "Segeltorp", "email": "albin@pinestreet.tech", "id": "846291712", "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=", "name": "Pinestreet Tech", "recipient": "Pinestreet Technology AB", "zip_code": "14171"}'</span> https://api.gigapay.se/v2/integrations/846291712/<span class="sb">```</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/integrations/846291712/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
         <span class="na">address_line_1</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Malmvägen 8</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">city</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Segeltorp</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">albin@pinestreet.tech</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">846291712</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">logo</span><span class="p">:</span> <span class="dl">"</span><span class="s2">iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Pinestreet Tech</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">recipient</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Pinestreet Technology AB</span><span class="dl">"</span><span class="p">,</span>
         <span class="na">zip_code</span><span class="p">:</span> <span class="dl">"</span><span class="s2">14171</span><span class="dl">"</span><span class="p">,</span>
@@ -1694,9 +1711,13 @@ the <code>Integration-ID</code> header.</p>
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Segeltorp"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint replaces a webhooks.</p>
+<p>This endpoint replaces an Integration. You may not replace Integrations of type 2.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>PUT https://api.gigapay.se/v2/integrations/:id/</code></p>
+
+<p>This endpoints supports both JSON and multipart/form-data encoded requests, to facilitate uploading a logo file.</p>
+
+<p>Only examples with JSON-encoded payload and base64-encoded images are provided, though.</p>
 <h3 id='headers-5'>Headers</h3>
 <table><thead>
 <tr>
@@ -1831,7 +1852,8 @@ the <code>Integration-ID</code> header.</p>
 <p>The above command returns an empty response.</p>
 </blockquote>
 
-<p>This endpoint deletes a webhooks.</p>
+<p>This endpoint deletes an Integration. Note that you can not delete Integrations of type 1 or 2, nor Integrations
+that have objects associated with them.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE https://api.gigapay.se/v2/integrations/:id/</code></p>
 <h3 id='headers-6'>Headers</h3>
@@ -1863,7 +1885,7 @@ the <code>Integration-ID</code> header.</p>
 </tr>
 </tbody></table>
 <h1 id='employees'>Employees</h1>
-<p>An Employee is an individual performing tasks within your organization, employed by Gigapay. To add an Employee to your
+<p>An Employee is an individual performing tasks within your organization, employed or sub-contracted by Gigapay. To add an Employee to your
 organization you can create an Employee object. The Employee will be notified and Gigapay will verify their identity
 and working permits.</p>
 <h3 id='the-employee-object'>The Employee object</h3>
@@ -2090,7 +2112,7 @@ and working permits.</p>
     </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint creates a webhooks.</p>
+<p>This endpoint registers an Employee.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST https://api.gigapay.se/v2/employees/</code></p>
 <h3 id='headers-2'>Headers</h3>
@@ -2153,7 +2175,7 @@ and working permits.</p>
 <td>String</td>
 <td>True</td>
 <td></td>
-<td>ISO-3166 country code.</td>
+<td>ISO-3166 country code where the employee is living and working.</td>
 </tr>
 <tr>
 <td><code>cellphone_number</code></td>
@@ -2278,7 +2300,7 @@ and working permits.</p>
     </span><span class="nl">"verified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-23T11:57:03.742345Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint updates a webhooks.</p>
+<p>This endpoint updates an Employee.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>PATCH https://api.gigapay.se/v2/employees/:id/</code></p>
 <h3 id='headers-4'>Headers</h3>
@@ -2350,7 +2372,7 @@ and working permits.</p>
 <td>String</td>
 <td>False</td>
 <td>Previous value.</td>
-<td>ISO-3166 country code.</td>
+<td>ISO-3166 country code where the employee is living and working.</td>
 </tr>
 <tr>
 <td><code>cellphone_number</code></td>
@@ -2488,7 +2510,7 @@ and working permits.</p>
 <td>String</td>
 <td>True</td>
 <td></td>
-<td>ISO-3166 country code.</td>
+<td>ISO-3166 country code where the employee is living and working.</td>
 </tr>
 <tr>
 <td><code>cellphone_number</code></td>
@@ -2527,7 +2549,7 @@ and working permits.</p>
 <p>The above command returns an empty response.</p>
 </blockquote>
 
-<p>This endpoint deletes a webhooks.</p>
+<p>This endpoint deletes an Employee. You can not delete an Employee after a Payout has been registered to it.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE https://api.gigapay.se/v2/employees/:id/</code></p>
 <h3 id='headers-6'>Headers</h3>
@@ -2565,19 +2587,21 @@ and working permits.</p>
 </tbody></table>
 <h2 id='resend-an-invitation'>Resend an Invitation</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">patch</span><span class="p">(</span>
     <span class="s">'https://api.gigapay.se/v2/employees/1847/resend/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span><span class="p">,</span>
+        <span class="s">'Idempotency-key'</span><span class="p">:</span> <span class="s">'ac4beffd-79b0-4561-b16c-846a9600b168'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/employees/1847/resend/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-H</span> <span class="s1">'Idempotency-key: ac4beffd-79b0-4561-b16c-846a9600b168'</span> https://api.gigapay.se/v2/employees/1847/resend/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/employees/1847/resend/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PATCH</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Idempotency-key</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ac4beffd-79b0-4561-b16c-846a9600b168</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -2585,9 +2609,9 @@ and working permits.</p>
 <p>The above command returns an empty response.</p>
 </blockquote>
 
-<p>This endpoint resend an invitation.</p>
+<p>This endpoint resends an invitation. After resending, you need to wait at least 24 hours before resending again.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>PUT https://api.gigapay.se/v2/employees/:id/resend/</code></p>
+<p><code>PATCH https://api.gigapay.se/v2/employees/:id/resend/</code></p>
 <h3 id='headers-7'>Headers</h3>
 <table><thead>
 <tr>
@@ -2605,6 +2629,11 @@ and working permits.</p>
 <td><code>Integration-ID</code></td>
 <td>True</td>
 <td>Integration id.</td>
+</tr>
+<tr>
+<td><code>Idempotency-key</code></td>
+<td>False</td>
+<td>Idempotency key.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-5'>URL Parameters</h3>
@@ -2625,6 +2654,10 @@ and working permits.</p>
 <p>To make a payout to an Employee you need to create a Payout object. The Employee is notified of the Payout once the 
 corresponding Invoice is paid. The Employee will need to sign and accept the Payout before it is disbursed to their
 account.</p>
+
+<p>Either <code>amount</code>, <code>invoiced_amount</code> or <code>cost</code> is used as a basis for the Payout. For their definition and how they are
+related see <a href="#pricing">Pricing</a>. Ensure that you are using the same definition when communicating with the recipient to
+align everyone&#39;s expectation.</p>
 <h3 id='the-payout-object'>The Payout object</h3>
 <blockquote>
 <p>An example Payout object:</p>
@@ -2658,11 +2691,15 @@ account.</p>
 </tr>
 <tr>
 <td><code>amount</code></td>
-<td>Decimal formatted string of the gross amount.</td>
+<td>Decimal formatted string of the gross salary amount.</td>
+</tr>
+<tr>
+<td><code>invoiced_amount</code></td>
+<td>Decimal formatted string of the invoiced amount.</td>
 </tr>
 <tr>
 <td><code>cost</code></td>
-<td>Decimal formatted string of the salary cost.</td>
+<td>Decimal formatted string of the total salary cost.</td>
 </tr>
 <tr>
 <td><code>country</code></td>
@@ -2674,7 +2711,7 @@ account.</p>
 </tr>
 <tr>
 <td><code>description</code></td>
-<td>String describing the work done, displayed to the recipient.</td>
+<td>String describing the work done, displayed to the recipient. Max 255 characters.</td>
 </tr>
 <tr>
 <td><code>full_salary_specification</code></td>
@@ -2687,10 +2724,6 @@ account.</p>
 <tr>
 <td><code>invoice</code></td>
 <td>Unique identifier for the Invoice object the Payout object belongs to. This is an <a href="../expanding.md">expandable object.</a></td>
-</tr>
-<tr>
-<td><code>invoiced_amount</code></td>
-<td>Decimal formatted string of the invoiced amount.</td>
 </tr>
 <tr>
 <td><code>metadata</code></td>
@@ -2822,12 +2855,12 @@ account.</p>
 </tr>
 <tr>
 <td><code>invoice</code></td>
-<td>25</td>
+<td></td>
 <td>Relational Filter.</td>
 </tr>
 <tr>
 <td><code>employee</code></td>
-<td>25</td>
+<td></td>
 <td>Relational Filter.</td>
 </tr>
 <tr>
@@ -3260,7 +3293,7 @@ account.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint registers a Payout and an Employee at the same time. If an Employee with matching information is already
-registered will the object be reused.</p>
+registered that object will be reused.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST https://api.gigapay.se/v2/payouts/?expand=employee</code></p>
 <h3 id='headers-4'>Headers</h3>
@@ -3474,7 +3507,8 @@ registered will the object be reused.</p>
 <p>The above command returns an empty response.</p>
 </blockquote>
 
-<p>Endpoint for deleting a specific Payout. Note that you can not delete a payout belonging to a paid Invoice.</p>
+<p>Endpoint for deleting a specific Payout. Note that you can not delete a payout belonging to a paid Invoice or an Invoice
+on credit.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE https://api.gigapay.se/v2/payouts/:id/</code></p>
 <h3 id='headers-6'>Headers</h3>
@@ -3516,15 +3550,17 @@ registered will the object be reused.</p>
     <span class="s">'https://api.gigapay.se/v2/payouts/9472/resend/'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
-        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
+        <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span><span class="p">,</span>
+        <span class="s">'Idempotency-key'</span><span class="p">:</span> <span class="s">'ac4beffd-79b0-4561-b16c-846a9600b168'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> https://api.gigapay.se/v2/payouts/9472/resend/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-H</span> <span class="s1">'Idempotency-key: ac4beffd-79b0-4561-b16c-846a9600b168'</span> https://api.gigapay.se/v2/payouts/9472/resend/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/9472/resend/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
+        <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">Idempotency-key</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ac4beffd-79b0-4561-b16c-846a9600b168</span><span class="dl">"</span>
     <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div>
@@ -3532,9 +3568,9 @@ registered will the object be reused.</p>
 <p>The above command returns an empty response.</p>
 </blockquote>
 
-<p>This endpoint resends a notification.</p>
+<p>This endpoint resends a notification. After resending, you need to wait at least 24 hours before resending again.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>PUT https://api.gigapay.se/v2/payouts/:id/resend/</code></p>
+<p><code>PATCH https://api.gigapay.se/v2/payouts/:id/resend/</code></p>
 <h3 id='headers-7'>Headers</h3>
 <table><thead>
 <tr>
@@ -3552,6 +3588,11 @@ registered will the object be reused.</p>
 <td><code>Integration-ID</code></td>
 <td>True</td>
 <td>Integration id.</td>
+</tr>
+<tr>
+<td><code>Idempotency-key</code></td>
+<td>False</td>
+<td>Idempotency key.</td>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -3598,11 +3639,15 @@ actually make it.</p>
 </thead><tbody>
 <tr>
 <td>amount</td>
-<td>Decimal formatted string of the gross amount.</td>
+<td>Decimal formatted string of the gross salary amount.</td>
+</tr>
+<tr>
+<td>invoiced_amount</td>
+<td>Decimal formatted string of the invoiced amount.</td>
 </tr>
 <tr>
 <td>cost</td>
-<td>Decimal formatted string of the salary cost.</td>
+<td>Decimal formatted string of the total salary cost.</td>
 </tr>
 <tr>
 <td>currency</td>
@@ -3618,7 +3663,7 @@ actually make it.</p>
 </tr>
 <tr>
 <td>payroll</td>
-<td>Decimal formatted string of the payroll taxes.</td>
+<td>Decimal formatted string of the payroll taxes.  Will be none if payroll taxes are not mandated.</td>
 </tr>
 <tr>
 <td>pension</td>
@@ -3633,6 +3678,18 @@ actually make it.</p>
 <td>Decimal formatted string of the VAT for the Payout.</td>
 </tr>
 </tbody></table>
+
+<p>Either <code>amount</code>, <code>invoiced_amount</code> or <code>cost</code> is used as a basis for calculating the Pricing breakdown. One is provided
+and the other are calculated based on that. Their definitions are:</p>
+
+<ul>
+<li><code>amount</code>: net amount paid out plus obligations paid by the recipient.</li>
+<li><code>invoiced_amount</code>: <code>amount</code> plus obligations paid by the employer.</li>
+<li><code>cost</code>: <code>invoiced_amount</code> plus Gigapay&#39;s fee. This is the final amount you end up paying.</li>
+</ul>
+
+<p>Which of the attributes that are included and in what step varies between countries. Examples of what the pricing looks
+like in each country are provided.</p>
 <h2 id='list-pricing-info'>List Pricing info</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
@@ -3726,12 +3783,12 @@ actually make it.</p>
 </tr>
 <tr>
 <td><code>invoice</code></td>
-<td>25</td>
+<td></td>
 <td>Relational Filter.</td>
 </tr>
 <tr>
 <td><code>employee</code></td>
-<td>25</td>
+<td></td>
 <td>Relational Filter.</td>
 </tr>
 <tr>
@@ -4309,12 +4366,15 @@ registered will the object be reused.</p>
 </tbody></table>
 <h1 id='invoices'>Invoices</h1>
 <p>An Invoice groups Payouts together. It is a managed object, you can not create them directly. When a Payout is created 
-it is added to the Invoice that is currently open. If there is not an open Invoice, a new, open, Invoice is created.</p>
-<h3 id='the-webhook-object'>The Webhook object</h3>
+it is added to the Invoice that is currently open. If there is no open Invoice, a new will be created.</p>
+
+<p>You can keep invoices open for a certain time period by enabling batching of payouts. Contact <a href="mailto:support@gigapay.se">support@gigapay.se</a> if you are interested in this.</p>
+<h3 id='the-invoice-object'>The Invoice object</h3>
 <blockquote>
-<p>An example Integration object:</p>
+<p>An example Invoice object:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T10:32:36.118753Z"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2859272"</span><span class="p">,</span><span class="w">
@@ -4322,7 +4382,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     </span><span class="nl">"ocr_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"986911160380"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"paid_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-25T9:02:16.8462735Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&amp;language=en"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&amp;language=en"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1340.48"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -4332,6 +4392,10 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td><code>app</code></td>
+<td>Link to pay invoice in app.</td>
+</tr>
 <tr>
 <td><code>created_at</code></td>
 <td>Time at which the Invoice was created. Displayed as ISO 8601 string.</td>
@@ -4395,6 +4459,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     </span><span class="nl">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/v2/invoices/?page=1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T10:32:36.118753Z"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2859272"</span><span class="p">,</span><span class="w">
@@ -4402,9 +4467,10 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
             </span><span class="nl">"ocr_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"986911160380"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nl">"paid_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-25T9:02:16.8462735Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&amp;language=en"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&amp;language=en"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1340.48"</span><span class="w">
         </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.gigapay.se/i/2859273/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-22T10:28:21.847474Z"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2859273"</span><span class="p">,</span><span class="w">
@@ -4412,12 +4478,12 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
             </span><span class="nl">"ocr_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"986911160349"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nl">"paid_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T9:12:57.742648Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/2859273/?token=Ii9pbnZvaWNlLzY2OThlMTBhLTNiYTMtNGZlNS1iMzhlLWUzNTZjYTU5MTRiNi8i:1mnzxB:AIX-4zNc0FEStcwpWPHC_KkWDDc&amp;language=en"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&amp;language=en"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1340.48"</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="err">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all webhooks.</p>
+<p>This endpoint retrieves all Invoices.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.gigapay.se/v2/invoices/</code></p>
 <h3 id='headers'>Headers</h3>
@@ -4489,6 +4555,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T10:32:36.118753Z"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2859272"</span><span class="p">,</span><span class="w">
@@ -4496,7 +4563,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     </span><span class="nl">"ocr_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"986911160380"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"paid_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-25T9:02:16.8462735Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&amp;language=en"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&amp;language=en"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1340.48"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -4564,6 +4631,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://app.gigapay.se/i/2859272/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy9jMTMzYzIwMi0xMDUwLTQ5NTktODMwNi05NWQ3Y2IzZjNiMjgvIg"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-22T10:32:36.118753Z"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEK"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"846271"</span><span class="p">,</span><span class="w">
@@ -4573,11 +4641,11 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
     </span><span class="nl">"ocr_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"986911160380"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"paid_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-25T9:02:16.8462735Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/2859272/?token=Ii9pbnZvaWNlLzNjYmRiZjE4LWVhOTItNGZjNC1iZmYxLWYwNzA0NDYyYTEwMi8i:1mnzxA:wDyO50Dra7_Ux17jtn2w4ZK9MlA&amp;language=en"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.gigapay.se/invoice/cad7d4d7-cdc7-4f70-8246-c061e041e9e/?token=Ii9pbnZvaWNpbmcvb3Blbl9pbnZvaWNlcy8zYjcyNTYyOS05MTE4LTQ5YTctYTFiYS0yMTU4NTZhMzYwOTgvIg&amp;language=en"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1340.48"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint updates a webhooks.</p>
+<p>This endpoint updates an Invoice.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>PATCH https://api.gigapay.se/v2/invoices/:id/</code></p>
 <h3 id='headers-3'>Headers</h3>
@@ -4660,7 +4728,7 @@ it is added to the Invoice that is currently open. If there is not an open Invoi
 <p>The above command returns an empty response.</p>
 </blockquote>
 
-<p>This endpoint deletes an Invoice. Note that you can not delete a paid Invoice.</p>
+<p>This endpoint deletes an Invoice. Note that you can not delete a paid Invoice or an Invoice on credit.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>DELETE https://api.gigapay.se/v2/invoices/:id/</code></p>
 <h3 id='headers-4'>Headers</h3>
@@ -4705,7 +4773,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38a93e19-886a-4246-9cfe-471214ff6739"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Payout.notified"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Payout.accepted"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c1329a085d65f7757838df5920fdcc9a"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
@@ -4765,13 +4833,13 @@ description of these notifications, see <a href="#events">Events</a>.</p>
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38a93e19-886a-4246-9cfe-471214ff6739"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Payout.notified"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Payout.accepted"</span><span class="p">],</span><span class="w">
             </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c1329a085d65f7757838df5920fdcc9a"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
         </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0630bfcf-ad0a-458a-9794-816b54b542b6"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/employees/"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/employees/"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Employee.verified"</span><span class="p">],</span><span class="w">
             </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1fc0ee40ecf33f83cbd3f930443074ca"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
@@ -4825,7 +4893,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span>
     <span class="s">'https://api.gigapay.se/v2/webhooks/'</span><span class="p">,</span>
     <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://gigatron.se/webhooks/payouts/'</span><span class="p">,</span> 
+        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://jobmatchr.se/webhooks/payouts/'</span><span class="p">,</span> 
         <span class="s">'events'</span><span class="p">:</span> <span class="p">[</span><span class="s">'Payout.created'</span><span class="p">]</span>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
@@ -4833,10 +4901,10 @@ description of these notifications, see <a href="#events">Events</a>.</p>
         <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}'</span> https://gigatron.se/webhooks/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "http://0.0.0.0:8000/", "events": ["Payout.created"]}'</span> https://jobmatchr.se/webhooks/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://gigatron.se/webhooks/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="na">events</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Payout.created</span><span class="dl">"</span><span class="p">]}),</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://jobmatchr.se/webhooks/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="na">events</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Payout.created</span><span class="dl">"</span><span class="p">]}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Integration-Id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">79606358-97af-4196-b64c-5f719433d56b</span><span class="dl">"</span>
@@ -4848,13 +4916,13 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38a93e19-886a-4246-9cfe-471214ff6739"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Payout.created"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c1329a085d65f7757838df5920fdcc9a"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint creates a webhooks.</p>
+<p>This endpoint creates a webhook.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST https://api.gigapay.se/v2/webhooks/</code></p>
 <h3 id='headers-2'>Headers</h3>
@@ -4949,13 +5017,13 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38a93e19-886a-4246-9cfe-471214ff6739"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Payout.created"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c1329a085d65f7757838df5920fdcc9a"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a webhooks.</p>
+<p>This endpoint retrieves a webhook.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.gigapay.se/v2/webhooks/:id/</code></p>
 <h3 id='headers-3'>Headers</h3>
@@ -5019,13 +5087,13 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"481272"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/payouts/"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Payout.created"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Payout.notified"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c1329a085d65f7757838df5920fdcc9a"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint updates a webhooks.</p>
+<p>This endpoint updates a webhook.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>PATCH https://api.gigapay.se/v2/webhooks/:id/</code></p>
 <h3 id='headers-4'>Headers</h3>
@@ -5112,7 +5180,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span>
     <span class="s">'https://api.gigapay.se/v2/webhooks/481272/'</span><span class="p">,</span>
     <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://gigatron.se/webhooks/invoiced/'</span><span class="p">,</span> 
+        <span class="s">'url'</span><span class="p">:</span> <span class="s">'https://jobmatchr.se/webhooks/invoiced/'</span><span class="p">,</span> 
         <span class="s">'events'</span><span class="p">:</span> <span class="p">[</span><span class="s">'Invoice.created'</span><span class="p">]</span>
     <span class="p">},</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
@@ -5120,10 +5188,10 @@ description of these notifications, see <a href="#events">Events</a>.</p>
         <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "https://gigatron.se/webhooks/invoiced/", "events": ["Invoice.created"]}'</span> https://api.gigapay.se/v2/webhooks/481272/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"url": "https://jobmatchr.se/webhooks/invoiced/", "events": ["Invoice.created"]}'</span> https://api.gigapay.se/v2/webhooks/481272/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/webhooks/481272/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PUT</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://gigatron.se/webhooks/invoiced/</span><span class="dl">"</span><span class="p">,</span> <span class="na">events</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Invoice.created</span><span class="dl">"</span><span class="p">]}),</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://jobmatchr.se/webhooks/invoiced/</span><span class="dl">"</span><span class="p">,</span> <span class="na">events</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Invoice.created</span><span class="dl">"</span><span class="p">]}),</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
         <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
@@ -5136,20 +5204,20 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"481272"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/invoices/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/invoices/"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Invoice.created"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vksnrsc6tamq73tc26rzrnzf33a4pgdv"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"481272"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gigatron.se/webhooks/invoices/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jobmatchr.se/webhooks/invoices/"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Invoice.created"</span><span class="p">],</span><span class="w">
     </span><span class="nl">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vksnrsc6tamq73tc26rzrnzf33a4pgdv"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint replaces a webhooks.</p>
+<p>This endpoint replaces a webhook.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>PUT https://api.gigapay.se/v2/webhooks/:id/</code></p>
 <h3 id='headers-5'>Headers</h3>
@@ -5253,7 +5321,7 @@ description of these notifications, see <a href="#events">Events</a>.</p>
 <p>The above command returns an empty response.</p>
 </blockquote>
 
-<p>This endpoint deletes a webhooks.</p>
+<p>This endpoint deletes a webhook.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE https://api.gigapay.se/v2/webhooks/:id/</code></p>
 <h3 id='headers-6'>Headers</h3>
