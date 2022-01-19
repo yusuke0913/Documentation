@@ -113,10 +113,29 @@ under the License.
         <% end %>
 
           <li class="toc-list-section">
+            <a href="#guides" class="toc-h1 toc-link toc-list-psuedo-link" data-title="Guides">Guides</a>
+          </li>
+
+        <% toc_data(page_content)[10..12].each do |h1| %>
+          <li>
+            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
+            <% if h1[:children].length > 0 %>
+              <ul class="toc-list-h2">
+                <% h1[:children].each do |h2| %>
+                  <li>
+                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </li>
+        <% end %>
+
+          <li class="toc-list-section">
             <span class="toc-list-span">Objects</span>
           </li>
 
-        <% toc_data(page_content)[9..-1].each do |h1| %>
+        <% toc_data(page_content)[13..-1].each do |h1| %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>
