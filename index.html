@@ -2715,7 +2715,7 @@ align everyone&#39;s expectation.</p>
 </tr>
 <tr>
 <td><code>full_salary_specification</code></td>
-<td>If True will a full salary specification be shown to the Employee, including payroll taxes and Gigapay&#39;s fee, in addition to the standard taxes and vacation pay.</td>
+<td>Controls whether to present the payroll taxes and Gigapay&#39;s fee on the payslip. It is set to false when <code>amount</code> is used as a basis for the Payout, true otherwise.</td>
 </tr>
 <tr>
 <td><code>employee</code></td>
@@ -2898,7 +2898,6 @@ align everyone&#39;s expectation.</p>
         <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span><span class="p">,</span>
         <span class="s">'currency'</span><span class="p">:</span> <span class="s">'SEK'</span><span class="p">,</span>
         <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
-        <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
         <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
         <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>          
     <span class="p">},</span>
@@ -2907,7 +2906,7 @@ align everyone&#39;s expectation.</p>
         <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span>  <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}'</span> https://api.gigapay.se/v2/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span>  <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1847, "invoiced_amount": "1000.00"}'</span> https://api.gigapay.se/v2/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -2915,7 +2914,6 @@ align everyone&#39;s expectation.</p>
         <span class="na">country</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SWE</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">currency</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SEK</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">description</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Instagram samarbete 2021-11-13.</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">full_salary_specification</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
         <span class="na">employee</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
         <span class="na">invoiced_amount</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>       
     <span class="p">}),</span>
@@ -3028,13 +3026,6 @@ align everyone&#39;s expectation.</p>
 <td></td>
 </tr>
 <tr>
-<td><code>full_salary_specification</code></td>
-<td>Bool</td>
-<td>False</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr>
 <td><code>invoiced_amount</code></td>
 <td>String</td>
 <td>True</td>
@@ -3073,7 +3064,6 @@ align everyone&#39;s expectation.</p>
             <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span><span class="p">,</span>
             <span class="s">'currency'</span><span class="p">:</span> <span class="s">'SEK'</span><span class="p">,</span>
             <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
-            <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
             <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'1000.00'</span><span class="p">,</span>
             <span class="s">'metadata'</span><span class="p">:</span> <span class="p">{},</span>            
@@ -3082,7 +3072,6 @@ align everyone&#39;s expectation.</p>
             <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span><span class="p">,</span>
             <span class="s">'currency'</span><span class="p">:</span> <span class="s">'SEK'</span><span class="p">,</span>
             <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
-            <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
             <span class="s">'employee'</span><span class="p">:</span> <span class="mi">1736</span><span class="p">,</span>
             <span class="s">'invoiced_amount'</span><span class="p">:</span> <span class="s">'2500.00'</span><span class="p">,</span>
             <span class="s">'metadata'</span><span class="p">:</span> <span class="p">{},</span>            
@@ -3093,7 +3082,7 @@ align everyone&#39;s expectation.</p>
         <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]'</span> https://api.gigapay.se/v2/payouts/
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1736, "invoiced_amount": "2500.00"}]'</span> https://api.gigapay.se/v2/payouts/
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">([</span>
@@ -3102,7 +3091,6 @@ align everyone&#39;s expectation.</p>
             <span class="dl">'</span><span class="s1">country</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SWE</span><span class="dl">'</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">currency</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SEK</span><span class="dl">'</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">description</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Instagram samarbete 2021-11-13.</span><span class="dl">'</span><span class="p">,</span>
-            <span class="dl">'</span><span class="s1">full_salary_specification</span><span class="dl">'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">employee</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">invoiced_amount</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1000.00</span><span class="dl">'</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">metadata</span><span class="dl">'</span><span class="p">:</span> <span class="p">{},</span>            
@@ -3111,7 +3099,6 @@ align everyone&#39;s expectation.</p>
             <span class="dl">'</span><span class="s1">country</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SWE</span><span class="dl">'</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">currency</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SEK</span><span class="dl">'</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">description</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Instagram samarbete 2021-11-13.</span><span class="dl">'</span><span class="p">,</span>
-            <span class="dl">'</span><span class="s1">full_salary_specification</span><span class="dl">'</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">employee</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1736</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">invoiced_amount</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2500.00</span><span class="dl">'</span><span class="p">,</span>
             <span class="dl">'</span><span class="s1">metadata</span><span class="dl">'</span><span class="p">:</span> <span class="p">{},</span>            
@@ -3217,7 +3204,6 @@ align everyone&#39;s expectation.</p>
         <span class="s">'country'</span><span class="p">:</span> <span class="s">'SWE'</span><span class="p">,</span>
         <span class="s">'currency'</span><span class="p">:</span> <span class="s">'SEK'</span><span class="p">,</span>
         <span class="s">'description'</span><span class="p">:</span> <span class="s">'Instagram samarbete 2021-11-13.'</span><span class="p">,</span>
-        <span class="s">'full_salary_specification'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
         <span class="s">'employee'</span><span class="p">:</span> <span class="p">{</span>
             <span class="s">'id'</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
             <span class="s">'name'</span><span class="p">:</span> <span class="s">'Albin Lindskog'</span><span class="p">,</span>
@@ -3232,7 +3218,7 @@ align everyone&#39;s expectation.</p>
         <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?expand=employee'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="nt">-d</span> <span class="s1">'{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?expand=employee'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/?expand=employee</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -3240,7 +3226,6 @@ align everyone&#39;s expectation.</p>
         <span class="na">country</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SWE</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">currency</span><span class="p">:</span> <span class="dl">'</span><span class="s1">SEK</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">description</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Instagram samarbete 2021-11-13.</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">full_salary_specification</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
         <span class="na">employee</span><span class="p">:</span> <span class="p">{</span>
             <span class="na">id</span><span class="p">:</span> <span class="mi">1847</span><span class="p">,</span>
             <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Albin Lindskog</span><span class="dl">'</span><span class="p">,</span>
@@ -3371,13 +3356,6 @@ registered that object will be reused.</p>
 <td>True</td>
 <td></td>
 <td>Structured as an <a href="#register-an-employee">Employee</a>.</td>
-</tr>
-<tr>
-<td><code>full_salary_specification</code></td>
-<td>Bool</td>
-<td>False</td>
-<td>False</td>
-<td></td>
 </tr>
 <tr>
 <td><code>invoiced_amount</code></td>
