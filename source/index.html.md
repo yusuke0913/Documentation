@@ -569,6 +569,70 @@ fetch("https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True", {
     ]
 }
 ```
+
+> Request to retrieve all employees with string "skoog" in name, email or phone number:
+
+```python
+import requests
+
+response = requests.get(
+    'https://api.gigapay.se/v2/employees/?search=skoog',
+    headers={
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
+    }
+)
+```
+
+```shell
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/employees/?search=skoog'
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/employees/?search=skoog", {
+    method: "GET",
+    headers: {
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
+    }
+})
+```
+
+> Returns a response formatted as such:
+
+```json
+{
+    "count": 2, 
+    "next": null,
+    "previous": null, 
+    "results": [
+        {
+            "id": "59cc997d-b4bc-4b2d-ac2d-0101ea9ba241", 
+            "name": "Joakim Karlsson", 
+            "cellphone_number": "+46703100002", 
+            "email": "skoog@gigapay.co", 
+            "country": "SWE", 
+            "metadata": {}, 
+            "created_at": "2022-04-11T13:05:27.565954Z", 
+            "notified_at": "2022-04-11T13:05:27.565954Z", 
+            "claimed_at": "2022-04-11T13:05:27.565954Z", 
+            "verified_at": "2022-04-11T14:05:27.565954Z"
+        }, {
+            "id": "481c3138-5710-4086-9237-a082e87d624f", 
+            "name": "Joakim Skoog", 
+            "cellphone_number": "+46703100001", 
+            "email": "joakims@gigapay.co", 
+            "country": "SWE", 
+            "metadata": {}, 
+            "created_at": "2022-04-11T13:05:27.543935Z", 
+            "notified_at": "2022-04-11T13:05:27.543935Z", 
+            "claimed_at": "2022-04-11T13:05:27.543935Z", 
+            "verified_at": "2022-04-11T14:05:27.543935Z"
+        }
+    ]
+}
+```
+
 The Gigapay API supports filtering on all of its list-endpoints. These filters are of two types, either relational
 filters or timestamp filters. Which filters are available are described under each endpoint.
 

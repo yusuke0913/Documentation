@@ -135,28 +135,25 @@ This endpoint retrieves all Payouts.
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
+| Parameter        | Required | Description               |
+|------------------|----------|---------------------------|
+| `Authorization`  | True     | Your Authorization Token. |
+| `Integration-ID` | True     | Integration id.           |
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-`page` | 1 | Which page to return.
-`page_size` | 25 | The number of Employees per page.
-`invoice` | | Relational Filter.
-`employee` | | Relational Filter.
-`start_at` | | Timestamp filter.
-`end_at` | | Timestamp filter.
-`created_at` | | Timestamp filter.
-`notified_at` | | Timestamp filter.
-`accepted_at` | | Timestamp filter.
-
-
-
-
+| Parameter    | Default | Description                                                           |
+|--------------|---------|-----------------------------------------------------------------------|
+| `page`       | 1       | Which page to return.                                                 |
+| `page_size`  | 25      | The number of Employees per page.                                     |
+| `invoice`    |         | Relational Filter.                                                    |
+| `employee`   |         | Relational Filter.                                                    |
+| `start_at`   |         | Timestamp filter.                                                     |
+| `end_at`     |         | Timestamp filter.                                                     |
+| `created_at` |         | Timestamp filter.                                                     |
+| `notified_at` |         | Timestamp filter.                                                     |
+| `accepted_at` |         | Timestamp filter.                                                     |
+| `search`      |         | Find payout by searching for parts <br/>of name, cellphone number or email |
 
 ## Register a Payout
 
