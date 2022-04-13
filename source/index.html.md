@@ -633,7 +633,7 @@ fetch("https://api.gigapay.se/v2/employees/?search=skoog", {
 }
 ```
 
-> Request to retrieve all payouts to an employee with string "skoog" in name, email or phone number:
+> Request to retrieve all payouts to employees with string "skoog" in name, email or phone number:
 
 ```python
 import requests
@@ -666,7 +666,7 @@ fetch("https://api.gigapay.se/v2/payouts/?employee_search=skoog", {
 
 ```json
 {
-    "count": 4, 
+    "count": 3, 
     "next": null, 
     "previous": null, 
     "results": [
@@ -720,23 +720,6 @@ fetch("https://api.gigapay.se/v2/payouts/?employee_search=skoog", {
             "accepted_at": null, 
             "employee": "8c5f34da-0976-4c44-bc70-17ce79a7a46e", 
             "invoice": "a8b2118c-010b-467e-83dd-c9e57a0e0686", 
-            "full_salary_specification": false
-        }, {
-            "id": "0385fac6-2919-4ab0-a3d6-18573fb2401d", 
-            "cost": "1396.32", 
-            "invoiced_amount": "1368.95", 
-            "amount": "1000.00", 
-            "currency": "SEK", 
-            "country": "SWE", 
-            "description": "Test", 
-            "metadata": {}, 
-            "start_at": null, 
-            "end_at": null, 
-            "created_at": "2022-04-13T08:05:22.385372Z", 
-            "notified_at": null, 
-            "accepted_at": null, 
-            "employee": "8c5f34da-0976-4c44-bc70-17ce79a7a46e", 
-            "invoice": "16001bfe-8a28-460a-8798-e747fb64bcb0", 
             "full_salary_specification": false
         }
     ]
