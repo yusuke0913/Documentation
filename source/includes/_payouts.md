@@ -142,18 +142,18 @@ This endpoint retrieves all Payouts.
 
 ### Query Parameters
 
-| Parameter    | Default | Description                                                           |
-|--------------|---------|-----------------------------------------------------------------------|
-| `page`       | 1       | Which page to return.                                                 |
-| `page_size`  | 25      | The number of Employees per page.                                     |
-| `invoice`    |         | Relational Filter.                                                    |
-| `employee`   |         | Relational Filter.                                                    |
-| `start_at`   |         | Timestamp filter.                                                     |
-| `end_at`     |         | Timestamp filter.                                                     |
-| `created_at` |         | Timestamp filter.                                                     |
-| `notified_at` |         | Timestamp filter.                                                     |
-| `accepted_at` |         | Timestamp filter.                                                     |
-| `search`      |         | Find payout by searching for parts <br/>of name, cellphone number or email |
+| Parameter         | Default | Description                                                                          |
+|-------------------|---------|--------------------------------------------------------------------------------------|
+| `page`            | 1       | Which page to return.                                                                |
+| `page_size`       | 25      | The number of Employees per page.                                                    |
+| `invoice`         |         | Relational Filter.                                                                   |
+| `employee`        |         | Relational Filter.                                                                   |
+| `start_at`        |         | Timestamp filter.                                                                    |
+| `end_at`          |         | Timestamp filter.                                                                    |
+| `created_at`      |         | Timestamp filter.                                                                    |
+| `notified_at`     |         | Timestamp filter.                                                                    |
+| `accepted_at`     |         | Timestamp filter.                                                                    |
+| `employee_search` |         | Find payout by searching for parts <br/>of employee: name, cellphone number or email |
 
 ## Register a Payout
 

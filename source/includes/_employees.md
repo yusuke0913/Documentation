@@ -116,18 +116,18 @@ This endpoint retrieves all Employees.
 
 ### Query Parameters
 
-| Parameter                 | Default | Description                                        |
-|---------------------------|---------|----------------------------------------------------|
-| `page`                    | 1       | Which page to return.                              |
-| `page_size`               | 25      | The number of Employees per page.                  |
-| `created_at`              |         | Timestamp filter.                                  |
-| `notified_at`             |         | Timestamp filter.                                  |
-| `claimed_at`              |         | Timestamp filter.                                  |
-| `verified_at`             |         | Timestamp filter.                                  |
-| `name_search`             |         | Filter by part of name.                            |
-| `email_serach`            |         | Filter by part of email.                           |
+| Parameter                | Default | Description                                        |
+|--------------------------|---------|----------------------------------------------------|
+| `page`                   | 1       | Which page to return.                              |
+| `page_size`              | 25      | The number of Employees per page.                  |
+| `created_at`             |         | Timestamp filter.                                  |
+| `notified_at`            |         | Timestamp filter.                                  |
+| `claimed_at`             |         | Timestamp filter.                                  |
+| `verified_at`            |         | Timestamp filter.                                  |
+| `name_search`            |         | Filter by part of name.                            |
+| `email_search`           |         | Filter by part of email.                           |
 | `cellphone_number_search` |         | Filter by part of cellphone number.                |
-| `search`                  |         | Filter by part of name, email or cellphone number. |
+| `search`                 |         | Filter by part of name, email or cellphone number. |
 
 ## Register an Employee
 
