@@ -109,25 +109,22 @@ This endpoint retrieves all Employees.
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
+| Parameter        | Required | Description               |
+|------------------|----------|---------------------------|
+| `Authorization`  | True     | Your Authorization Token. |
+| `Integration-ID` | True     | Integration id.           |
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-`page` | 1 | Which page to return.
-`page_size` | 25 | The number of Employees per page.
-`created_at` | | Timestamp filter.
-`notified_at` | | Timestamp filter.
-`claimed_at` | | Timestamp filter.
-`verified_at` | | Timestamp filter.
-
-
-
-
+| Parameter                 | Default | Description                                        |
+|---------------------------|---------|----------------------------------------------------|
+| `page`                    | 1       | Which page to return.                              |
+| `page_size`               | 25      | The number of Employees per page.                  |
+| `created_at`              |         | Timestamp filter.                                  |
+| `notified_at`             |         | Timestamp filter.                                  |
+| `claimed_at`              |         | Timestamp filter.                                  |
+| `verified_at`             |         | Timestamp filter.                                  |
+| `search`                  |         | Filter by part of name, email or cellphone number. |
 
 ## Register an Employee
 
@@ -196,24 +193,22 @@ This endpoint registers an Employee.
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
-`Idempotency-key` | False | Idempotency key.
+| Parameter         | Required | Description               |
+|-------------------|----------|---------------------------|
+| `Authorization`   | True     | Your Authorization Token. |
+| `Integration-ID`  | True     | Integration id.           |
+| `Idempotency-key` | False    | Idempotency key.          |
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Notes
---------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique per [Integration](#integrations).
-`name` | String | True | | 
-`email` | String | False | null | Either `email` or `cellphone_number` is required.
-`country` | String | True | |  ISO-3166 country code where the employee is living and working.
-`cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
-`metadata` | Object | False | {} | 
-
-
+| Parameter          | Type   | Required | Default | Notes                                                           |
+|--------------------|--------|----------|---------|-----------------------------------------------------------------|
+| `id`               | String | False    | uuid4() | Unique per [Integration](#integrations).                        |
+| `name`             | String | True     |         |                                                                 |
+| `email`            | String | False    | null    | Either `email` or `cellphone_number` is required.               |
+| `country`          | String | True     |         | ISO-3166 country code where the employee is living and working. |
+| `cellphone_number` | String | False    | null    | Either `email` or `cellphone_number` is required.               |
+| `metadata`         | Object | False    | {}      |                                                                 |
 
 ## Retrieve an Employee
 
@@ -267,21 +262,16 @@ This endpoint retrieves an employee.
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
+| Parameter        | Required | Description               |
+|------------------|----------|---------------------------|
+| `Authorization`  | True     | Your Authorization Token. |
+| `Integration-ID` | True     | Integration id.           |
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | True | Unique identifier for the object.
-
-
-
-
-
+| Parameter | Required | Description                       |
+|-----------|----------|-----------------------------------|
+| `id`      | True     | Unique identifier for the object. |
 
 ## Update an Employee
 
@@ -341,30 +331,27 @@ This endpoint updates an Employee.
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
+| Parameter        | Required | Description               |
+|------------------|----------|---------------------------|
+| `Authorization`  | True     | Your Authorization Token. |
+| `Integration-ID` | True     | Integration id.           |
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | True | Unique identifier for the object.
+| Parameter | Required | Description                       |
+|-----------|----------|-----------------------------------|
+| `id`      | True     | Unique identifier for the object. |
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Notes
---------- | ---- | -------- | ------- |------------
-`id` | String | False | Previous value. | Unique per [Integration](#integrations).
-`name` | String | False | Previous value. | 
-`email` | String | False | Previous value. |
-`country` | String | False | Previous value. | ISO-3166 country code where the employee is living and working.
-`cellphone_number` | False | False | Previous value. |
-`metadata` | Object | False | Previous value. | 
-
-
-
+| Parameter          | Type   | Required | Default         | Notes                                                           |
+|--------------------|--------|----------|-----------------|-----------------------------------------------------------------|
+| `id`               | String | False    | Previous value. | Unique per [Integration](#integrations).                        |
+| `name`             | String | False    | Previous value. |                                                                 |
+| `email`            | String | False    | Previous value. |                                                                 |
+| `country`          | String | False    | Previous value. | ISO-3166 country code where the employee is living and working. |
+| `cellphone_number` | False  | False    | Previous value. |                                                                 |
+| `metadata`         | Object | False    | Previous value. |                                                                 |
 
 ## Replace an Employee
 
@@ -434,31 +421,27 @@ This endpoint replaces an Employee.
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
+| Parameter        | Required | Description               |
+|------------------|----------|---------------------------|
+| `Authorization`  | True     | Your Authorization Token. |
+| `Integration-ID` | True     | Integration id.           |
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | True | Unique identifier for the object.
+| Parameter | Required | Description                       |
+|-----------|----------|-----------------------------------|
+| `id`      | True     | Unique identifier for the object. |
 
 ### Body Parameters
 
-Parameter | Type | Required | Default | Description
---------- | ---- | -------- | ------- |------------
-`id` | String | False | uuid4() | Unique per [Integration](#integrations).
-`name` | String | True | | 
-`email` | String | False | null | Either `email` or `cellphone_number` is required.
-`country` | String | True | | ISO-3166 country code where the employee is living and working.
-`cellphone_number` | String | False | null | Either `email` or `cellphone_number` is required.
-`metadata` | Object | False | {} | 
-
-
-
-
+| Parameter          | Type   | Required | Default | Description                                                     |
+|--------------------|--------|----------|---------|-----------------------------------------------------------------|
+| `id`               | String | False    | uuid4() | Unique per [Integration](#integrations).                        |
+| `name`             | String | True     |         |                                                                 |
+| `email`            | String | False    | null    | Either `email` or `cellphone_number` is required.               |
+| `country`          | String | True     |         | ISO-3166 country code where the employee is living and working. |
+| `cellphone_number` | String | False    | null    | Either `email` or `cellphone_number` is required.               |
+| `metadata`         | Object | False    | {}      |                                                                 |
 
 ## Delete a Employee
 
@@ -499,20 +482,16 @@ This endpoint deletes an Employee. You can not delete an Employee after a Payout
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
-
+| Parameter        | Required | Description               |
+|------------------|----------|---------------------------|
+| `Authorization`  | True     | Your Authorization Token. |
+| `Integration-ID` | True     | Integration id.           |
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | True | Unique identifier for the object.
-
-
-
+| Parameter | Required | Description                       |
+|-----------|----------|-----------------------------------|
+| `id`      | True     | Unique identifier for the object. |
 
 ## Resend an Invitation
 
@@ -555,15 +534,14 @@ This endpoint resends an invitation. After resending, you need to wait at least 
 
 ### Headers
 
-Parameter | Required | Description
---------- | ------- | -----------
-`Authorization` | True | Your Authorization Token.
-`Integration-ID` | True | Integration id.
-`Idempotency-key` | False | Idempotency key.
-
+| Parameter         | Required | Description               |
+|-------------------|----------|---------------------------|
+| `Authorization`   | True     | Your Authorization Token. |
+| `Integration-ID`  | True     | Integration id.           |
+| `Idempotency-key` | False    | Idempotency key.          |
 
 ### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-`id` | True | Unique identifier for the object.
+| Parameter | Required | Description                       |
+|-----------|----------|-----------------------------------|
+| `id`      | True     | Unique identifier for the object. |

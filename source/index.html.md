@@ -569,6 +569,198 @@ fetch("https://api.gigapay.se/v2/payouts/?employee=12&accepted_at_null=True", {
     ]
 }
 ```
+
+> Request to retrieve all employees with string "skoog" in name, email or phone number:
+
+```python
+import requests
+
+response = requests.get(
+    'https://api.gigapay.se/v2/employees/?search=skoog',
+    headers={
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
+    }
+)
+```
+
+```shell
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/employees/?search=skoog'
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/employees/?search=skoog", {
+    method: "GET",
+    headers: {
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
+    }
+})
+```
+
+> Returns a response formatted as such:
+
+```json
+{
+    "count": 2, 
+    "next": null,
+    "previous": null, 
+    "results": [
+        {
+            "id": "59cc997d-b4bc-4b2d-ac2d-0101ea9ba241", 
+            "name": "Joakim Karlsson", 
+            "cellphone_number": "+46703100002", 
+            "email": "skoog@gigapay.co", 
+            "country": "SWE", 
+            "metadata": {}, 
+            "created_at": "2022-04-11T13:05:27.565954Z", 
+            "notified_at": "2022-04-11T13:05:27.565954Z", 
+            "claimed_at": "2022-04-11T13:05:27.565954Z", 
+            "verified_at": "2022-04-11T14:05:27.565954Z"
+        }, {
+            "id": "481c3138-5710-4086-9237-a082e87d624f", 
+            "name": "Joakim Skoog", 
+            "cellphone_number": "+46703100001", 
+            "email": "joakims@gigapay.co", 
+            "country": "SWE", 
+            "metadata": {}, 
+            "created_at": "2022-04-11T13:05:27.543935Z", 
+            "notified_at": "2022-04-11T13:05:27.543935Z", 
+            "claimed_at": "2022-04-11T13:05:27.543935Z", 
+            "verified_at": "2022-04-11T14:05:27.543935Z"
+        }
+    ]
+}
+```
+
+> Request to retrieve all payouts to employees with string "skoog" in name, email or phone number:
+
+```python
+import requests
+
+response = requests.get(
+    'https://api.gigapay.se/v2/payouts/?employee_search=skoog',
+    headers={
+        'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
+        'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
+    }
+)
+```
+
+```shell
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/payouts/?employee_search=skoog'
+```
+
+```javascript
+fetch("https://api.gigapay.se/v2/payouts/?employee_search=skoog", {
+    method: "GET",
+    headers: {
+        "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
+        "Integration-Id": "79606358-97af-4196-b64c-5f719433d56b"
+    }
+}
+```
+
+> Returns a response formatted as such: 
+
+```json
+{
+    "count": 3,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "bfdac591-4bc5-45d3-9e93-27a885c8b130",
+            "cost": "1396.32",
+            "invoiced_amount": "1368.95",
+            "amount": "1000.00",
+            "currency": "SEK",
+            "country": "SWE",
+            "description": "Test",
+            "metadata": {},
+            "start_at": null,
+            "end_at": null,
+            "created_at": "2022-04-14T08:31:11.773275Z",
+            "notified_at": null,
+            "accepted_at": null,
+            "employee": {
+                "id": "411246da-0b59-41c6-8b87-1e5abb73af30",
+                "name": "Kalle Karlsson",
+                "cellphone_number": "+46703100003",
+                "email": "skoog@gigapay.co",
+                "country": "SWE",
+                "metadata": {},
+                "created_at": "2022-04-14T08:31:11.741713Z",
+                "notified_at": "2022-04-14T08:31:11.741713Z",
+                "claimed_at": "2022-04-14T08:31:11.741713Z",
+                "verified_at": "2022-04-14T09:31:11.741713Z"
+            },
+            "invoice": "f4377884-e4c0-4e65-bbd1-24f52973b933",
+            "full_salary_specification": false
+        },
+        {
+            "id": "1bc53e19-3589-4f92-aece-360006cfe196",
+            "cost": "1396.32",
+            "invoiced_amount": "1368.95",
+            "amount": "1000.00",
+            "currency": "SEK",
+            "country": "SWE",
+            "description": "Test",
+            "metadata": {},
+            "start_at": null,
+            "end_at": null,
+            "created_at": "2022-04-14T08:31:11.763167Z",
+            "notified_at": null,
+            "accepted_at": null,
+            "employee": {
+                "id": "411246da-0b59-41c6-8b87-1e5abb73af30",
+                "name": "Kalle Karlsson",
+                "cellphone_number": "+46703100003",
+                "email": "skoog@gigapay.co",
+                "country": "SWE",
+                "metadata": {},
+                "created_at": "2022-04-14T08:31:11.741713Z",
+                "notified_at": "2022-04-14T08:31:11.741713Z",
+                "claimed_at": "2022-04-14T08:31:11.741713Z",
+                "verified_at": "2022-04-14T09:31:11.741713Z"
+            },
+            "invoice": "b749b0fd-a82a-4644-a7c8-e89ae891cc23",
+            "full_salary_specification": false
+        },
+        {
+            "id": "bf216a95-0560-46c8-b9c7-0d15850aea23",
+            "cost": "1396.32",
+            "invoiced_amount": "1368.95",
+            "amount": "1000.00",
+            "currency": "SEK",
+            "country": "SWE",
+            "description": "Test",
+            "metadata": {},
+            "start_at": null,
+            "end_at": null,
+            "created_at": "2022-04-14T08:31:11.755175Z",
+            "notified_at": null,
+            "accepted_at": null,
+            "employee": {
+                "id": "1fa40cc7-a2c9-43ab-972f-eb322bded992",
+                "name": "Joakim Skoog",
+                "cellphone_number": "+46703100002",
+                "email": "joakim@gigapay.co",
+                "country": "SWE",
+                "metadata": {},
+                "created_at": "2022-04-14T08:31:11.707438Z",
+                "notified_at": "2022-04-14T08:31:11.707438Z",
+                "claimed_at": "2022-04-14T08:31:11.707438Z",
+                "verified_at": "2022-04-14T09:31:11.707438Z"
+            },
+            "invoice": "e5647953-4df7-4166-9066-f9dea11b66f3",
+            "full_salary_specification": false
+        }
+    ]
+}
+```
+
+
 The Gigapay API supports filtering on all of its list-endpoints. These filters are of two types, either relational
 filters or timestamp filters. Which filters are available are described under each endpoint.
 
