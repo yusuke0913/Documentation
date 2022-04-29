@@ -1014,19 +1014,19 @@ of objects  per page. The objects returned are contained within the <code>result
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>Request to retrieve all payouts to employees with string &quot;skoog&quot; in name, email or phone number:</p>
+<p>Request to retrieve all payouts to employees with string &quot;skoog&quot; in name, email or phone number or with string &quot;skoog&quot; in the description of the payout:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="s">'https://api.gigapay.se/v2/payouts/?employee_search=skoog'</span><span class="p">,</span>
+    <span class="s">'https://api.gigapay.se/v2/payouts/?search=skoog'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
         <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Token cd7a4537a231356d404b553f465b6af2fa035821'</span><span class="p">,</span>
         <span class="s">'Integration-ID'</span><span class="p">:</span> <span class="s">'79606358-97af-4196-b64c-5f719433d56b'</span>
     <span class="p">}</span>
 <span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?employee_search=skoog'</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/?employee_search=skoog</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET <span class="nt">-H</span> <span class="s1">'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821'</span> <span class="nt">-H</span> <span class="s1">'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'</span> <span class="s1">'https://api.gigapay.se/v2/payouts/?search=skoog'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.gigapay.se/v2/payouts/?search=skoog</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">"</span><span class="s2">Authorization</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Token cd7a4537a231356d404b553f465b6af2fa035821</span><span class="dl">"</span><span class="p">,</span>
@@ -3068,9 +3068,9 @@ align everyone&#39;s expectation.</p>
 <td>Timestamp filter.</td>
 </tr>
 <tr>
-<td><code>employee_search</code></td>
+<td><code>search</code></td>
 <td></td>
-<td>Find payout by searching for parts <br/>of employee: name, cellphone number or email</td>
+<td>Find payout by searching for part of payout description or employee: name, cellphone number, email.</td>
 </tr>
 </tbody></table>
 <h2 id='register-a-payout'>Register a Payout</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
