@@ -633,13 +633,13 @@ fetch("https://api.gigapay.se/v2/employees/?search=skoog", {
 }
 ```
 
-> Request to retrieve all payouts to employees with string "skoog" in name, email or phone number:
+> Request to retrieve all payouts to employees with string "skoog" in name, email or phone number or with string "skoog" in the description of the payout:
 
 ```python
 import requests
 
 response = requests.get(
-    'https://api.gigapay.se/v2/payouts/?employee_search=skoog',
+    'https://api.gigapay.se/v2/payouts/?search=skoog',
     headers={
         'Authorization': 'Token cd7a4537a231356d404b553f465b6af2fa035821',
         'Integration-ID': '79606358-97af-4196-b64c-5f719433d56b'
@@ -648,11 +648,11 @@ response = requests.get(
 ```
 
 ```shell
-curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/payouts/?employee_search=skoog'
+curl -X GET -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' 'https://api.gigapay.se/v2/payouts/?search=skoog'
 ```
 
 ```javascript
-fetch("https://api.gigapay.se/v2/payouts/?employee_search=skoog", {
+fetch("https://api.gigapay.se/v2/payouts/?search=skoog", {
     method: "GET",
     headers: {
         "Authorization": "Token cd7a4537a231356d404b553f465b6af2fa035821",
