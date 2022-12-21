@@ -17,7 +17,6 @@ align everyone's expectation.
     "id": "0177270d-f94b-4ab9-88ba-ac1fa2f791aa",
     "amount": "100.00",
     "cost": "137.99",
-    "country": "SWE",
     "currency": "SEK",
     "description": "Lön genom Gigapay",
     "employee": "1f1d1263-0e79-4787-b573-6df81b44bfc2",
@@ -31,24 +30,23 @@ align everyone's expectation.
 }
 ```
 
-| Attribute          | Description                                                                       |
-| --------------------------- | --------------------------------------------------------------------------------- |
-| `id`                        | Unique identifier for the object.                                                                                                                                 |
-| `amount`                    | Decimal formatted string of the gross salary amount.                                                                                                                     |
-| `invoiced_amount`           | Decimal formatted string of the invoiced amount.                                |
-| `cost`                      | Decimal formatted string of the total salary cost.                                                                                                                     |
-| `country`                   | Country were task was performed.  ISO-3166 country code.                                                                                                          |
-| `currency`                  | ISO-4217 currency code.                                                                                                                                           |
-| `description`               | String describing the work done, displayed to the recipient. Max 255 characters.                                                                                                      |
-| `full_salary_specification` | Controls whether to present the payroll taxes and Gigapay's fee on the payslip. It is set to false when `amount` is used as a basis for the Payout, true otherwise.  |
-| `employee`                  | Unique identifier for the Employee object, that is the recipient of the Payout. This is an [expandable object.](../expanding.md)                                  |
-| `invoice`                   | Unique identifier for the Invoice object the Payout object belongs to. This is an [expandable object.](../expanding.md)                                           |
-| `metadata`                  | JSON-encoded metadata.                                                                                                                                            |
-| `start_at`                  | The time at which the gig will start. Displayed as ISO 8601 string.                                                                                               |
-| `end_at`                    | The time at which the gig will end. Displayed as ISO 8601 string.                                                                                                 |
-| `created_at`                | The time at which the Payout was created at. Displayed as ISO 8601 string.                                                                                        |
-| `notified_at`               | The time at which the Employee was notified of the Payout. Displayed as ISO 8601 string.                                                                          |
-| `accepted_at`               | The time at which the Employee accepted the Payout. Displayed as ISO 8601 string.                                                                                 |
+| Attribute          | Description                                                                                                                                                         |
+| --------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                        | Unique identifier for the object.                                                                                                                                   |
+| `amount`                    | Decimal formatted string of the gross salary amount.                                                                                                                |
+| `invoiced_amount`           | Decimal formatted string of the invoiced amount.                                                                                                                    |
+| `cost`                      | Decimal formatted string of the total salary cost.                                                                                                                  |
+| `currency`                  | ISO-4217 currency code.                                                                                                                                             |
+| `description`               | String describing the work done, displayed to the recipient. Max 255 characters.                                                                                    |
+| `full_salary_specification` | Controls whether to present the payroll taxes and Gigapay's fee on the payslip. It is set to false when `amount` is used as a basis for the Payout, true otherwise. |
+| `employee`                  | Unique identifier for the Employee object, that is the recipient of the Payout. This is an [expandable object.](#expanding-objects)                                 |
+| `invoice`                   | Unique identifier for the Invoice object the Payout object belongs to. This is an [expandable object.](#expanding-objects)                                       |
+| `metadata`                  | JSON-encoded metadata.                                                                                                                                              |
+| `start_at`                  | The time at which the gig will start. Displayed as ISO 8601 string.                                                                                                 |
+| `end_at`                    | The time at which the gig will end. Displayed as ISO 8601 string.                                                                                                   |
+| `created_at`                | The time at which the Payout was created at. Displayed as ISO 8601 string.                                                                                          |
+| `notified_at`               | The time at which the Employee was notified of the Payout. Displayed as ISO 8601 string.                                                                            |
+| `accepted_at`               | The time at which the Employee accepted the Payout. Displayed as ISO 8601 string.                                                                                   |
 
 
 
@@ -92,7 +90,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
             "id": "0177270d-f94b-4ab9-88ba-ac1fa2f791aa",
             "amount": "100.00",
             "cost": "137.99",
-            "country": "SWE",
             "currency": "SEK",
             "description": "Lön genom Gigapay",
             "employee": "1f1d1263-0e79-4787-b573-6df81b44bfc2",
@@ -109,7 +106,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
             "id": "8a726186-a4e4-42e0-b56e-20fd17dc67ba",
             "amount": "10.00",
             "cost": "13.79",
-            "country": "SWE",
             "currency": "SEK",
             "description": "Lön genom Gigapay",
             "employee": "1f1d1263-0e79-4787-b573-6df81b44bfc2",
@@ -164,7 +160,6 @@ response = requests.post(
     'https://api.gigapay.se/v2/payouts/',
     json={
         'id': 9472,
-        'country': 'SWE',
         'currency': 'SEK',
         'description': 'Instagram samarbete 2021-11-13.',
         'employee': 1847,
@@ -178,7 +173,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/payouts/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'  -d '{"id": 9472, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/payouts/
 ```
 
 ```javascript
@@ -186,7 +181,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
     method: "POST",
     body: JSON.stringify({
         id: 9472,
-        country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
         employee: 1847,
@@ -207,7 +201,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
     "id": "9472",
     "amount": "760.92",
     "cost": "1020.00",
-    "country": "SWE",
     "currency": "SEK",
     "description": "Lön genom Gigapay",
     "employee": "1847",
@@ -265,7 +258,6 @@ response = requests.post(
     json=[
         {
             'id': 9472,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'employee': 1847,
@@ -273,7 +265,6 @@ response = requests.post(
             'metadata': {},            
         }, {
             'id': 9473,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'employee': 1736,
@@ -289,7 +280,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '[{"id": 9472, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
 ```
 
 ```javascript
@@ -298,7 +289,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
     body: JSON.stringify([
         {
             'id': 9472,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'employee': 1847,
@@ -306,7 +296,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
             'metadata': {},            
         }, {
             'id': 9473,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'employee': 1736,
@@ -330,7 +319,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
         "id": "9472",
         "amount": "760.92",
         "cost": "1020.00",
-        "country": "SWE",
         "currency": "SEK",
         "description": "Instagram samarbete 2021-11-13.",
         "employee": "1847",
@@ -347,7 +335,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
         "id": "9473",
         "amount": "1902.31",
         "cost": "2550.00",
-        "country": "SWE",
         "currency": "SEK",
         "description": "Instagram samarbete 2021-11-13.",
         "employee": "1736",
@@ -398,7 +385,6 @@ response = requests.post(
     'https://api.gigapay.se/v2/payouts/?expand=employee',
     json={
         'id': 9472,
-        'country': 'SWE',
         'currency': 'SEK',
         'description': 'Instagram samarbete 2021-11-13.',
         'employee': {
@@ -418,7 +404,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/payouts/?expand=employee'
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 9472, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/payouts/?expand=employee'
 ```
 
 ```javascript
@@ -426,7 +412,6 @@ fetch("https://api.gigapay.se/v2/payouts/?expand=employee", {
     method: "POST",
     body: JSON.stringify({
         id: 9472,
-        country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
         employee: {
@@ -453,7 +438,6 @@ fetch("https://api.gigapay.se/v2/payouts/?expand=employee", {
     "id": "9472",
     "amount": "760.92",
     "cost": "1020.00",
-    "country": "SWE",
     "currency": "SEK",
     "description": "Instagram samarbete 2021-11-13.",
     "employee": {
@@ -550,7 +534,6 @@ fetch("https://api.gigapay.se/v2/payouts/9472/", {
     "id": "9472",
     "amount": "760.92",
     "cost": "1020.00",
-    "country": "SWE",
     "currency": "SEK",
     "description": "Lön genom Gigapay",
     "employee": "1847",
