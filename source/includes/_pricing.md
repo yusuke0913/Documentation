@@ -152,7 +152,6 @@ response = requests.post(
     'https://api.gigapay.se/v2/pricing/',
     json={
         'id': 9472,
-        'country': 'SWE',
         'currency': 'SEK',
         'description': 'Instagram samarbete 2021-11-13.',
         'full_salary_specification': True,
@@ -167,7 +166,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'  -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/pricing/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b'  -d '{"id": 9472, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}' https://api.gigapay.se/v2/pricing/
 ```
 
 ```javascript
@@ -175,7 +174,6 @@ fetch("https://api.gigapay.se/v2/pricing/", {
     method: "POST",
     body: JSON.stringify({
         id: 9472,
-        country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
         full_salary_specification: true,
@@ -250,7 +248,6 @@ response = requests.post(
     json=[
         {
             'id': 9472,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'full_salary_specification': True,
@@ -258,7 +255,6 @@ response = requests.post(
             'invoiced_amount': '1000.00',       
         }, {
             'id': 9473,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'full_salary_specification': True,
@@ -274,7 +270,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '[{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '[{"id": 9472, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1847, "invoiced_amount": "1000.00"}, {"id": 9473, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": 1736, "invoiced_amount": "2500.00"}]' https://api.gigapay.se/v2/payouts/
 ```
 
 ```javascript
@@ -283,7 +279,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
     body: JSON.stringify([
         {
             'id': 9472,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'full_salary_specification': true,
@@ -291,7 +286,6 @@ fetch("https://api.gigapay.se/v2/payouts/", {
             'invoiced_amount': '1000.00',
         }, {
             'id': 9473,
-            'country': 'SWE',
             'currency': 'SEK',
             'description': 'Instagram samarbete 2021-11-13.',
             'full_salary_specification': true,
@@ -371,7 +365,6 @@ response = requests.post(
     'https://api.gigapay.se/v2/pricing/?expand=employee',
     json={
         'id': 9472,
-        'country': 'SWE',
         'currency': 'SEK',
         'description': 'Instagram samarbete 2021-11-13.',
         'full_salary_specification': True,
@@ -392,7 +385,7 @@ response = requests.post(
 ```
 
 ```shell
-curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 9472, "country": "SWE", "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/pricing/?expand=employee'
+curl -X POST -H 'Authorization: Token cd7a4537a231356d404b553f465b6af2fa035821' -H 'Content-Type: application/json' -H 'Integration-ID: 79606358-97af-4196-b64c-5f719433d56b' -d '{"id": 9472, "currency": "SEK", "description": "Instagram samarbete 2021-11-13.", "full_salary_specification": true, "employee": {"id": 1847, "name": "Albin Lindskog", "cellphone_number": "+4670000001", "email": "albin@mail.com", "country": "SWE"}, "invoiced_amount": "1000.00"}' 'https://api.gigapay.se/v2/pricing/?expand=employee'
 ```
 
 ```javascript
@@ -400,7 +393,6 @@ fetch("https://api.gigapay.se/v2/pricing/?expand=employee", {
     method: "POST",
     body: JSON.stringify({
         id: 9472,
-        country: 'SWE',
         currency: 'SEK',
         description: 'Instagram samarbete 2021-11-13.',
         full_salary_specification: true,
