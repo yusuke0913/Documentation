@@ -1,7 +1,7 @@
 ---
 title: Gigapay API Reference
 
-language_tabs:
+language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell
   - python
   - javascript
